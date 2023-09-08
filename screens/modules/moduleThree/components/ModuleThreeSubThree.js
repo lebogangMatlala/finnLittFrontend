@@ -30,6 +30,42 @@ const BulletText = ({ children }) => (
     </Text>
 );
 
+const handleTrans = () => {
+    // Define the URL you want to open when the link is pressed
+    const url = 'https://www.transunion.co.za/';
+
+    // Open the URL using the Linking API
+    Linking.openURL(url);
+};
+
+const handleExpe = () => {
+    // Define the URL you want to open when the link is pressed
+    const url = 'https://www.experian.com/';
+
+    // Open the URL using the Linking API
+    Linking.openURL(url);
+};
+
+//
+const handleComp = () => {
+    // Define the URL you want to open when the link is pressed
+    const url = 'https://www.experian.co.za/';
+
+    // Open the URL using the Linking API
+    Linking.openURL(url);
+};
+
+const handlexds = () => {
+    // Define the URL you want to open when the link is pressed
+    const url = 'https://www.xds.co.za/';
+
+    // Open the URL using the Linking API
+    Linking.openURL(url);
+};
+
+
+
+
 const BoldFirstOneWords = ({ children }) => {
     const words = children.split(' ');
     const firstTwoWords = words.slice(0, 1).join(' ');
@@ -54,72 +90,72 @@ const BoldFirstTwoWords = ({ children }) => {
     );
 };
 
-const BoldFirstThreeWords = ({ children }) => {
-    const words = children.split(' ');
-    const firstTwoWords = words.slice(0, 3).join(' ');
-    const restOfText = words.slice(3).join(' ');
+// const BoldFirstThreeWords = ({ children }) => {
+//     const words = children.split(' ');
+//     const firstTwoWords = words.slice(0, 3).join(' ');
+//     const restOfText = words.slice(3).join(' ');
 
-    return (
-        <Text>
-            <Text style={styles.boldText}>{firstTwoWords}</Text> {restOfText}
-        </Text>
-    );
-};
+//     return (
+//         <Text>
+//             <Text style={styles.boldText}>{firstTwoWords}</Text> {restOfText}
+//         </Text>
+//     );
+// };
 
 const ModuleThreeSubThree = () => (
 
     <View style={styles.componentContainer} >
         <Text style={styles.mainText}>As a responsible consumer check your credit score regularly and report any discrepancies to the relevant credit bureaus immediately.</Text>
-        <Text style={styles.mainText}>What will I see:</Text>
+        <Text style={styles.mainText}><Text style={{ fontWeight: 'bold' }}>What will I see:</Text></Text>
         <BulletText>
-            <BoldFirstThreeWords>
-                Your personal credit score: See exactly what lenders see when they look into your profile.
-            </BoldFirstThreeWords>
+           
+                <Text style={{ fontWeight: 'bold' }}>Your personal credit score: </Text>See exactly what lenders see when they look into your profile.
+            
         </BulletText>
         <BulletText>
-            <BoldFirstThreeWords>
+            
                 See your debt: You will get to see in detail how much debt you have and how it influences your score.
-            </BoldFirstThreeWords>
+        
         </BulletText>
         <BulletText>
-            <BoldFirstThreeWords>
+            
                 Where to improve: you will get to see the problem areas that caused your score to drop.
-            </BoldFirstThreeWords>
+            
         </BulletText>
         <BulletText>
-            <BoldFirstThreeWords>
-               Activities on your credit profile: Know each and every company that looked into your score. Where to improve: you will get to see the problem areas that caused your score to drop.
-            </BoldFirstThreeWords>
+            
+                <Text style={{ fontWeight: 'bold' }}>Activities on your credit profile:</Text> Know each and every company that looked into your score. Where to improve: you will get to see the problem areas that caused your score to drop.
+           
         </BulletText>
         <BulletText>
-            <BoldFirstThreeWords>
-                If you have judgements or listings: This is the biggest reason for people getting declined by lenders
-            </BoldFirstThreeWords>
+           
+                <Text style={{ fontWeight: 'bold' }}>If you have judgements or listings: </Text>This is the biggest reason for people getting declined by lenders
+           
         </BulletText>
         <BulletText>
-            <BoldFirstThreeWords>
-                If you qualify for loans: Your risk class will show you if you are good, average, or high risk to lenders.
-            </BoldFirstThreeWords>
+            
+                <Text style={{ fontWeight: 'bold' }}>If you qualify for loans: </Text>Your risk class will show you if you are good, average, or high risk to lenders.
+            
         </BulletText>
-        <Text style={styles.mainText}>Where can I check my credit score?</Text>
-        <Text style={styles.mainText}>TransUnion: </Text>
-        <BulletText>Call centre 0861 886 466 </BulletText>
-        <BulletText>Visit www.transunion.co.za </BulletText>
-        <Text style={styles.mainText}>Experian:  </Text>
-        <BulletText>Call centre 0861 105 665 </BulletText>
-        <BulletText>Visit www.experian.com </BulletText>
-        <BulletText>Send an email to consumer@experian.co </BulletText>
-        <Text style={styles.mainText}>Compuscan:  </Text>
-        <BulletText>Call centre  0861 514 131, </BulletText>
-        <BulletText>Visit www.compuscan.co.za  </BulletText>
-        <BulletText>Send an email to consumercare@compuscan.co.za </BulletText>
-        <Text style={styles.mainText}>Xpert Decision Systems (XDS):   </Text>
-        <BulletText>Call centre 0860 937 000, </BulletText>
-        <BulletText>Visit www.xds.co.za</BulletText>
-        <BulletText>Send an email disput@xds.co.za </BulletText>
-        <Text style={styles.mainText}>VeriCred: </Text>
-        <BulletText>Call centre on 087 150 3601  </BulletText>
-        <BulletText>Visit www.vcbb,co,za</BulletText>
+        <Text style={styles.mainText}><Text style={{ fontWeight: 'bold' }}>Where can I check my credit score?</Text></Text>
+        <Text style={styles.mainText}><Text style={{ fontWeight: 'bold' }}>TransUnion: </Text></Text>
+        <BulletText>Call centre <Text style={{ fontWeight: 'bold' }}>0861 886 466 </Text></BulletText>
+        <BulletText>Visit <Text style={{ fontWeight: 'bold' }} onPress={handleTrans}>www.transunion.co.za</Text> </BulletText>
+        <Text style={styles.mainText}><Text style={{ fontWeight: 'bold' }}>Experian:  </Text></Text>
+        <BulletText>Call centre <Text style={{ fontWeight: 'bold' }}>0861 105 665</Text> </BulletText>
+        <BulletText>Visit <Text style={{ fontWeight: 'bold' }} onPress={handleExpe}>www.experian.com</Text> </BulletText>
+        <BulletText>Send an email to <Text style={{ fontWeight: 'bold' }}>consumer@experian.co</Text> </BulletText>
+        <Text style={styles.mainText}><Text style={{ fontWeight: 'bold' }}>Compuscan: </Text> </Text>
+            <BulletText>Call centre  <Text style={{ fontWeight: 'bold' }}>0861 514 131, </Text></BulletText>
+            <BulletText>Visit <Text style={{ fontWeight: 'bold' }} onPress={handleComp}>www.compuscan.co.za  </Text></BulletText>
+            <BulletText>Send an email to <Text style={{ fontWeight: 'bold' }}>consumercare@compuscan.co.za </Text></BulletText>
+            <Text style={styles.mainText}><Text style={{ fontWeight: 'bold' }}>Xpert Decision Systems (XDS):  </Text> </Text>
+                <BulletText>Call centre <Text style={{ fontWeight: 'bold' }}>0860 937 000,</Text> </BulletText>
+                <BulletText>Visit <Text style={{ fontWeight: 'bold' }} onPress={handlexds}>www.xds.co.za</Text></BulletText>
+                <BulletText>Send an email <Text style={{ fontWeight: 'bold' }}>disput@xds.co.za </Text></BulletText>
+                <Text style={styles.mainText}><Text style={{ fontWeight: 'bold' }}>VeriCred: </Text></Text>
+                    <BulletText>Call centre on <Text style={{ fontWeight: 'bold' }}>087 150 3601 </Text> </BulletText>
+                    <BulletText>Visit <Text style={{ fontWeight: 'bold' }}>www.vcbb.co.za</Text></BulletText>
         
     </View >
 

@@ -31,10 +31,10 @@ const ModuleThreeSubOne = () => (
         <Text style={styles.mainText}>There are two types of credit scores:</Text>
         <Text style={styles.numText}>1.Credit Bureau Credit Score</Text>
         <Text style={styles.numText}>2.Custom Credit Scores</Text>
-        <Text style={styles.mainText}>Credit bureau credit scores:</Text>
+        <Text style={styles.mainText}><Text style={{ fontWeight: 'bold' }}>Credit bureau credit scores:</Text></Text>
         <Text style={styles.mainText}>As the name suggests, these are calculated by the credit bureaus. Each has a scoring system based on whether you are good payer or not that gives you a high-level overview of your credit profile. A high score indicates that you are a responsible payer.
             This, along with your employment history; your income and affordability assessments as well as the type of credit for which you are applying, may affect the outcome of your credit application.</Text>
-        <Text style={styles.mainText}>Custom credit scores:</Text>
+        <Text style={styles.mainText}><Text style={{ fontWeight: 'bold' }}>Custom credit scores:</Text></Text>
         <Text style={styles.mainText}>These are determined by lenders. They look at information from their preferred credit bureau and additional information from your accounts with them. For example, if you apply for vehicle finance through the same lender that you have a home loan, they will also consider how reliable you've been at paying off your home loan before approving your new credit application.</Text>
     </View >
 
