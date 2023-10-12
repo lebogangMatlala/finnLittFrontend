@@ -59,7 +59,7 @@ const ModuleTwoSubFive = () => (
         <BulletText>
             To check what information has been uploaded on your behalf go to “Third Party Data Certificate Search” on the left tab (IRP5, medical aid etc)
         </BulletText>
-        <Text style={styles.mainText}>Updating Bank Account Details:</Text>
+        <Text style={styles.mainText}> <Text style={{ fontWeight: 'bold' }}>Updating Bank Account Details:</Text></Text>
         <BulletText>
             SARS will notify you if are required to submit supporting documents to verify your banking details.
         </BulletText>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     StyleSheet,
     Text,
@@ -19,19 +19,21 @@ import {
 import Svg, { Path } from 'react-native-svg';
 import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function ModuleOneDashboardScreen({ navigation }) {
     const screenWidth = Dimensions.get('window').height;
     const windowDimensions = useWindowDimensions();
     const statusBarHeight = StatusBar.currentHeight || 0;
     const halfScreenWidth = screenWidth / 2;
-
+    const [user, setUser] = useState(null);
     const handleDescription = () => {
         navigation.navigate("ModuleOneContentScreen");
     }
 
     const goBack = () => {
-        navigation.navigate("Dashboard");
+        console.log('goBack function is clicked');
+        navigation.navigate("DashTabs");
     }
 
     const data = [
@@ -45,13 +47,33 @@ export default function ModuleOneDashboardScreen({ navigation }) {
         paddingTop: statusBarHeight,
         height: windowDimensions.height,
     };
+    useEffect(() => {
+        const getDataFromAsyncStorage = async () => {
+            try {
+                const storedData = await AsyncStorage.getItem('user'); // Replace 'myKey' with your storage key
+                if (storedData !== null) {
+                    // Data found in storage
+                    setUser(storedData);
+                } else {
+                    // Data not found in storage
+                    setUser('No data found');
+                }
+            } catch (error) {
+                // Handle error here
+                console.error('Error retrieving data:', error);
+            }
+        };
+
+        getDataFromAsyncStorage();
+    }, []);
 
     return (
+        <SafeAreaView style={{ flex: 1, backgroundColor: 'white', }}>
+            <ScrollView style={{ flex: 1, backgroundColor: 'white', marginTop: -40, }} contentContainerStyle={{
+                flexDirection: 'row',
+                flexWrap: 'wrap',
+            }}>
 
-        <ScrollView contentContainerStyle={styles.scrollViewContent}>
-            <View style={styles.container}>
-                {/* Half screen with image */}
-                {/* <Text style={styles.mainText}>Welcome</Text> */}
                 <View style={styles.container}>
                     <ImageBackground
                         source={require('../../../assets/onboarding/module1.png')}
@@ -63,43 +85,48 @@ export default function ModuleOneDashboardScreen({ navigation }) {
                             </TouchableOpacity>
                             <View style={styles.sectionB} >
                                 <Text style={{ color: 'white', fontSize: 28, fontWeight: '800', lineHeight: 30 }}>Module 1: Payslips</Text>
+                                {/* <Text style={{ color: 'white', fontSize: 28, fontWeight: '800', lineHeight: 30 }}>Module 1: Payslips</Text> */}
                                 <Text style={{ color: 'white', fontSize: 18, fontWeight: '500', lineHeight: 27 }}>Understanding your pay slip</Text>
                             </View>
                         </View>
                     </ImageBackground>
-                </View>
-                {/* Half screen with white background */}
-                <View style={[styles.whiteBackground, { paddingBottom: 50 }]}>
-                    <View style={{ marginTop: '5%' }}>
-                        <View style={styles.section}>
-                            <Text style={styles.bold}>Overview:</Text>
-                            <Text style={styles.light}>It is important for all employers in South Africa to provide their employees with accurate and up-to-date payslips. The payslip serves as a record of the employees earnings and deductions and is an important document for employees to keep for tax purposes</Text>
-                            <Text style={styles.bold}>What will the module cover:</Text>
-                            <View >
-                                {data.map((item) => (
-                                    <View key={item.id} style={styles.listItem}>
-                                        <Text style={styles.itemText}>{`${item.id}. ${item.text}`}</Text>
-                                    </View>
-                                ))}
+                    {/* Half screen with white background */}
+                    <View style={[styles.whiteBackground, { paddingBottom: 50 }]}>
+                        <View style={{ marginTop: '5%' }}>
+                            <View style={styles.section}>
+                                <Text style={styles.bold}>Overview:</Text>
+                                <Text style={styles.light}>It is important for all employers in South Africa to provide their employees with accurate and up-to-date payslips. The payslip serves as a record of the employees earnings and deductions and is an important document for employees to keep for tax purposes</Text>
+                                <Text style={styles.bold}>What will the module cover:</Text>
+                                <View >
+                                    {data.map((item) => (
+                                        <View key={item.id} style={styles.listItem}>
+                                            <Text style={styles.itemText}>{`${item.id}. ${item.text}`}</Text>
+                                        </View>
+                                    ))}
+                                </View>
+
                             </View>
 
+
                         </View>
-
-
+                        <View style={styles.content}>
+                            <TouchableOpacity style={styles.button} onPress={handleDescription}>
+                                <Text style={styles.buttonText}>Start Learning</Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
-                    <View style={styles.content}>
-                        <TouchableOpacity style={styles.button} onPress={handleDescription}>
-                            <Text style={styles.buttonText}>Start Learning</Text>
-                        </TouchableOpacity>
-                    </View>
+
+                    <StatusBar
+                        barStyle="auto" animated={false}
+                        backgroundColor="#072a40"
+                    />
+
                 </View>
 
-                <StatusBar
-                    barStyle="auto" animated={false}
-                    backgroundColor="#072a40"
-                />
-            </View>
-        </ScrollView >
+
+            </ScrollView>
+
+        </SafeAreaView>
 
     );
 }
@@ -144,9 +171,8 @@ const styles = StyleSheet.create({
     content: {
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: '20%',
-        marginBottom:'-5%'
-
+        marginTop: '18%',
+        marginBottom: '1%'
     },
     list: {
         flex: 1,
@@ -157,7 +183,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         // padding: 2,
-
     },
     itemText: {
         fontSize: 16,
@@ -169,7 +194,7 @@ const styles = StyleSheet.create({
         flex: 1,
         width: '100%',
         flexDirection: 'column',
-        ///margin:10,
+        padding: 10,
         justifyContent: 'flex-start',
         borderRadius: 0,
         padding: 0,
@@ -203,24 +228,25 @@ const styles = StyleSheet.create({
         fontWeight: '700'
     },
     sectionA: {
-        marginTop: '5%',
+        marginTop: '4%',
         flexDirection: 'row',
         alignItems: 'center',
         borderRadius: 5,
-        paddingHorizontal: 10,
+        paddingHorizontal: 25,
+        //backgroundColor:'pink',
+        padding: 10,
+        //width:'100%',
+
         // marginLeft: 28,
         // marginRight: 28,
         // borderBottomWidth: 1.5,
     },
     sectionB: {
-        marginTop: '100%',
-        marginBottom: '10%',
-        //flexDirection: 'row',
-        justifyContent: 'center',
+        flex: 1,
+        justifyContent: 'flex-end',
         alignItems: 'flex-start',
-        position: 'absolute', //Here is the trick
-        bottom: 0, //Here is the trick
-        paddingHorizontal: 20,
+        marginBottom: 90,
+        paddingHorizontal: 25,
     },
     section: {
 

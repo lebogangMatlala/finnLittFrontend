@@ -16,7 +16,9 @@ import {
     RefreshControl,
     TouchableWithoutFeedback,
     Keyboard,
-    Alert
+    Alert,
+    Linking,
+    ActivityIndicator
 
 } from 'react-native';
 import { CheckBox } from '@rneui/themed';
@@ -38,10 +40,14 @@ export default function RegisterScreen({ navigation }) {
 
     const [passwordsMatch, setPasswordsMatch] = useState(true);
     const [authenticated, setauthenticated] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const toggleCheckbox = () => setChecked(!checked);
     const screenWidth = Dimensions.get('window').height;
     const halfScreenWidth = screenWidth / 2;
+
+    const { height, width } = Dimensions.get('window');
+    const isIpad = width > 768 && height > 1024;
 
     // const handleRegister = () => {
     //     console.log(" check box " + checked + ' This is my email ' + email + ' this is the password ' + password + " full name " + fullName + ' phone number ' + phoneNum);
@@ -53,10 +59,18 @@ export default function RegisterScreen({ navigation }) {
         return emailPattern.test(email);
     };
 
+    const handleLinkPress = () => {
+        // Define the URL you want to open when the link is pressed
+        const url = 'https://finnlitt.co.za/terms-and-conditions';
+
+        // Open the URL using the Linking API
+        Linking.openURL(url);
+    };
+
 
     const handleRegister = () => {
         console.log('This is my email ' + email + ' this is the password ' + password);
-
+        setLoading(true);
         const validationErrors = {};
 
         // Validate name
@@ -91,7 +105,7 @@ export default function RegisterScreen({ navigation }) {
             // Perform registration logic here
             if (checked == true) {
                 console.log('check is true');
-                axios.post('https://f138-41-113-84-176.ngrok-free.app/api/register', {
+                axios.post('https://finnlitt.co.za/api/register', {
                     name, phoneNum, email, password
                 })
                     .then(function (response) {
@@ -104,11 +118,18 @@ export default function RegisterScreen({ navigation }) {
                         const user = JSON.stringify(response.data.user);
                         console.log("User data from screen " + user);
 
+                        setName('');
+                        setPhoneNum('');
+                        setEmail('');
+                        setPassword('');
+                        setConfirmPassword('');
+
                         //navigation.navigate("Dash", { param1: 'value1', param2: 'value2' });
-                        navigation.navigate('Dashboard', {
+                        navigation.navigate('DashTabs', {
                             screen: 'Dash',
                             params: { user: user },
                         })
+                        setLoading(false);
                     })
                     .catch(error => {
                         if (error.response) {
@@ -148,14 +169,14 @@ export default function RegisterScreen({ navigation }) {
 
     return (
 
-        <SafeAreaView style={styles.container}>
-            <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-                style={styles.container}>
+        <View style={styles.container}>
 
-                <ScrollView style={styles.scrollView} contentContainerStyle={{
-                    flexDirection: 'row',
-                    flexWrap: 'wrap',
-                }}>
+            <KeyboardAvoidingView
+                behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+                style={{ flex: 1 }}
+            >
+                <ScrollView contentContainerStyle={styles.scrollViewContent}
+                    showsVerticalScrollIndicator={false}>
 
                     <View style={styles.container}>
                         {/* Half screen with image */}
@@ -231,7 +252,7 @@ export default function RegisterScreen({ navigation }) {
                                     checkedColor="#226188"
                                 />
                                 <Text style={styles.termText}>I consent to and accept the <TouchableOpacity>
-                                    <Text style={{ color: '#226188', fontWeight: 700, marginTop: 6, marginBottom: -4, fontSize: 12, lineHeight: 18 }}>
+                                    <Text style={[styles.termsOfUse, isIpad && styles.termsOfUseIpad]} onPress={handleLinkPress}>
                                         terms of use.
                                     </Text>
                                 </TouchableOpacity></Text>
@@ -240,8 +261,13 @@ export default function RegisterScreen({ navigation }) {
                                 <TouchableOpacity style={styles.button} onPress={handleRegister}>
                                     <Text style={styles.buttonText}>Register</Text>
                                 </TouchableOpacity>
+                                {loading && (
+                                    <View style={styles.loadingContainer}>
+                                        <ActivityIndicator size="large" color="white" />
+                                    </View>
+                                )}
                                 <Text style={styles.termText}>Already on FinnLitt? <TouchableOpacity onPress={backToLogin}>
-                                    <Text style={{ fontSize: 12, color: '#226188', fontWeight: 700, marginTop: 6, marginBottom: -4 }}>
+                                    <Text style={[styles.termsOfUse, isIpad && styles.termsOfUseIpad]}>
                                         Login
                                     </Text>
                                 </TouchableOpacity></Text>
@@ -255,7 +281,7 @@ export default function RegisterScreen({ navigation }) {
                     </View>
                 </ScrollView>
             </KeyboardAvoidingView>
-        </SafeAreaView>
+        </View >
     );
 }
 
@@ -265,25 +291,55 @@ const styles = StyleSheet.create({
         flexDirection: 'column', // Arrange children horizontally
     },
     content: {
-        justifyContent: 'center',
+        //justifyContent: 'center',
         alignItems: 'center',
-        marginTop: '3%'
+        marginTop: '3%',
+
 
     },
-    scrollView: {
-        backgroundColor: '#072a40',
-        flex: 1,
-        // marginHorizontal: ,
+    loadingContainer: {
+        position: 'absolute',
+        // top: 0,
+        // left: 0,
+        // right: 0,
+        // bottom: 0,
+        backgroundColor: 'rgba(0, 0, 0, 0.3)',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 30,
+        width: '72%',
+        height: 48,
+    },
+    termsOfUse: {
+        color: '#226188',
+        fontWeight: 700,
+        marginTop: 6,
+        marginBottom: -4,
+        fontSize: 12,
+        lineHeight: 18
+    },
+    termsOfUseIpad: {
+        color: '#226188',
+        fontWeight: 700,
+        marginTop: 4,
+        marginBottom: -3,
+        fontSize: 12,
+        lineHeight: 18
+    },
+    scrollViewContent: {
+        flexGrow: 1,
+        //alignItems: 'center', // Center content horizontally
+        justifyContent: 'center', // Center content vertically
     },
     imageBackground: {
-        //flex: 1, // Take half of the screen width
+        flex: 1, // Take half of the screen width
         resizeMode: 'contain',
         backgroundColor: 'white',
         marginTop: "-15%"
         //height:30
     },
     whiteBackground: {
-        //flex: 2, // Take the other half of the screen width
+        flex: 1, // Take the other half of the screen width
         backgroundColor: 'white',
     },
     image: {
@@ -321,7 +377,7 @@ const styles = StyleSheet.create({
         padding: 10,
         borderRadius: 42,
         //marginTop: 10,
-        width: 277,
+        width: '72%',
         height: 48,
         alignItems: 'center',
         shadowColor: "#000",
@@ -332,7 +388,8 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.20,
         shadowRadius: 1.41,
         elevation: 2,
-        justifyContent: 'center'
+        justifyContent: 'center',
+        marginBottom: '1%'
     },
     buttonText: {
         textAlign: 'center',

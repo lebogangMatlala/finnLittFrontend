@@ -53,6 +53,9 @@ export default function ModuleTwoContentScreen({ navigation }) {
     const [modalVisible, setModalVisible] = useState(false);
     const [user, setUser] = useState(null);
 
+    const { height, width } = Dimensions.get('window');
+    const isIpad = width > 768 && height > 1024;
+
     const containerStyle = {
         paddingTop: statusBarHeight,
         height: windowDimensions.height,
@@ -63,7 +66,7 @@ export default function ModuleTwoContentScreen({ navigation }) {
     }
 
     const goBack = () => {
-        navigation.navigate("Dashboard");
+        navigation.goBack();
     }
 
     const data = [
@@ -71,7 +74,7 @@ export default function ModuleTwoContentScreen({ navigation }) {
         { id: '1.2', text: 'How to interpret your payslip' },
     ];
 
-    const components = [ModuleTwoSubOne, ModuleTwoSubTwo, ModuleTwoSubThree, ModuleTwoSubFour, ModuleTwoSubFive,ModuleTwoSubSix,ModuleTwoSubSeven];
+    const components = [ModuleTwoSubOne, ModuleTwoSubTwo, ModuleTwoSubThree, ModuleTwoSubFour, ModuleTwoSubFive, ModuleTwoSubSix, ModuleTwoSubSeven];
     const dropdownOptions = ['2.1. Do I have to pay taxes?', '2.2. Where do I start?', '2.3. Where do I start?', '2.4. What do you need before you get started?', '2.5. How to complete a tax return', '2.6. What do I do when SARS sends me messages!', '2.7. What do I do when SARS sends me messages!'];
     const mainTitles = ['2.1. Do I have to pay taxes?', '2.2. Where do I start?', '2.3. Where do I start?', '2.4. What do you need before you get started?', '2.5. How to complete a tax return', '2.6. What do I do when SARS sends me messages!', '2.7. What do I do when SARS sends me messages!'];
     const [selectedOption, setSelectedOption] = useState(0);
@@ -81,7 +84,7 @@ export default function ModuleTwoContentScreen({ navigation }) {
         if (selectedOption < components.length - 1) {
             setSelectedOption(selectedOption + 1);
         } else {
-            setModalVisible(true); 
+            setModalVisible(true);
         }
     };
 
@@ -96,7 +99,7 @@ export default function ModuleTwoContentScreen({ navigation }) {
         setModalVisible(false);
     };
     const handleYesPress = () => {
-        navigation.navigate('Dashboard', {
+        navigation.navigate('DashTabs', {
             screen: 'Dash',
             params: { user: user },
 
@@ -134,11 +137,15 @@ export default function ModuleTwoContentScreen({ navigation }) {
     return (
 
 
-        <ScrollView contentContainerStyle={styles.scrollViewContent}>
-            <View style={styles.container}>
-                {/* Half screen with image */}
-               
+        <SafeAreaView style={{ flex: 1, backgroundColor: 'white', }}>
+            <ScrollView style={[styles.scrollViewContent, isIpad && styles.scrollViewContentIpad]} contentContainerStyle={{
+                flexDirection: 'row',
+                flexWrap: 'wrap',
+            }}>
                 <View style={styles.container}>
+                    {/* Half screen with image */}
+
+
                     <ImageBackground
                         source={require('../../../assets/onboarding/module2.png')}
                         style={[styles.imageBackground, { height: halfScreenWidth }]}
@@ -171,58 +178,58 @@ export default function ModuleTwoContentScreen({ navigation }) {
 
                         </View>
                     </ImageBackground>
-                </View>
-                {/* Half screen with white background */}
-                <View style={[styles.whiteBackground, { paddingBottom: 50 }]}>
-                    {components[selectedOption]()}
-                  
 
-                    <View style={styles.content}>
-                        <TouchableOpacity style={styles.button} onPress={handleNextButton}>
-                            <Text style={styles.buttonText}>Next</Text>
-                        </TouchableOpacity>
-                    </View>
-                </View>
+                    {/* Half screen with white background */}
+                    <View style={[styles.whiteBackground, { paddingBottom: 50 }]}>
+                        {components[selectedOption]()}
 
-                {/* Modal */}
-                <Modal
-                    animationType="slide" // Change animation type as needed
-                    transparent={true}
-                    visible={modalVisible}
-                    onRequestClose={closeModal}
-                >
-                    <View style={styles.modalContainer}>
-                        <View style={styles.modalContent}>
-                            <Text style={styles.subOneText}>Module
-                                <Text style={styles.subTwoText}>Complete</Text>
-                            </Text>
-                            <Text>Congratulations on completing Module 2. You should now have a better grasp on taxes and SARS! </Text>
-                            <Text>Module 3 centers around understanding your credit score. You can continue to the next module or you can return to the homepage.</Text>
-                            <View style={styles.buttonContainer}>
-                                <TouchableOpacity onPress={handleYesPress} style={[styles.buttonModalTwo, { width: '45%' }]}>
-                                    <Text style={styles.buttonTextTwo}>Home</Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity onPress={handleNoPress} style={[styles.buttonModal, { width: '45%' }]}>
-                                    <Text style={styles.buttonText}>Module 3
-                                    
-                                    
-                                    
-                                    
-                                    </Text>
-                                </TouchableOpacity>
-                            </View>
+
+                        <View style={styles.content}>
+                            <TouchableOpacity style={styles.button} onPress={handleNextButton}>
+                                <Text style={styles.buttonText}>Next</Text>
+                            </TouchableOpacity>
                         </View>
                     </View>
-                </Modal>
+
+                    {/* Modal */}
+                    <Modal
+                        animationType="slide" // Change animation type as needed
+                        transparent={true}
+                        visible={modalVisible}
+                        onRequestClose={closeModal}
+                    >
+                        <View style={styles.modalContainer}>
+                            <View style={styles.modalContent}>
+                                <Text style={styles.subOneText}>Module
+                                    <Text style={styles.subTwoText}>Complete</Text>
+                                </Text>
+                                <Text style={styles.modalText}><Text style={{ fontWeight: '800' }}>Congratulations</Text> on completing Module 2. You should now have a better grasp on taxes and SARS! </Text>
+                                <Text style={styles.modalText}>Module 3 centers around understanding your credit score. You can continue to the next module or you can return to the homepage.</Text>
+                                <View style={styles.buttonContainer}>
+                                    <TouchableOpacity onPress={handleYesPress} style={[styles.buttonModalTwo, { width: '45%' }]}>
+                                        <Text style={styles.buttonTextTwo}>Home</Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity onPress={handleNoPress} style={[styles.buttonModal, { width: '45%' }]}>
+                                        <Text style={styles.buttonText}>Module 3
 
 
-                <StatusBar
-                    barStyle="auto" animated={false}
-                    backgroundColor="#072a40"
-                />
-            </View>
-        </ScrollView >
 
+
+                                        </Text>
+                                    </TouchableOpacity>
+                                </View>
+                            </View>
+                        </View>
+                    </Modal>
+
+
+                    <StatusBar
+                        barStyle="auto" animated={false}
+                        backgroundColor="#072a40"
+                    />
+                </View>
+            </ScrollView >
+        </SafeAreaView>
     );
 }
 
@@ -233,7 +240,16 @@ const styles = StyleSheet.create({
         //flexDirection: 'column', // Arrange children horizontally
     },
     scrollViewContent: {
-       
+        flex: 1, backgroundColor: 'white', marginTop: '-8%'
+    },
+    scrollViewContentIpad: {
+        flex: 1, backgroundColor: 'white', marginTop: '-2.5%'
+    },
+    modalText: {
+        textAlign: 'center',
+        padding: 5,
+        fontSize: 12,
+        fontWeight: '400'
     },
     header: {
         flexDirection: 'row',
@@ -378,7 +394,7 @@ const styles = StyleSheet.create({
         ///margin:10,
         justifyContent: 'flex-start',
         borderRadius: 0,
-        padding: 0,
+        padding: 1,
         backgroundColor: 'rgba(0, 0, 0, 0.3)', // Overlay background color
     },
     imageBackground: {
@@ -409,22 +425,17 @@ const styles = StyleSheet.create({
         fontWeight: '700'
     },
     sectionA: {
-
         flexDirection: 'row',
         alignItems: 'center',
         borderRadius: 5,
         paddingHorizontal: 10,
-
     },
     sectionB: {
-        marginTop: '100%',
-        marginBottom: '10%',
-        //flexDirection: 'row',
-        justifyContent: 'center',
+        flex: 1,
+        justifyContent: 'flex-end',
         alignItems: 'flex-start',
-        position: 'absolute', //Here is the trick
-        bottom: 0, //Here is the trick
-        paddingHorizontal: 20,
+        marginBottom: 90,
+        paddingHorizontal: 25,
     },
     section: {
 
@@ -483,7 +494,8 @@ const styles = StyleSheet.create({
         fontSize: 12,
         lineHeight: 18,
         color: '#94999D'
-    },dropdown1BtnStyle: {
+    },
+    dropdown1BtnStyle: {
         width: '60%',
         height: 44,
         backgroundColor: '#FFF',

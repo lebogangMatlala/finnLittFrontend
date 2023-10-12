@@ -13,7 +13,8 @@ import {
     KeyboardAvoidingView,
     ScrollView,
     RefreshControl,
-    Alert
+    Alert,
+    ActivityIndicator
 } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 
@@ -27,6 +28,7 @@ export default function LoginScreen({ navigation }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [authenticated, setauthenticated] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const screenWidth = Dimensions.get('window').height;
     const halfScreenWidth = screenWidth / 2;
@@ -35,29 +37,32 @@ export default function LoginScreen({ navigation }) {
         navigation.navigate("Registration");
     }
 
-    
+
 
     const handleLogin = () => {
         console.log('This is my email ' + email + ' this is the password ' + password);
-       
-        axios.post('https://f138-41-113-84-176.ngrok-free.app/api/login', {
+        setLoading(true);
+        axios.post('https://finnlitt.co.za/api/login', {
             email, password
         })
             .then(function (response) {
                 console.log(response.data.user);
                 setauthenticated(true);
                 AsyncStorage.setItem("authenticated", JSON.stringify(true));
-               
+
                 AsyncStorage.setItem('userid', JSON.stringify(response.data.user.id));
                 AsyncStorage.setItem('user', JSON.stringify(response.data.user))
                 const user = JSON.stringify(response.data.user);
                 console.log("User data from screen " + user);
 
+                setEmail('');
+                setPassword('');
                 //navigation.navigate("Dash", { param1: 'value1', param2: 'value2' });
-                navigation.navigate('Dashboard', {
+                navigation.navigate('DashTabs', {
                     screen: 'Dash',
                     params: { user: user },
                 })
+                setLoading(false);
             })
             .catch(error => {
                 if (error.response) {
@@ -80,11 +85,13 @@ export default function LoginScreen({ navigation }) {
     }
 
     return (
-        <SafeAreaView style={styles.container}>
-            <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+
+        <View style={styles.container}>
+            <KeyboardAvoidingView enabled behavior={Platform.OS === 'ios' ? 'padding' : null}
                 style={styles.container}>
 
-                {/* <ScrollView> */}
+                <ScrollView contentContainerStyle={styles.scrollViewContent}
+                    showsVerticalScrollIndicator={false}>
                     <View style={styles.container}>
                         {/* Half screen with image */}
                         <ImageBackground
@@ -95,40 +102,47 @@ export default function LoginScreen({ navigation }) {
                         </ImageBackground>
                         {/* Half screen with white background */}
                         <View style={[styles.whiteBackground, { height: halfScreenWidth * 2 }]}>
-                            <View style={{marginTop:'5%'}}>
+                            <View style={{ marginTop: '5%' }}>
 
-                            
-                            <View style={styles.section}>
-                                <Image source={require('../assets/icons/emailAdr.png')} style={styles.icon} />
-                                <TextInput
-                                    style={styles.input}
-                                    placeholder="Email"
-                                    value={email}
-                                    onChangeText={setEmail}
-                                // other TextInput props
-                                />
+
+                                <View style={styles.section}>
+                                    <Image source={require('../assets/icons/emailAdr.png')} style={styles.icon} />
+                                    <TextInput
+                                        style={styles.input}
+                                        placeholder="Email"
+                                        value={email}
+                                        onChangeText={setEmail}
+                                    // other TextInput props
+                                    />
+                                </View>
+                                <View style={styles.section}>
+                                    <Image source={require('../assets/icons/password.png')} style={styles.icon} />
+                                    <TextInput
+                                        style={styles.input}
+                                        placeholder="Password"
+                                        secureTextEntry={true}
+                                        value={password}
+                                        onChangeText={setPassword}
+                                    />
+                                </View>
                             </View>
-                            <View style={styles.section}>
-                                <Image source={require('../assets/icons/password.png')} style={styles.icon} />
-                                <TextInput
-                                    style={styles.input}
-                                    placeholder="Password"
-                                    secureTextEntry={true}
-                                    value={password}
-                                    onChangeText={setPassword}
-                                />
-                            </View>
-                        </View>
                             <View style={styles.content}>
-                            <TouchableOpacity style={styles.button} onPress={handleLogin}>
+                                <TouchableOpacity style={styles.button} onPress={handleLogin}>
                                     <Text style={styles.buttonText}>Login</Text>
                                 </TouchableOpacity>
-                            <Text style={styles.termText}>Don't have an account? <TouchableOpacity onPress={handleRegister}>
-                                    <Text style={{ textDecorationLine: 'underline', color: '#226188', fontWeight: 700, marginTop: 6, marginBottom: -4,fontSize:12 }}>
+                                {loading && (
+                                    <View style={styles.loadingContainer}>
+                                        <ActivityIndicator size="large" color="white" />
+                                    </View>
+                                )}
+                                <Text style={styles.termText}>Don't have an account? <TouchableOpacity onPress={handleRegister}>
+                                    <Text style={{ textDecorationLine: 'underline', color: '#226188', fontWeight: 700, marginTop: 6, marginBottom: -4, fontSize: 12 }}>
                                         Register
                                     </Text>
                                 </TouchableOpacity></Text>
+
                             </View>
+
                         </View>
 
                         <StatusBar
@@ -136,9 +150,10 @@ export default function LoginScreen({ navigation }) {
                             backgroundColor="#072a40"
                         />
                     </View>
-                {/* </ScrollView> */}
+                </ScrollView>
             </KeyboardAvoidingView>
-        </SafeAreaView>
+        </View >
+
     );
 }
 
@@ -146,22 +161,42 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'column', // Arrange children horizontally
+
+    },
+    scrollViewContent: {
+        flexGrow: 1,
+        //alignItems: 'center', // Center content horizontally
+        justifyContent: 'center', // Center content vertically
     },
     content: {
-        justifyContent: 'center',
+        // flex: 1,
+        //justifyContent: 'center',
         alignItems: 'center',
         marginTop: '34%'
 
     },
+    loadingContainer: {
+        position: 'absolute',
+        // top: 0,
+        // left: 0,
+        // right: 0,
+        // bottom: 0,
+        backgroundColor: 'rgba(0, 0, 0, 0.3)',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 30,
+        width: '72%',
+        height: 48,
+    },
     imageBackground: {
-        //flex: 1, // Take half of the screen width
-        resizeMode: 'contain',
+        flex: 1, // Take half of the screen width
+        resizeMode: 'cover',
         backgroundColor: 'white',
-        marginTop: "-15%"
+        marginTop: "-10%"
         //height:30
     },
     whiteBackground: {
-        //flex: 2, // Take the other half of the screen width
+        flex: 1, // Take the other half of the screen width
         backgroundColor: 'white',
     },
     image: {
@@ -172,7 +207,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
     },
     section: {
-        
+
         marginTop: '6%',
         flexDirection: 'row',
         alignItems: 'center',
@@ -187,7 +222,7 @@ const styles = StyleSheet.create({
         width: 22,
         height: 22,
         marginRight: 17,
-        resizeMode:'contain'
+        resizeMode: 'contain'
     },
     input: {
         flex: 1,
@@ -200,7 +235,7 @@ const styles = StyleSheet.create({
         padding: 10,
         borderRadius: 42,
         //marginTop: 10,
-        width: 277,
+        width: '72%',
         height: 48,
         alignItems: 'center',
         shadowColor: "#000",

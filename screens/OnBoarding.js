@@ -29,6 +29,9 @@ export default function OnBoardingScreen({ navigation }) {
     const screenWidth = Dimensions.get('window').width;
     const textWidth = screenWidth - 20;
 
+    const { height, width } = Dimensions.get('window');
+    const isIpad = width > 768 && height > 1024;
+
     const images = [
         { id: 1, source: require('../assets/onboarding/Illustration1.png'), text: 'Welcome to our finance learning app! We are excited to help you on this journey to improve your financial literacy.Let us get started!', headingText: 'Welcome To', subOne: 'Finn', subTwo: 'LITT' },
         { id: 2, source: require('../assets/onboarding/Illustration2.png'), text: 'On this app, we will help you understand the adult things you will need to manage such as tax compliance or why a credit score is important.Our content is designed for the youth of South Africa.We have simplified it for those who are new to finance.', headingText: 'What', subOne: 'We', subTwo: 'Do' },
@@ -36,10 +39,12 @@ export default function OnBoardingScreen({ navigation }) {
     ];
 
     const handleNextButton = () => {
-        if (currentIndex === images.length - 1) {
-            setTimeout(() => {
+        const lastIndex = images.length - 1;
+        const isLastIndex = currentIndex === lastIndex;
+        if (isLastIndex) {
+            // setTimeout(() => {
                 navigation.navigate('Registration'); // Replace 'OtherScreen' with the actual screen name
-            }, 8000);
+            // }, 8000);
 
         } else {
             setCurrentIndex((prevIndex) => prevIndex + 1);
@@ -93,7 +98,7 @@ export default function OnBoardingScreen({ navigation }) {
                     <FlatList
                         data={[images[currentIndex]]}
                         renderItem={({ item }) => (
-                            <View style={styles.imageContainer}>
+                            <View style={[styles.imageContainer, isIpad && styles.imageContainerIpad]}>
                                 <Text style={styles.headingText}>{item.headingText}</Text>
                                 <View style={styles.cont}>
                                     <Text style={styles.subOneText}>{item.subOne}
@@ -105,7 +110,7 @@ export default function OnBoardingScreen({ navigation }) {
                                         <Text>{item.subTwo}</Text>
                                     </TouchableOpacity>
                                 </Text> */}
-                                <Image source={item.source} style={styles.image} />
+                                <Image source={item.source} style={[styles.image,isIpad && styles.imageIpad]} />
                                 <Text style={[styles.imageText, { width: textWidth }]}>{item.text}</Text>
                             </View>
                         )}
@@ -161,6 +166,10 @@ const styles = StyleSheet.create({
     imageContainer: {
         width: '100%',
         alignItems: 'center',
+       
+    },
+    imageContainerIpad:{
+        marginTop: '15%'
     },
     subOneText: {
         color: '#CC6D3D',
@@ -182,6 +191,12 @@ const styles = StyleSheet.create({
         resizeMode: 'contain',
         marginBottom: 10,
     },
+    imageIpad: {
+        width: 570,
+        height: 480,
+        resizeMode: 'contain',
+        marginBottom: 10,
+    },
     imageText: {
         fontSize: 16,
         paddingHorizontal: 10,
@@ -196,7 +211,9 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontWeight: '300',
         lineHeight: 30,
-        color: '#000C14'
+        color: '#000C14',
+        // marginTop:'-15%'
+        
     },
     button: {
         backgroundColor: '#226188',

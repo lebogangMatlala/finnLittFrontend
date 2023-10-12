@@ -37,6 +37,7 @@ import { useRef } from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import ExampleOne from './screens/ExampleOne';
 
 const Stack = createNativeStackNavigator();
 const HomeStack = createNativeStackNavigator();
@@ -51,7 +52,7 @@ const theme = {
     light: 'Poppins-Light',
     thin: 'Poppins-Thin',
   },
-}; 
+};
 
 
 const CustomHeader = ({ navigation }) => {
@@ -118,7 +119,7 @@ export default function App() {
       console.log("lebo" + token);
       if (token === null || token === 0) {
         setIsLoggedIn(false);
-        
+
       } else if (token >= 1) {
         setIsLoggedIn(true);
       }
@@ -130,102 +131,101 @@ export default function App() {
   return (
     <PaperProvider theme={theme}>
       <NavigationContainer ref={navigationRef}>
-      <Stack.Navigator initialRouteName="Home" screenOptions={{
-        headerTitleAlign: 'center',
-        headerLeft: () => null,
-        headerTitle: () => <CustomHeader />
+        <Stack.Navigator initialRouteName="Home" screenOptions={{
+          headerTitleAlign: 'center',
+          headerLeft: () => null,
+          headerTitle: () => <CustomHeader />
 
-      }}>
-          {!isLoggedIn && (
-            <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false, }}></Stack.Screen>
+        }}>
 
-          )}
-        <Stack.Screen name="Welcome" component={OnBoardingScreen} options={{ headerShown: false, }}></Stack.Screen>
-        <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false, }}></Stack.Screen>
-        <Stack.Screen name="Registration" component={RegisterScreen} options={{ headerShown: false, }}></Stack.Screen>
-        <Stack.Screen name="Dashboard" component={DashboardTabs} options={{ headerShown: true, headerBackVisible: false }}></Stack.Screen>
-        <Stack.Screen name="ModuleOneDashboardScreen" component={ModuleOneDashboardScreen} options={{ headerShown: true, headerBackVisible: false, }}></Stack.Screen>
-        <Stack.Screen name="ModuleOneContentScreen" component={ModuleOneContentScreen} options={{ headerShown: true, headerBackVisible: false, }}></Stack.Screen>
-        <Stack.Screen name="ModuleTwoDashboardScreen" component={ModuleTwoDashboardScreen} options={{ headerShown: true, headerBackVisible: false, }}></Stack.Screen>
-        <Stack.Screen name="ModuleTwoContentScreen" component={ModuleTwoContentScreen} options={{ headerShown: true, headerBackVisible: false, }}></Stack.Screen>
-        <Stack.Screen name="ModuleThreeDashboardScreen" component={ModuleThreeDashboardScreen} options={{ headerShown: true, headerBackVisible: false }}></Stack.Screen>
-        <Stack.Screen name="ModuleThreeContentScreen" component={ModuleThreeContentScreen} options={{ headerShown: true, headerBackVisible: false, }}></Stack.Screen>
-        <Stack.Screen
-          name="ModuleOneSubOne"
-          component={ModuleOneSubOne}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="ModuleOneSubTwo"
-          component={ModuleOneSubTwo}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="ModuleTwoSubOne"
-          component={ModuleTwoSubOne}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="ModuleTwoSubTwo"
-          component={ModuleTwoSubTwo}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="ModuleTwoSubThree"
-          component={ModuleTwoSubThree}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="ModuleTwoSubFour"
-          component={ModuleTwoSubFour}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="ModuleTwoSubFive"
-          component={ModuleTwoSubFive}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="ModuleTwoSubSix"
-          component={ModuleTwoSubSix}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="ModuleTwoSubSeven"
-          component={ModuleTwoSubSeven}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="ModuleThreeSubOne"
-          component={ModuleThreeSubOne}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="ModuleThreeSubTwo"
-          component={ModuleThreeSubTwo}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="ModuleThreeSubThree"
-          component={ModuleThreeSubThree}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="ModuleThreeSubFour"
-          component={ModuleThreeSubFour}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="ModuleThreeSubFive"
-          component={ModuleThreeSubFive}
-          options={{ headerShown: false }}
-        />
+          <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false, }}></Stack.Screen>
 
+          <Stack.Screen name="Welcome" component={OnBoardingScreen} options={{ headerShown: false, }}></Stack.Screen>
+          <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false, }}></Stack.Screen>
+          <Stack.Screen name="Registration" component={RegisterScreen} options={{ headerShown: false, }}></Stack.Screen>
+          <Stack.Screen name="DashTabs" component={DashboardTabs} options={{ headerShown: true, headerBackVisible: false }}></Stack.Screen>
+          <Stack.Screen name="ModuleOneDashboardScreen" component={ModuleOneDashboardScreen} options={{ headerShown: true, headerBackVisible: false, gestureEnabled: false, }}></Stack.Screen>
+          <Stack.Screen name="ModuleOneContentScreen" component={ModuleOneContentScreen} options={{ headerShown: true, headerBackVisible: false, }}></Stack.Screen>
+          <Stack.Screen name="ModuleTwoDashboardScreen" component={ModuleTwoDashboardScreen} options={{ headerShown: true, headerBackVisible: false, }}></Stack.Screen>
+          <Stack.Screen name="ModuleTwoContentScreen" component={ModuleTwoContentScreen} options={{ headerShown: true, headerBackVisible: false, }}></Stack.Screen>
+          <Stack.Screen name="ModuleThreeDashboardScreen" component={ModuleThreeDashboardScreen} options={{ headerShown: true, headerBackVisible: false }}></Stack.Screen>
+          <Stack.Screen name="ModuleThreeContentScreen" component={ModuleThreeContentScreen} options={{ headerShown: true, headerBackVisible: false, }}></Stack.Screen>
+          <Stack.Screen
+            name="ModuleOneSubOne"
+            component={ModuleOneSubOne}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="ModuleOneSubTwo"
+            component={ModuleOneSubTwo}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="ModuleTwoSubOne"
+            component={ModuleTwoSubOne}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="ModuleTwoSubTwo"
+            component={ModuleTwoSubTwo}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="ModuleTwoSubThree"
+            component={ModuleTwoSubThree}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="ModuleTwoSubFour"
+            component={ModuleTwoSubFour}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="ModuleTwoSubFive"
+            component={ModuleTwoSubFive}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="ModuleTwoSubSix"
+            component={ModuleTwoSubSix}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="ModuleTwoSubSeven"
+            component={ModuleTwoSubSeven}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="ModuleThreeSubOne"
+            component={ModuleThreeSubOne}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="ModuleThreeSubTwo"
+            component={ModuleThreeSubTwo}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="ModuleThreeSubThree"
+            component={ModuleThreeSubThree}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="ModuleThreeSubFour"
+            component={ModuleThreeSubFour}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="ModuleThreeSubFive"
+            component={ModuleThreeSubFive}
+            options={{ headerShown: false }}
+          />
 
 
 
-      </Stack.Navigator>
-    </NavigationContainer>
+
+        </Stack.Navigator>
+      </NavigationContainer>
     </PaperProvider>
     // <View style={styles.container}>
     //   <Text>Open up App.js to start working on your app!</Text>

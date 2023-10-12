@@ -26,19 +26,58 @@ export default function FAQScreen({ navigation }) {
     const data = [
         {
             id: 0,
-            title: 'Lorem Ipsum is simply dummy',
-            body: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+            title: '1.What is FINNLITT',
+            body: "It is a proactive finance learning app, to help you improve your financial literacy.",
         },
         {
             id: 1,
-            title: 'Lorem Ipsum is simply dummy',
-            body: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+            title: '2.What modules are covered in Phase 1?',
+            body: "2.1 Payslip Module \n2.2.Tax Module - Basics \n2.3.Understanding Credit Score",
         }
         ,
         {
             id: 2,
-            title: 'Lorem Ipsum is simply dummy',
-            body: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+            title: '3.Can anyone gain access to FINNLITT?',
+            body: "Yes, anyone of all ages and gender can gain access to FINNLITT.",
+        },
+        {
+            id: 3,
+            title: '4.Is there a cost to use FINNLITT? ',
+            body: "There is no cost, FINNLITT Basic is a free offering. ",
+        }
+        ,
+        {
+            id: 4,
+            title: '5.Can I download the App on more than one device? ',
+            body: "You can have only one Mobile App on a Device at a time, but you can download the Mobile App onto as many Devices as you require. ",
+        },
+        {
+            id: 5,
+            title: '6.Will I be required to re-register for each device download? ',
+            body: "You do not need to re-register for each Device, but you must login as normal with your Digital Identity.",
+        }
+        ,
+        {
+            id: 6,
+            title: '7.Will FINNLITT offer more phases ',
+            body: "Yes, the intention is to expand the offering to include more content per module and additional advanced modules. ",
+        },
+        {
+            id: 7,
+            title: '8.Can I contact FINNLITT',
+            body: "Yes, we would love to get feedback on our App and address any other questions you have",
+        }
+        ,
+        {
+            id: 8,
+            title: '9.How can I get in touch with FINNLITT',
+            body: "Please refer to our website www.finnlitt.co.za for all contact details. ",
+        }
+        ,
+        {
+            id: 9,
+            title: '10.Is FINNLITT an FSP (Financial Services Provider) ? ',
+            body: "No, FINNLITT is a learning app and not an FSP",
         },
     ];
 
@@ -58,106 +97,76 @@ export default function FAQScreen({ navigation }) {
     }
 
     return (
-        <SafeAreaView style={styles.container}>
-            <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-                style={styles.container}>
-
-                {/* <ScrollView> */}
-                <View style={styles.container}>
-                    <View style={{ marginTop: '5%', alignContent: 'center' }}>
-                        <View style={styles.imageCont}>
-                            <Image source={require('../assets/icons/Subtract.png')} style={styles.image} />
-                            <Text style={{ alignItems: 'center', fontWeight: '700', fontSize: 24, lineHeight: 36, color: '#123F5C', paddingHorizontal: 15 }}>FAQ</Text>
-                        </View>
-                        <View style={styles.contList}>
-                            <AccordionList
-                                data={data}
-                                 //customTitle={item => <Text>{item.title}</Text>}
-                                // customBody={item => <Text>{item.body}</Text>}
-                                customTitle={(item) => {
-                                    return (
-                                        <View
-                                            // style={{
-                                            //     shadowColor: "#000",
-                                            //     flex: 1,
-                                            //     // shadowOffset: {
-                                            //     //     width: 0,
-                                            //     //     height: 1,
-                                            //     // },
-                                            //     // shadowOpacity: 0.2,
-                                            //     // shadowRadius: 2.84,
-                                            //     // elevation: 2,
-                                            //     // backgroundColor: "#fff",
-                                            //     // borderRadius: 10,
-                                            //     marginTop: 2,
-                                            //     zIndex: -1,
-                                            //     paddingVertical: 20,
-                                            //     borderBottomWidth: 1,
-                                            //     borderBottomColor: 'black'
-                                            // }}
-                                        >
-                                            <View style={{ flex: 1, alignItems: "flex-start", }}>
-                                                <Text style={{ fontSize: 16, padding: 2 }}>{item.title}</Text>
-                                               
-                                            </View>
-
+      
+        <View style={styles.container}>
+            {/* <ScrollView contentContainerStyle={styles.scrollViewContent}
+                showsVerticalScrollIndicator={false}> */}
+            <View style={styles.container}>
+                <View style={{ marginTop: '5%', alignContent: 'center' }}>
+                    <View style={styles.imageCont}>
+                        <Image source={require('../assets/icons/Subtract.png')} style={styles.image} />
+                        <Text style={{ alignItems: 'center', fontWeight: '700', fontSize: 24, lineHeight: 36, color: '#123F5C', paddingHorizontal: 15 }}>FAQ</Text>
+                    </View>
+                    <View style={styles.contList}>
+                        <AccordionList
+                            data={data}
+                            customTitle={(item) => {
+                                return (
+                                    <View>
+                                        <View style={{ flex: 1, alignItems: "flex-start", }}>
+                                            <Text style={{ fontSize: 14, }}>{item.title}</Text>
 
                                         </View>
-                                    );
-                                }}
-                                customBody={(item) => {
-                                    return (
-                                        <View
-                                            style={{
-                                                shadowColor: "#000",
-                                                flex: 1,
-                                                shadowOffset: {
-                                                    width: 0,
-                                                    height: 1,
-                                                },
-                                                shadowOpacity: 0.2,
-                                                shadowRadius: 2.84,
-                                                elevation: 2,
-                                                backgroundColor: "#fff",
-                                                borderRadius: 10,
-                                                marginTop: 2,
-                                                zIndex: -1,
-                                                paddingVertical: 20,
-                                                // borderTopWidth:1,
-                                                // borderTopColor:'black'
-                                            }}
-                                        >
-                                            <View style={{ flex: 1, alignItems: "flex-start", }}>
-                                                <Text style={{ fontSize: 14, padding: 2 }}>{item.body}</Text>
-                                               
-                                            </View>
-
+                                    </View>
+                                );
+                            }}
+                            customBody={(item) => {
+                                return (
+                                    <View
+                                        style={{
+                                            shadowColor: "#000",
+                                            flex: 1,
+                                            shadowOffset: {
+                                                width: 0,
+                                                height: 1,
+                                            },
+                                            shadowOpacity: 0.2,
+                                            shadowRadius: 2.84,
+                                            elevation: 2,
+                                            backgroundColor: "#fff",
+                                            borderRadius: 10,
+                                            marginTop: 2,
+                                            zIndex: -1,
+                                            paddingVertical: 20,
+                                            // borderTopWidth:1,
+                                            // borderTopColor:'black'
+                                        }}
+                                    >
+                                        <View style={{ flex: 1, alignItems: "flex-start", }}>
+                                            <Text style={{ fontSize: 14, padding: 2 }}>{item.body}</Text>
 
                                         </View>
-                                        );
-                                }}
-                                animationDuration={400}
-                                expandMultiple={true}
-                                containerItemStyle={{borderBottomWidth:1,fontSize:20,fontWeight:'600',lineHeight:21,justifyContent:'center'}}
-                                
-                            />
-                        </View>
-                    </View>
-                    <View style={styles.content}>
-                        <TouchableOpacity style={styles.button}>
-                            <Text style={styles.buttonText}>Submit</Text>
-                        </TouchableOpacity>
-                    </View>
 
 
-                    <StatusBar
-                        barStyle="auto" animated={false}
-                        backgroundColor="#072a40"
-                    />
+                                    </View>
+                                );
+                            }}
+                            animationDuration={400}
+                            expandMultiple={true}
+                            containerItemStyle={{ borderBottomWidth: 1, fontSize: 20, fontWeight: '600', lineHeight: 21, justifyContent: 'center' }}
+
+                        />
+                    </View>
                 </View>
-                {/* </ScrollView> */}
-            </KeyboardAvoidingView>
-        </SafeAreaView>
+               
+                <StatusBar
+                    barStyle="auto" animated={false}
+                    backgroundColor="#072a40"
+                />
+            </View>
+        {/* </ScrollView> */}
+        </View>
+        
     );
 }
 
@@ -172,7 +181,8 @@ const styles = StyleSheet.create({
         paddingHorizontal: '3%',
         //height: 'auto',
         //backgroundColor: 'pink',
-        borderBottomColor:'black'
+        borderBottomColor: 'black',
+
     },
     imageCont: {
         marginBottom: "7%",
@@ -185,6 +195,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginTop: '10%'
 
+    },
+    scrollViewContent: {
+        flexGrow: 1,
+        //alignItems: 'center', // Center content horizontally
+        justifyContent: 'center', // Center content vertically
     },
     input: {
         height: 180,

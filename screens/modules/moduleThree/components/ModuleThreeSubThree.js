@@ -23,6 +23,7 @@ import Svg, { Path } from 'react-native-svg';
 import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import SelectDropdown from 'react-native-select-dropdown';
+import { Linking } from 'react-native';
 
 const BulletText = ({ children }) => (
     <Text style={styles.bullet}>
@@ -114,12 +115,12 @@ const ModuleThreeSubThree = () => (
         </BulletText>
         <BulletText>
             
-                See your debt: You will get to see in detail how much debt you have and how it influences your score.
+            <Text style={{ fontWeight: 'bold' }}>See your debt:</Text> You will get to see in detail how much debt you have and how it influences your score.
         
         </BulletText>
         <BulletText>
             
-                Where to improve: you will get to see the problem areas that caused your score to drop.
+            <Text style={{ fontWeight: 'bold' }}>Where to improve:</Text> you will get to see the problem areas that caused your score to drop.
             
         </BulletText>
         <BulletText>

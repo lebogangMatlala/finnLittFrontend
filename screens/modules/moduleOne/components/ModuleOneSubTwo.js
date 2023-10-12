@@ -104,7 +104,7 @@ const ModuleOneSubTwo = () => (
             </BoldFirstTwoWords>
         </BulletText>
         <BulletText>
-            Payslips may also show other employee information such as the amount of leave owed or used.
+            <Text style={{fontSize: 14,lineHeight: 27}}>Payslips may also show other employee information such as the amount of leave owed or used.</Text>
         </BulletText>
 
     </View>

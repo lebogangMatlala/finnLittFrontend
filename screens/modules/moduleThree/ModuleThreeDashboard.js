@@ -29,10 +29,10 @@ export default function ModuleThreeDashboardScreen({ navigation }) {
     const handleDescription = () => {
         navigation.navigate("ModuleThreeContentScreen");
     }
-   
+
 
     const goBack = () => {
-        navigation.navigate("Dashboard");
+        navigation.goBack();
     }
 
     const data = [
@@ -47,11 +47,14 @@ export default function ModuleThreeDashboardScreen({ navigation }) {
 
     return (
 
-
-        <ScrollView>
-            <View style={styles.container}>
-                {/* Half screen with image */}
+        <SafeAreaView style={{ flex: 1, backgroundColor: 'white', }}>
+            <ScrollView style={{ flex: 1, backgroundColor: 'white', marginTop: -40, }} contentContainerStyle={{
+                flexDirection: 'row',
+                flexWrap: 'wrap',
+            }}>
                 <View style={styles.container}>
+                    {/* Half screen with image */}
+
                     <ImageBackground
                         source={require('../../../assets/onboarding/module3.png')}
                         style={[styles.imageBackground, { height: halfScreenWidth }]}
@@ -67,46 +70,48 @@ export default function ModuleThreeDashboardScreen({ navigation }) {
                         </View>
                     </ImageBackground>
                     {/* Half screen with white background */}
-                </View>
-                <View style={styles.container}>
-                    <View style={[styles.whiteBackground, { paddingBottom: 50 }]}>
-                        <View style={{ marginTop: '5%' }}>
-                            <View style={styles.section}>
-                                <Text style={styles.bold}>Overview:</Text>
-                                <Text style={styles.light}>Banks and lenders will look at how you have been paying and whether you have been a good payer or not. This is shown in a credit score.
-                                </Text>
-                                <Text style={styles.light}> There are two types of credit scores:
-                                   </Text>
-                                <Text style={styles.light}> 1.Credit Bureau Credit Score
+
+                    <View style={styles.container}>
+                        <View style={[styles.whiteBackground, { paddingBottom: 50 }]}>
+                            <View style={{ marginTop: '5%' }}>
+                                <View style={styles.section}>
+                                    <Text style={styles.bold}>Overview:</Text>
+                                    <Text style={styles.light}>Banks and lenders will look at how you have been paying and whether you have been a good payer or not. This is shown in a credit score.
                                     </Text>
-                                <Text style={styles.light}>2.Custom Credit Scores</Text>
-                                <Text style={styles.bold}>What will the module cover:</Text>
-                                <View >
-                                    {data.map((item) => (
-                                        <View key={item.id} style={styles.listItem}>
-                                            <Text style={styles.itemText}>{`${item.id}. ${item.text}`}</Text>
-                                        </View>
-                                    ))}
+                                    <Text style={styles.light}> There are two types of credit scores:
+                                    </Text>
+                                    <Text style={styles.light}> 1.Credit Bureau Credit Score
+                                    </Text>
+                                    <Text style={styles.light}>2.Custom Credit Scores</Text>
+                                    <Text style={styles.bold}>What will the module cover:</Text>
+                                    <View >
+                                        {data.map((item) => (
+                                            <View key={item.id} style={styles.listItem}>
+                                                <Text style={styles.itemText}>{`${item.id}. ${item.text}`}</Text>
+                                            </View>
+                                        ))}
+                                    </View>
+
                                 </View>
 
                             </View>
+                            <View style={styles.content}>
+                                <TouchableOpacity style={styles.button} onPress={handleDescription}>
+                                    <Text style={styles.buttonText}>Start Learning</Text>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
 
-                        </View>
-                        <View style={styles.content}>
-                            <TouchableOpacity style={styles.button} onPress={handleDescription}>
-                                <Text style={styles.buttonText}>Start Learning</Text>
-                            </TouchableOpacity>
-                        </View>
+                        <StatusBar
+                            barStyle="auto" animated={false}
+                            backgroundColor="#072a40"
+                            translucent={true}
+                        />
                     </View>
-
-                    <StatusBar
-                        barStyle="auto" animated={false}
-                        backgroundColor="#072a40"
-                        translucent={true}
-                    />
                 </View>
-            </View>
-        </ScrollView>
+            </ScrollView>
+
+        </SafeAreaView>
 
     );
 }
@@ -120,7 +125,8 @@ const styles = StyleSheet.create({
     content: {
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: '20%'
+        marginTop: '18%',
+        marginBottom: '1%'
 
     },
 
@@ -197,20 +203,18 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         // borderColor: 'gray',
         borderRadius: 5,
-        paddingHorizontal: 10,
+        paddingHorizontal: 25,
+        padding:10
         // marginLeft: 28,
         // marginRight: 28,
         // borderBottomWidth: 1.5,
     },
     sectionB: {
-        marginTop: '100%',
-        marginBottom: '10%',
-        //flexDirection: 'row',
-        justifyContent: 'center',
+        flex: 1,
+        justifyContent: 'flex-end',
         alignItems: 'flex-start',
-        position: 'absolute', //Here is the trick
-        bottom: 0, //Here is the trick
-        paddingHorizontal: 20,
+        marginBottom: 90,
+        paddingHorizontal: 25,
     },
     section: {
 

@@ -36,7 +36,7 @@ const ModuleTwoSubSix = () => (
         <Text style={styles.main}>Just take a breath, do not panic.</Text>
         <Text style={styles.mainText}>Login and the messages will either appear on the home screen or do the following:</Text>
         <BulletText>
-            Click on “SARS Correspondence”
+            Click on <Text style={{fontWeight:'bold'}}>“SARS Correspondence”</Text>
         </BulletText>
         <BulletText>
             Follow the instructions.

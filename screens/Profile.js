@@ -91,7 +91,7 @@ export default function ProfileScreen({ navigation, route }) {
         console.log('Yes button clicked ' + userId);
 
         try {
-            const response = await fetch(`https://f138-41-113-84-176.ngrok-free.app/api/deleteuser/${userId}`, {
+            const response = await fetch(`https://finnlitt.co.za/api/deleteuser/${userId}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json'
@@ -104,6 +104,8 @@ export default function ProfileScreen({ navigation, route }) {
                 await AsyncStorage.removeItem('userid');
                 await AsyncStorage.removeItem('user');
                 await AsyncStorage.removeItem('authenticated');
+
+                navigation.navigate('Home');
 
                 // Reset the navigation stack to redirect to the login screen
                 // const resetAction = StackActions.reset({
@@ -138,7 +140,7 @@ export default function ProfileScreen({ navigation, route }) {
 
 
                 try {
-                    const response = await axios.get(`https://f138-41-113-84-176.ngrok-free.app/api/showuser/${parsedUserData}`);
+                    const response = await axios.get(`https://finnlitt.co.za/api/showuser/${parsedUserData}`);
                     // Handle the response data here
                     console.log('User Data:', response.data);
                     setUserID(response.data.id);
@@ -167,7 +169,7 @@ export default function ProfileScreen({ navigation, route }) {
     const updateUser = async () => {
         console.log(name + "  " + email + "  " + password + " id: " + userId)
         try {
-            const response = await fetch(`https://f138-41-113-84-176.ngrok-free.app/api/updateuser/${userId}`, {
+            const response = await fetch(`https://finnlitt.co.za/api/updateuser/${userId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
@@ -191,7 +193,7 @@ export default function ProfileScreen({ navigation, route }) {
         }
     };
 
-    const handleLogout= async()=>{
+    const handleLogout = async () => {
         try {
             let keys = ['user', 'userid', 'authenticated'];
             await AsyncStorage.multiRemove(keys, err => {
@@ -199,7 +201,7 @@ export default function ProfileScreen({ navigation, route }) {
             });
             //setIsLoggedIn(false);
 
-            navigation.navigate('Home');
+            navigation.navigate('Login');
 
             ///console.log("isloggedin " + isLoggedIn);
 
@@ -210,124 +212,126 @@ export default function ProfileScreen({ navigation, route }) {
 
 
     return (
-        <SafeAreaView style={styles.container}>
-            <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-                style={styles.container}>
-
-                {/* <ScrollView> */}
-                <View style={styles.container}>
-                    <View style={{ marginTop: '5%', alignContent: 'center' }}>
-                        <View style={styles.imageCont}>
-                            <Image source={require('../assets/icons/Vector.png')} style={styles.image} />
-                            <Text style={{ alignItems: 'center', fontWeight: '700', fontSize: 24, lineHeight: 36, color: '#123F5C', paddingHorizontal: 15 }}>Profile</Text>
-                        </View>
-                        <View style={styles.section}>
-                            <Image source={require('../assets/icons/username.png')} style={styles.icon} />
-                            <TextInput
-                                style={styles.input}
-                                placeholder="John Doe"
-                                value={name}
-                                onChangeText={(newUsername) => setName(newUsername)}
-                                editable={editable}
-                                onBlur={handleEditToggle}
-                                autoFocus
-                                selectTextOnFocus
-                            />
-                            <TouchableOpacity onPress={handleEditToggle} >
-                                <Image source={require('../assets/icons/pen.png')} style={styles.icon} />
-                            </TouchableOpacity>
-
-                        </View>
-                        <View style={styles.section}>
-                            <Image source={require('../assets/icons/emailAdr.png')} style={styles.icon} />
-                            <TextInput
-                                style={styles.input}
-                                placeholder="email@gmail.com"
-                                value={email}
-                                onChangeText={(newEmail) => setEmail(newEmail)}
-                                editable={editableEmail}
-                                onBlur={handleEditToggleEmail}
-                                autoFocus
-                                selectTextOnFocus
-                            />
-                            <TouchableOpacity onPress={handleEditToggleEmail} >
-                                <Image source={require('../assets/icons/pen.png')} style={styles.icon} />
-                            </TouchableOpacity>
-                        </View>
-                        <View style={styles.section}>
-                            <Image source={require('../assets/icons/password.png')} style={styles.icon} />
-                            <TextInput
-                                style={styles.input}
-                                placeholder=".........."
-                                value={password}
-                                onChangeText={(newPassword) => setPassword(newPassword)}
-                                editable={editablePassword}
-                                onBlur={handleEditTogglePassword}
-                                autoFocus
-                                selectTextOnFocus
-                            />
-                            <TouchableOpacity onPress={handleEditTogglePassword}>
-                                <Image source={require('../assets/icons/pen.png')} style={styles.icon} />
-                            </TouchableOpacity>
-                        </View>
+        // <SafeAreaView style={styles.container}>
+        //     <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        //         style={styles.container}>
+        <View style={styles.container}>
+        <ScrollView contentContainerStyle={styles.scrollViewContent}
+            showsVerticalScrollIndicator={false}>
+            <View style={styles.container}>
+                <View style={{ marginTop: '5%', alignContent: 'center' }}>
+                    <View style={styles.imageCont}>
+                        <Image source={require('../assets/icons/Vector.png')} style={styles.image} />
+                        <Text style={{ alignItems: 'center', fontWeight: '700', fontSize: 24, lineHeight: 36, color: '#123F5C', paddingHorizontal: 15 }}>Profile</Text>
                     </View>
-                    <View>
-
-
-                    </View>
-
-
-                    <View style={styles.content}>
-                        <TouchableOpacity style={styles.button} onPress={updateUser}>
-                            <Text style={styles.buttonText}>Save</Text>
+                    <View style={styles.section}>
+                        <Image source={require('../assets/icons/username.png')} style={styles.icon} />
+                        <TextInput
+                            style={styles.input}
+                            placeholder="John Doe"
+                            value={name}
+                            onChangeText={(newUsername) => setName(newUsername)}
+                            editable={editable}
+                            onBlur={handleEditToggle}
+                            autoFocus
+                            selectTextOnFocus
+                        />
+                        <TouchableOpacity onPress={handleEditToggle} >
+                            <Image source={require('../assets/icons/pen.png')} style={styles.icon} />
                         </TouchableOpacity>
 
                     </View>
-                    <View style={styles.contentTwo}>
-                        <TouchableOpacity style={styles.button} onPress={handleLogout}>
-                            <Text style={styles.buttonText}>Logout</Text>
+                    <View style={styles.section}>
+                        <Image source={require('../assets/icons/emailAdr.png')} style={styles.icon} />
+                        <TextInput
+                            style={styles.input}
+                            placeholder="email@gmail.com"
+                            value={email}
+                            onChangeText={(newEmail) => setEmail(newEmail)}
+                            editable={editableEmail}
+                            onBlur={handleEditToggleEmail}
+                            autoFocus
+                            selectTextOnFocus
+                        />
+                        <TouchableOpacity onPress={handleEditToggleEmail} >
+                            <Image source={require('../assets/icons/pen.png')} style={styles.icon} />
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={openModal}>
-                            <Text style={{ textDecorationLine: 'underline', color: '#CC6D3D', fontWeight: 700, marginTop: 10, marginBottom: -4, fontSize: 12 }}>
-                                Delete my account
+                    </View>
+                    <View style={styles.section}>
+                        <Image source={require('../assets/icons/password.png')} style={styles.icon} />
+                        <TextInput
+                            style={styles.input}
+                            placeholder=".........."
+                            value={password}
+                            onChangeText={(newPassword) => setPassword(newPassword)}
+                            editable={editablePassword}
+                            onBlur={handleEditTogglePassword}
+                            autoFocus
+                            selectTextOnFocus
+                        />
+                        <TouchableOpacity onPress={handleEditTogglePassword}>
+                            <Image source={require('../assets/icons/pen.png')} style={styles.icon} />
+                        </TouchableOpacity>
+                    </View>
+                </View>
+                <View>
+
+
+                </View>
+
+
+                <View style={styles.content}>
+                    <TouchableOpacity style={styles.button} onPress={updateUser}>
+                        <Text style={styles.buttonText}>Save</Text>
+                    </TouchableOpacity>
+
+                </View>
+                <View style={styles.contentTwo}>
+                    <TouchableOpacity style={styles.button} onPress={handleLogout}>
+                        <Text style={styles.buttonText}>Logout</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={openModal}>
+                        <Text style={{ textDecorationLine: 'underline', color: '#CC6D3D', fontWeight: 700, marginTop: 10, marginBottom: -4, fontSize: 12 }}>
+                            Delete my account
+                        </Text>
+                    </TouchableOpacity>
+                </View>
+
+
+                <StatusBar
+                    barStyle="auto" animated={false}
+                    backgroundColor="#072a40"
+                />
+
+                {/* Modal */}
+                <Modal
+                    animationType="slide" // Change animation type as needed
+                    transparent={true}
+                    visible={modalVisible}
+                    onRequestClose={closeModal}
+                >
+                    <View style={styles.modalContainer}>
+                        <View style={styles.modalContent}>
+                            <Text style={styles.subOneText}>Delete
+                                <Text style={styles.subTwoText}>Account</Text>
                             </Text>
-                        </TouchableOpacity>
-                    </View>
-
-
-                    <StatusBar
-                        barStyle="auto" animated={false}
-                        backgroundColor="#072a40"
-                    />
-
-                    {/* Modal */}
-                    <Modal
-                        animationType="slide" // Change animation type as needed
-                        transparent={true}
-                        visible={modalVisible}
-                        onRequestClose={closeModal}
-                    >
-                        <View style={styles.modalContainer}>
-                            <View style={styles.modalContent}>
-                                <Text style={styles.subOneText}>Delete
-                                    <Text style={styles.subTwoText}>Account</Text>
-                                </Text>
-                                <Text>You are about to delete your account Permantly,Click "Yes" to detele and "NO" to cancel the oparation</Text>
-                                <View style={styles.buttonContainer}>
-                                    <TouchableOpacity onPress={handleYesPress} style={[styles.buttonModalTwo, { width: '45%' }]}>
-                                        <Text style={styles.buttonTextTwo}>Yes</Text>
-                                    </TouchableOpacity>
-                                    <TouchableOpacity onPress={handleNoPress} style={[styles.buttonModal, { width: '45%' }]}>
-                                        <Text style={styles.buttonText}>No</Text>
-                                    </TouchableOpacity>
-                                </View>
+                            <Text>You are about to delete your account Permantly,Click "Yes" to detele and "NO" to cancel the oparation</Text>
+                            <View style={styles.buttonContainer}>
+                                <TouchableOpacity onPress={handleYesPress} style={[styles.buttonModalTwo, { width: '45%' }]}>
+                                    <Text style={styles.buttonTextTwo}>Yes</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={handleNoPress} style={[styles.buttonModal, { width: '45%' }]}>
+                                    <Text style={styles.buttonText}>No</Text>
+                                </TouchableOpacity>
                             </View>
                         </View>
-                    </Modal>
-                </View>
-                {/* </ScrollView> */}
-            </KeyboardAvoidingView>
-        </SafeAreaView>
+                    </View>
+                </Modal>
+            </View>
+        </ScrollView>
+        </View>
+        //     </KeyboardAvoidingView>
+        // </SafeAreaView>
     );
 }
 
@@ -337,6 +341,11 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
 
     },
+    scrollViewContent: {
+        flexGrow: 1,
+        //alignItems: 'center', // Center content horizontally
+        justifyContent: 'center', // Center content vertically
+    },
     imageCont: {
         marginBottom: "7%",
         flexDirection: 'row', // Horizontal layout
@@ -345,18 +354,18 @@ const styles = StyleSheet.create({
     },
 
     subOneText: {
-    color: '#CC6D3D',
-    fontWeight: '800',
-    fontSize: 30,
-    lineHeight: 60,
-},
+        color: '#CC6D3D',
+        fontWeight: '800',
+        fontSize: 30,
+        lineHeight: 60,
+    },
     subTwoText: {
-    color: '#072A40',
-    fontWeight: '300',
-    fontSize: 30,
-    lineHeight: 60,
-    marginTop: -40,
-},
+        color: '#072A40',
+        fontWeight: '300',
+        fontSize: 30,
+        lineHeight: 60,
+        marginTop: -40,
+    },
     modalContainer: {
         flex: 1,
         justifyContent: 'center',
@@ -376,9 +385,9 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-evenly',
         marginTop: 20,
-        
+
     },
-    buttonTextTwo:{
+    buttonTextTwo: {
         fontSize: 18,
         fontWeight: 'bold',
         color: '#226188',
@@ -395,15 +404,15 @@ const styles = StyleSheet.create({
         backgroundColor: '#226188',
         borderRadius: 25,
         alignItems: 'center',
-        marginLeft:15,
-        marginRight:15,
-        padding:10
+        marginLeft: 15,
+        marginRight: 15,
+        padding: 10
     },
     buttonModalTwo: {
         color: '#226188',
         backgroundColor: '#FBFBFB',
-        borderColor:'#226188',
-        borderWidth:2,
+        borderColor: '#226188',
+        borderWidth: 2,
         borderRadius: 25,
         alignItems: 'center',
         marginLeft: 15,
@@ -425,7 +434,7 @@ const styles = StyleSheet.create({
     image: {
         //flex: 1,
         width: 26,
-        height: 34,
+        height: 30,
         resizeMode: 'contain',
         alignSelf: 'center',
         paddingHorizontal: 10

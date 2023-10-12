@@ -1,31 +1,40 @@
 {
-  "expo": {
-    "name": "finnlitt",
-    "slug": "finnlitt",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
-    "splash": {
-      "image": "./assets/FinnLITT(1).png",
-      "resizeMode": "contain",
-      "backgroundColor": "#072A40"
-      
+  "name": "finnlitt",
+  "slug": "finnlitt",
+  "version": "1.0.3",
+  "orientation": "portrait",
+  "icon": "./assets/icon.jpg",
+  "userInterfaceStyle": "light",
+  "splash": {
+    "image": "./assets/FinnLITT(1).png",
+    "resizeMode": "contain",
+    "backgroundColor": "#072A40"
+  },
+  "assetBundlePatterns": ["**/*"],
+  "ios": {
+    "supportsTablet": true,
+    "bundleIdentifier": "com.finnlitt.finnlittApp"
+  },
+  "android": {
+    "adaptiveIcon": {
+      "foregroundImage": "./assets/FinnLITTLogo.png",
+      "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
-    "ios": {
-      "supportsTablet": true
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      }
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
+    "package": "com.finnlitt.finnlittApp",
+    "versionCode": 3
+  },
+  "web": {
+    "favicon": "./assets/favicon.png"
+  },
+  "extra": {
+    "eas": {
+      "projectId": "476317dd-4763-4bd0-be4d-19f7325c1dd7"
     }
-  }
+  },
+   
+  "updates": {
+    "url": "https://u.expo.dev/476317dd-4763-4bd0-be4d-19f7325c1dd7"
+  },
+  "sdkVersion": "49.0.0",
+  "platforms": ["ios", "android", "web"]
 }

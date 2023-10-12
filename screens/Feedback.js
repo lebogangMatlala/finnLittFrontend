@@ -15,7 +15,8 @@ import {
     ScrollView,
     RefreshControl,
     TouchableWithoutFeedback,
-    Alert
+    Alert,
+    ActivityIndicator
 } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 
@@ -27,24 +28,32 @@ import { useRef } from 'react';
 
 export default function FeedbackScreen({ navigation }) {
     const navigationRef = useRef(null);
+
     const screenWidth = Dimensions.get('window').height;
     const halfScreenWidth = screenWidth / 2;
 
+    const { height, width } = Dimensions.get('window');
+    const isIpad = width > 768 && height > 1024;
+
     const [feedback, setFeedback] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const handleRegister = () => {
         navigation.navigate("Registration");
     }
 
     const handleFeedback = () => {
+        setLoading(true);
         console.log(feedback);
-        axios.post('https://f138-41-113-84-176.ngrok-free.app/api/sendfeedback', {
+        axios.post('https://finnlitt.co.za/api/sendfeedback', {
             feedback
         })
             .then(function (response) {
                 console.log(response.data);
                 Alert.alert('Message', "Great! Successfully send in your mail");
                // setFeedback('');
+                setFeedback('');
+                setLoading(false);
             })
             .catch(error => {
                 if (error.response) {
@@ -66,7 +75,11 @@ export default function FeedbackScreen({ navigation }) {
 
 
     return (
-        <ScrollView>
+       
+            <ScrollView
+                contentContainerStyle={styles.scrollViewContent}
+                showsVerticalScrollIndicator={false}
+            >
             <View style={styles.container}>
                 <View style={{ marginTop: '5%', alignContent: 'center' }}>
                     <View style={styles.imageCont}>
@@ -74,11 +87,11 @@ export default function FeedbackScreen({ navigation }) {
                         <Text style={{ alignItems: 'center', fontWeight: '700', fontSize: 24, lineHeight: 36, color: '#123F5C', paddingHorizontal: 15 }}>Feedback</Text>
                     </View>
                     <View>
-                        <Text style={styles.feedText}>Your feedback is incredible valuable to us. Please let us know what you think about our app such as:</Text>
-                        <Text style={styles.bulletPoint}>• What we can do to improve our app</Text>
-                        <Text style={styles.bulletPoint}>• What financial information you would like to see in up coming updates</Text>
-                        <Text style={styles.bulletPoint}>•  If our information helped you to understand your financials better</Text>
-                        <Text style={{ fontSize: 18, fontWeight: '600', lineHeight: 27, paddingHorizontal: 30, marginTop: 20, marginBottom: -20 }}>We’d love to hear from you:</Text>
+                        <Text style={[styles.feedText, isIpad && styles.feedTextIpad ]}>Your feedback is incredible valuable to us. Please let us know what you think about our app such as:</Text>
+                        <Text style={[styles.bulletPoint, isIpad && styles.bulletPointIpad]}>• What we can do to improve our app</Text>
+                        <Text style={[styles.bulletPoint, isIpad && styles.bulletPointIpad]}>• What financial information you would like to see in up coming updates</Text>
+                        <Text style={[styles.bulletPoint, isIpad && styles.bulletPointIpad]}>•  If our information helped you to understand your financials better</Text>
+                        <Text style={{ fontSize: 18, fontWeight: '600', lineHeight: 27, paddingHorizontal: 30, marginTop: '8%', marginBottom: -18 }}>We’d love to hear from you:</Text>
                         <TextInput
                             style={styles.input}
                             placeholder="Type your comment..."
@@ -92,6 +105,12 @@ export default function FeedbackScreen({ navigation }) {
                     <TouchableOpacity style={styles.button} onPress={handleFeedback}>
                         <Text style={styles.buttonText}>Submit</Text>
                     </TouchableOpacity>
+                    {/* Loading indicator */}
+                    {loading && (
+                        <View style={styles.loadingContainer}>
+                            <ActivityIndicator size="large" color="white" />
+                        </View>
+                    )}
                 </View>
 
 
@@ -101,6 +120,7 @@ export default function FeedbackScreen({ navigation }) {
                 />
             </View>
         </ScrollView>
+    
     )
 }
 
@@ -108,7 +128,26 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
+        justifyContent: 'center',
+        alignItems: 'center',
 
+    }
+    ,
+    loadingContainer: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(0, 0, 0, 0.3)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius:30
+},
+    scrollViewContent: {
+        // flexGrow: 1,
+        // //alignItems: 'center', // Center content horizontally
+        // justifyContent: 'center', // Center content vertically
     },
     imageCont: {
         marginBottom: "7%",
@@ -116,11 +155,16 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center', // Center vertically
     },
+    scrollViewContent: {
+        flexGrow: 1,
+        //alignItems: 'center', // Center content horizontally
+        justifyContent: 'center', // Center content vertically
+    },
     content: {
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: '10%',
-        marginBottom: '10%',
+        marginTop: '12%',
+        marginBottom: '12%',
 
     },
     input: {
@@ -140,7 +184,14 @@ const styles = StyleSheet.create({
         fontSize: 12,
         lineHeight: 24,
         paddingHorizontal: 50
-    },
+    }
+    ,
+    bulletPointIpad: {
+    fontSize: 14,
+    lineHeight: 24,
+    paddingHorizontal: 50,
+    marginTop:'1%'
+},
     image: {
         //flex: 1,
         width: 26,
@@ -199,6 +250,14 @@ const styles = StyleSheet.create({
         lineHeight: 22,
         color: '#000C14',
         marginBottom: 15,
+        paddingHorizontal: 30
+    },
+    feedTextIpad: {
+        fontWeight: '400',
+        fontSize: 16,
+        lineHeight: 22,
+        color: '#000C14',
+        marginBottom: 25,
         paddingHorizontal: 30
     }
 });

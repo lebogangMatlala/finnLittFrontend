@@ -28,7 +28,7 @@ const ModuleTwoSubTwo = () => (
 
     <View style={styles.componentContainer} >
         <Text style={styles.mainText}>Before you register, Check if your employer has registered you with SARS and request you IRP5 form if not already provided. Don’t worry we will explain your IRP5 form to you.</Text>
-        <Text style={styles.mainText}>If you are registered and forgetful like some of us, please contact 0800 00 7277 in order to retrieve your username and password or you can also obtain your eFiling username and password by going to the SARS website www.sarsefiling.co.za and clicking on forgot username or forgot password and then enter your ID or Passport number and contact details and lastly your tax reference number.</Text>
+        <Text style={styles.mainText}>If you are registered and forgetful like some of us, please contact <Text style={{ fontWeight: 'bold' }}>0800 00 7277</Text> in order to retrieve your username and password or you can also obtain your eFiling username and password by going to the SARS website <Text style={{ fontWeight: 'bold' }}>www.sarsefiling.co.za</Text> and clicking on forgot username or forgot password and then enter your ID or Passport number and contact details and lastly your tax reference number.</Text>
     </View >
 
 );

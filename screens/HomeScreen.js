@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
         // fontFamily:'Poppins',
         lineHeight: 24,
-        fontWeight: '300',
+        fontWeight: 'normal',
 
     },
     button: {

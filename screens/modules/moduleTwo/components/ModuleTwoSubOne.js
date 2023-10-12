@@ -17,19 +17,28 @@ import {
     useWindowDimensions,
     Picker,
     Button,
-    Alert
+    Alert,
+    Linking
 } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import SelectDropdown from 'react-native-select-dropdown';
 
+const handleSars = () => {
+    // Define the URL you want to open when the link is pressed
+    const url = 'https://www.sars.gov.za/';
+
+    // Open the URL using the Linking API
+    Linking.openURL(url);
+};
+
 const ModuleTwoSubOne = () => (
 
     <View style={styles.componentContainer} >
         <Text style={styles.mainText}>If you earn a total combined income that is either salary wages, or commission in excess of the tax threshold of R91250 yearly for 2023, you will be required to register with SARS and submit your tax return even though your employer deducts PAYE monthly from your salary.</Text>
         <Text style={styles.mainText}>The tax threshold changes yearly so make sure you always look at the correct year of assessment</Text>
-        <Text style={styles.mainText}>Visit www.... and click on view current year assessment.</Text>
+        <Text style={styles.mainText}>Visit <Text style={{fontWeight:'bold'}} onPress={handleSars}>www.sars.gov.za</Text> and click on view current year assessment.</Text>
     </View >
 
 );

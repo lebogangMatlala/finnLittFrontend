@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image, TouchableOpacity, ImageBackground, ScrollView, FlatList, useWindowDimensions } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity, ImageBackground, ScrollView, FlatList, useWindowDimensions, Dimensions } from 'react-native';
 import ImageCard from '../components/ImageCard';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { useEffect } from 'react';
@@ -12,17 +12,20 @@ export default function DashboardScreen({ navigation, route }) {
     const [authenticated, setauthenticated] = useState(null);
     const [userData, setUserData] = useState(null);
 
+    const { height, width } = Dimensions.get('window');
+    const isIpad = width > 768 && height > 1024;
+
     const data = JSON.parse(user);
     const id = data.id;
-    
 
-    const username=data.name;
+
+    const username = data.name;
 
     useEffect(() => {
         setUserData(data);
     }, []);
 
-   
+
 
     const handleLogin = () => {
         navigation.navigate("Login");
@@ -39,7 +42,7 @@ export default function DashboardScreen({ navigation, route }) {
             console.log(item + ' Module 3');
             navigation.navigate("ModuleThreeDashboardScreen");
         }
-        
+
     }
 
     const BoldFirstWord = ({ children }) => {
@@ -51,12 +54,12 @@ export default function DashboardScreen({ navigation, route }) {
             <Text>
                 <Text style={styles.subOneText}>{firstTwoWords}
                     <Text style={styles.subTwoText}>{restOfText}</Text>
-                </Text> 
+                </Text>
             </Text>
         );
     };
 
-    
+
 
     const windowDimensions = useWindowDimensions();
     const statusBarHeight = StatusBar.currentHeight || 0;
@@ -106,7 +109,7 @@ export default function DashboardScreen({ navigation, route }) {
             <ScrollView contentContainerStyle={styles.scrollViewContent}>
                 <View>
                     <Text style={styles.mainText}>Welcome</Text>
-                  
+
                     <View style={styles.cont}>
                         {userData ? (
                             <BoldFirstWord>
@@ -122,14 +125,15 @@ export default function DashboardScreen({ navigation, route }) {
                     <View  >
                         {imageCardsData.map((card, index) => (
                             <TouchableOpacity key={card.id} style={styles.imageContainer} onPress={() => goToModuleOne(card.id)}>
-                                <ImageBackground source={card.imageSource} style={styles.imageBackground}>
+                                {/* <ImageBackground source={card.imageSource} style={styles.imageBackground}>
                                     <View style={styles.cardContent}>
                                         <Text style={styles.title}>{card.title}</Text>
                                         <Text style={styles.description}>{card.desc}</Text>
                                         <Text style={styles.time}>{card.time}</Text>
 
                                     </View>
-                                </ImageBackground>
+                                </ImageBackground> */}
+
                             </TouchableOpacity>
 
 
@@ -141,8 +145,34 @@ export default function DashboardScreen({ navigation, route }) {
                             numColumns={1} // Number of columns in the grid
                             columnWrapperStyle={styles.moduleColumn} // Adjust spacing between columns
                         /> */}
+
+                        {imageCardsData.map((card, index) => (
+                            <TouchableOpacity key={card.id} onPress={() => goToModuleOne(card.id)}>
+                                <View style={[styles.cardContainer]}>
+                                    <ImageBackground
+                                        source={card.imageSource}// Replace with your image source
+                                        style={[styles.backgroundImage, isIpad && styles.ipadCardContainer]}
+                                        resizeMode="cover"
+                                    >
+                                        <View style={styles.cardContent}>
+                                            <View style={styles.centeredContent}>
+                                                <Text style={[styles.cardTitle, isIpad && styles.cardTitleIpad]}>{card.title}</Text>
+                                                <Text style={[styles.cardDescription, isIpad && styles.cardDescriptionIpad]}>
+                                                    {card.desc}
+                                                </Text>
+                                                <Text style={[styles.time, isIpad && styles.cardTimeIpad]}>{card.time}</Text>
+
+                                            </View>
+                                        </View>
+                                    </ImageBackground>
+                                </View>
+                            </TouchableOpacity>
+
+                        ))}
                     </View>
+
                 </View>
+
             </ScrollView>
         </View>
 
@@ -167,9 +197,84 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
 
     },
+    cardContainer: {
+        flex: 1,
+        margin: 16,
+        borderRadius: 10,
+        overflow: 'hidden',
+        elevation: 2, // Add shadow for Android
+        shadowColor: 'rgba(0, 0, 0, 0.2)', // Add shadow for iOS
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.8,
+        shadowRadius: 4,
+        //width: '100%',
+
+    },
+    backgroundImage: {
+        flex: 1,
+        width: '100%',
+        height: 150,
+    },
+    // cardContent: {
+    //     flex: 1,
+    //     padding: 16,
+    //     textAlign: 'center',
+    //     backgroundColor: 'rgba(0, 0, 0, 0.5)', // Semi-transparent background for text
+    // },
+    centeredContent: {
+        flex: 1,
+        justifyContent: 'center', // Vertically center content
+        //alignItems: 'center', // Horizontally center content
+    },
+    cardTitle: {
+        fontSize: 18,
+        color: 'white',
+        fontWeight: '700',
+        //lineHeight: 19.5,
+        marginBottom: 5,
+    },
+    cardTitleIpad: {
+        fontSize: 34,
+        fontWeight: 'bold',
+        color: 'white',
+        marginBottom: 8,
+    },
+    cardDescription: {
+        fontSize: 12,
+        fontWeight: '300',
+        lineHeight: 18,
+        color: 'white',
+    },
+    cardDescriptionIpad: {
+        fontSize: 16,
+        fontWeight: '300',
+        lineHeight: 18,
+        color: 'white',
+    },
+    ipadCardContainer: {
+        // Adjust the height for iPads as needed
+        flex: 1,
+        margin: 16,
+        borderRadius: 1,
+        overflow: 'hidden',
+        elevation: 2, // Add shadow for Android
+        shadowColor: 'rgba(0, 0, 0, 0.2)', // Add shadow for iOS
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.8,
+        shadowRadius: 4,
+        height: 330, // Example: Set a specific height for iPads
+    },
+    cardTimeIpad: {
+        fontSize: 16,
+        fontWeight: '300',
+        lineHeight: 18,
+        color: 'white',
+        marginTop: 15,
+        justifyContent: 'flex-end',
+    },
     cardContent: {
         flex: 1,
-        width: '50%',
+        width: '100%',
         flexDirection: 'column',
         margin: 10,
         justifyContent: 'flex-start',
@@ -269,7 +374,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        padding: 10,
+        padding: 5,
     },
 
     textContainer: {

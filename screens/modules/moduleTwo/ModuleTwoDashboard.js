@@ -22,6 +22,9 @@ export default function ModuleTwoDashboardScreen({ navigation }) {
     const screenWidth = Dimensions.get('window').height;
     const halfScreenWidth = screenWidth / 2;
 
+    const { height, width } = Dimensions.get('window');
+    const isIpad = width > 768 && height > 1024;
+
     const handleRegister = () => {
         navigation.navigate("Registration");
     }
@@ -31,14 +34,14 @@ export default function ModuleTwoDashboardScreen({ navigation }) {
     }
 
     const goBack = () => {
-        navigation.navigate("Dashboard");
+        navigation.navigate('DashTabs');
     }
 
     const data = [
         { id: '2.1', text: 'Do I have to pay taxes?' },
         { id: '2.2', text: ' Where do I start?' },
         { id: '2.3', text: ' How do I register?' },
-        { id: '2.4', text: ' What you will need to complete a tax oo return' },
+        { id: '2.4', text: ' What you will need to complete a tax return' },
         { id: '2.5', text: ' How do I complete my tax return?' },
         { id: '2.6', text: ' What do I do when SARS sends me messages?' },
         { id: '2.7', text: ' What is a rebate?' },
@@ -47,11 +50,14 @@ export default function ModuleTwoDashboardScreen({ navigation }) {
 
     return (
 
-
-        <ScrollView>
-            <View style={styles.container}>
-                {/* Half screen with image */}
+        <SafeAreaView style={{ flex: 1, backgroundColor: 'white', }}>
+            <ScrollView style={{ flex: 1, backgroundColor: 'white', marginTop: -40, }} contentContainerStyle={{
+                flexDirection: 'row',
+                flexWrap: 'wrap',
+            }}>
                 <View style={styles.container}>
+                    {/* Half screen with image */}
+
                     <ImageBackground
                         source={require('../../../assets/onboarding/module2.png')}
                         style={[styles.imageBackground, { height: halfScreenWidth }]}
@@ -67,41 +73,41 @@ export default function ModuleTwoDashboardScreen({ navigation }) {
                         </View>
                     </ImageBackground>
                     {/* Half screen with white background */}
-                </View>
-                <View style={styles.container}>
-                    <View style={[styles.whiteBackground, { paddingBottom: 50 }]}>
-                        <View style={{ marginTop: '5%' }}>
-                            <View style={styles.section}>
-                                <Text style={styles.bold}>Overview:</Text>
-                                <Text style={styles.light}>When it comes to your taxes, you do not need to run in fear, just breathe. We have decoded it for you and put it into simple English so it is easier to understand.</Text>
-                                <Text style={styles.bold}>What will the module cover:</Text>
-                                <View >
-                                    {data.map((item) => (
-                                        <View key={item.id} style={styles.listItem}>
-                                            <Text style={styles.itemText}>{`${item.id}. ${item.text}`}</Text>
-                                        </View>
-                                    ))}
+
+                    <View style={styles.container}>
+                        <View style={[styles.whiteBackground, { paddingBottom: 50 }]}>
+                            <View style={{ marginTop: '5%' }}>
+                                <View style={styles.section}>
+                                    <Text style={styles.bold}>Overview:</Text>
+                                    <Text style={styles.light}>When it comes to your taxes, you do not need to run in fear, just breathe. We have decoded it for you and put it into simple English so it is easier to understand.</Text>
+                                    <Text style={styles.bold}>What will the module cover:</Text>
+                                    <View >
+                                        {data.map((item) => (
+                                            <View key={item.id} style={styles.listItem}>
+                                                <Text style={styles.itemText}>{`${item.id}. ${item.text}`}</Text>
+                                            </View>
+                                        ))}
+                                    </View>
+
                                 </View>
 
                             </View>
+                            <View style={styles.content}>
+                                <TouchableOpacity style={styles.button} onPress={handleDescription}>
+                                    <Text style={styles.buttonText}>Start Learning</Text>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
 
-                        </View>
-                        <View style={styles.content}>
-                            <TouchableOpacity style={styles.button} onPress={handleDescription}>
-                                <Text style={styles.buttonText}>Start Learning</Text>
-                            </TouchableOpacity>
-                        </View>
+                        <StatusBar
+                            barStyle="auto" animated={false}
+                            backgroundColor="#072a40"
+                            translucent={true}
+                        />
                     </View>
-
-                    <StatusBar
-                        barStyle="auto" animated={false}
-                        backgroundColor="#072a40"
-                        translucent={true}
-                    />
                 </View>
-            </View>
-        </ScrollView>
-
+            </ScrollView>
+        </SafeAreaView>
     );
 }
 
@@ -114,7 +120,8 @@ const styles = StyleSheet.create({
     content: {
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: '20%'
+        marginTop: '18%',
+        marginBottom: '1%'
 
     },
 
@@ -197,14 +204,11 @@ const styles = StyleSheet.create({
         // borderBottomWidth: 1.5,
     },
     sectionB: {
-        marginTop: '100%',
-        marginBottom: '10%',
-        //flexDirection: 'row',
-        justifyContent: 'center',
+        flex: 1,
+        justifyContent: 'flex-end',
         alignItems: 'flex-start',
-        position: 'absolute', //Here is the trick
-        bottom: 0, //Here is the trick
-        paddingHorizontal: 20,
+        marginBottom: 90,
+        paddingHorizontal: 25,
     },
     section: {
 
