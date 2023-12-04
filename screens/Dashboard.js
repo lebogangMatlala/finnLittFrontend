@@ -77,7 +77,7 @@ export default function DashboardScreen({ navigation, route }) {
     const imageCardsData = [
         {
             id: 0,
-            title: 'Module 1\npayslips',
+            title: 'Module 1\nPayslips',
             desc: 'Understanding\nyour pay slip',
             imageSource: require('../assets/onboarding/Module1Image.png'),
             time: 'Time to read: +/- 35min'
@@ -85,7 +85,7 @@ export default function DashboardScreen({ navigation, route }) {
         {
             id: 1,
             title: 'Module 2\nTaxes',
-            desc: 'Filing\nyour taxes',
+            desc: 'Filing your \ntaxes',
             imageSource: require('../assets/onboarding/Module2Image.png'),
             time: 'Time to read: +/- 45min'
         },
@@ -207,6 +207,7 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.8,
         shadowRadius: 4,
+        fontFamily: 'poppins-regular'
         //width: '100%',
 
     },
@@ -215,12 +216,6 @@ const styles = StyleSheet.create({
         width: '100%',
         height: 150,
     },
-    // cardContent: {
-    //     flex: 1,
-    //     padding: 16,
-    //     textAlign: 'center',
-    //     backgroundColor: 'rgba(0, 0, 0, 0.5)', // Semi-transparent background for text
-    // },
     centeredContent: {
         flex: 1,
         justifyContent: 'center', // Vertically center content
@@ -229,31 +224,36 @@ const styles = StyleSheet.create({
     cardTitle: {
         fontSize: 18,
         color: 'white',
-        fontWeight: '700',
+        //fontWeight: '700',
         //lineHeight: 19.5,
         marginBottom: 5,
+        fontFamily: 'poppins-bold'
     },
     cardTitleIpad: {
         fontSize: 34,
         fontWeight: 'bold',
         color: 'white',
         marginBottom: 8,
+        fontFamily: 'poppins-regular'
     },
     cardDescription: {
-        fontSize: 12,
-        fontWeight: '300',
+        fontSize: 11,
+        //fontWeight: '300',
         lineHeight: 18,
         color: 'white',
+        fontFamily: 'poppins-light'
     },
     cardDescriptionIpad: {
         fontSize: 16,
         fontWeight: '300',
         lineHeight: 18,
         color: 'white',
+        fontFamily: 'poppins-regular'
     },
     ipadCardContainer: {
         // Adjust the height for iPads as needed
         flex: 1,
+        fontFamily: 'poppins-regular',
         margin: 16,
         borderRadius: 1,
         overflow: 'hidden',
@@ -271,16 +271,18 @@ const styles = StyleSheet.create({
         color: 'white',
         marginTop: 15,
         justifyContent: 'flex-end',
+        fontFamily: 'poppins-regular'
     },
     cardContent: {
         flex: 1,
         width: '100%',
         flexDirection: 'column',
-        margin: 10,
+        //margin: 10,
         justifyContent: 'flex-start',
         borderRadius: 20,
         padding: 8,
-        backgroundColor: 'rgba(0, 0, 0, 0.1)', // Overlay background color
+        backgroundColor: 'rgba(0, 0, 0, 0.1)',
+        fontFamily: 'poppins-regular' // Overlay background color
     },
     title: {
         fontSize: 18,
@@ -288,6 +290,7 @@ const styles = StyleSheet.create({
         fontWeight: '700',
         lineHeight: 19.5,
         marginBottom: 5,
+        fontFamily: 'poppins-regular'
     },
 
     description: {
@@ -295,6 +298,7 @@ const styles = StyleSheet.create({
         fontWeight: '300',
         lineHeight: 18,
         color: 'white',
+        fontFamily: 'poppins-regular'
     }
     ,
     scrollViewContent: {
@@ -302,28 +306,31 @@ const styles = StyleSheet.create({
         // paddingVertical: 10,
     },
     time: {
-        fontSize: 12,
-        fontWeight: '300',
+        fontSize: 10,
+        //fontWeight: 'bold',
         lineHeight: 18,
         color: 'white',
         marginTop: 15,
         justifyContent: 'flex-end',
+        fontFamily: 'poppins-bold'
     },
     boldText: {
         fontWeight: 'bold',
+        fontFamily: 'poppins-regular'
     },
     mainText: {
         // flexDirection: 'row',
         // justifyContent: 'space-between',
         // paddingHorizontal: 20,
         // marginBottom: 20,
-        marginTop: 20,
+        marginTop: 40,
         textAlign: 'center',
         color: '#000C14',
         fontSize: 16,
         // fontFamily:'Poppins',
         lineHeight: 24,
         fontWeight: '300',
+        fontFamily: 'poppins-regular'
 
     }
     ,
@@ -336,12 +343,14 @@ const styles = StyleSheet.create({
         marginBottom: 50,
         marginTop: 50,
         alignItems: 'center',
+        fontFamily: 'poppins-regular'
         //paddingHorizontal:10
     },
     image: {
         width: '100%',
         height: 180,
-        resizeMode: 'contain'
+        resizeMode: 'contain',
+        fontFamily: 'poppins-regular'
         // borderRadius: 40,
         // marginBottom: 10,
     },
@@ -392,30 +401,33 @@ const styles = StyleSheet.create({
     cont: {
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 5,
+        marginTop: -10,
         marginBottom: 5,
-        paddingHorizontal: 20
+        paddingHorizontal: 5
     },
     subOneText: {
         color: '#CC6D3D',
-        fontWeight: '800',
+        //fontWeight: '800',
         fontSize: 30,
         lineHeight: 60,
+        fontFamily: 'poppins-extraBold'
     },
     subTwoText: {
         color: '#072A40',
-        fontWeight: '300',
+        //fontWeight: '300',
         fontSize: 30,
         lineHeight: 60,
         marginTop: -40,
+        fontFamily: 'poppins-light'
     },
     mainPara: {
         marginTop: 10,
         marginBottom: 10,
+        paddingHorizontal: 8,
         textAlign: 'center',
         color: '#000C14',
         fontSize: 12,
-        //fontFamily:'Poppins',
+        fontFamily: 'poppins-regular',
         lineHeight: 18,
         fontWeight: '300',
     }

@@ -35,9 +35,22 @@ const ModuleTwoSubSeven = () => (
     <View style={styles.componentContainer} >
         <Text style={styles.mainText}>A rebate is an amount by which SARS reduces the actual taxes owing depending on certain circumstances. SARS will calculate the amount of tax that you owe to them, based on your income and expenses throughout the year, then if certain conditions apply, they’ll reduce the amount due.</Text>
         <Text style={styles.mainText}>The most common rebate in tax terms is for age. The applicable amounts are adjusted annually but there are 3 different levels, subject to your age. </Text>
-        <Text style={styles.numText}>1.Primary rebate – under 65 years</Text>
+        <View style={styles.listItem}>
+            <Text style={styles.bullet}>1.</Text>
+            <Text style={styles.itemText}> Primary rebate – under 65 years</Text>
+        </View>
+        <View style={styles.listItem}>
+            <Text style={styles.bullet}>2.</Text>
+            <Text style={styles.itemText}> Secondary rebate – between 65 and 75 years</Text>
+        </View>
+        <View style={styles.listItem}>
+            <Text style={styles.bullet}>3.</Text>
+            <Text style={styles.itemText}> Tertiary rebate - over 75 years</Text>
+        </View>
+
+        {/* <Text style={styles.numText}>1.Primary rebate – under 65 years</Text>
         <Text style={styles.numText}>2.Secondary rebate – between 65 and 75 years</Text>
-        <Text style={styles.numText}>3.Tertiary rebate – over 75 years</Text>
+        <Text style={styles.numText}>3.Tertiary rebate – over 75 years</Text> */}
         <Text style={styles.mainText}>Depending on your age group, you’ll qualify for the primary, secondary, or tertiary rebate, which will reduce your tax obligation to SARS. Nice!</Text>
     </View >
 
@@ -52,10 +65,10 @@ const styles = StyleSheet.create({
         // flexDirection: 'column', // Arrange children horizontally
     },
     componentContainer: {
-        marginTop: 20,
+        marginTop: 8,
         // borderWidth: 1,
         // borderColor: 'gray',
-        padding: 15,
+        padding: 20,
 
     },
     main: {
@@ -65,17 +78,19 @@ const styles = StyleSheet.create({
         marginBottom: 15
     },
     mainText: {
-        fontWeight: '400',
-        fontSize: 16,
+        //fontWeight: '400',
+        fontSize: 15,
         lineHeight: 27,
-        paddingBottom: 20
+        paddingBottom: 20,
+        fontFamily: 'poppins-regular'
     },
     numText: {
         fontWeight: '400',
-        fontSize: 16,
+        fontSize: 15,
         lineHeight: 27,
         paddingBottom: 10,
-        paddingHorizontal:15
+        paddingHorizontal: 12,
+        fontFamily: 'poppins-regular'
     },
     bullet: {
         flexDirection: 'row',
@@ -86,9 +101,24 @@ const styles = StyleSheet.create({
     bulletText: {
         marginLeft: 8,
         padding: 10,
-        fontSize: 16,
+        fontSize: 15,
         fontWeight: '400',
-        lineHeight: 28
+        lineHeight: 28,
+        fontFamily: 'poppins-regular'
+    },
+    listItem: {
+        flexDirection: 'row',
+        alignItems: 'flex-start',
+        marginBottom: 8,
+        paddingHorizontal: 10,
+        fontFamily: 'poppins-regular'
+    },
+    bullet: {
+        fontSize: 16,
+    },
+    itemText: {
+        flex: 1,
+        fontSize: 16,
     },
 
 })

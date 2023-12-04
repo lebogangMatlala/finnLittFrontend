@@ -64,8 +64,8 @@ export default function ModuleThreeDashboardScreen({ navigation }) {
                                 <Ionicons name="chevron-back" size={32} color="white"></Ionicons>
                             </TouchableOpacity>
                             <View style={styles.sectionB} >
-                                <Text style={{ color: 'white', fontSize: 28, fontWeight: '800', lineHeight: 30 }}>Module 3: Getting Credit</Text>
-                                <Text style={{ color: 'white', fontSize: 18, fontWeight: '500', lineHeight: 27 }}>Understanding credit score</Text>
+                                <Text style={{ color: 'white', fontSize: 24, lineHeight: 30, fontFamily: 'poppins-extraBold' }}>Module 3: Getting Credit</Text>
+                                <Text style={{ color: 'white', fontSize: 16, lineHeight: 27, fontFamily: 'poppins-medium' }}>Understanding credit score</Text>
                             </View>
                         </View>
                     </ImageBackground>
@@ -73,16 +73,15 @@ export default function ModuleThreeDashboardScreen({ navigation }) {
 
                     <View style={styles.container}>
                         <View style={[styles.whiteBackground, { paddingBottom: 50 }]}>
-                            <View style={{ marginTop: '5%' }}>
+                            <View style={{ marginTop: '-10%' }}>
                                 <View style={styles.section}>
                                     <Text style={styles.bold}>Overview:</Text>
                                     <Text style={styles.light}>Banks and lenders will look at how you have been paying and whether you have been a good payer or not. This is shown in a credit score.
                                     </Text>
-                                    <Text style={styles.light}> There are two types of credit scores:
+                                    <Text style={styles.light}>There are two types of credit scores:
                                     </Text>
-                                    <Text style={styles.light}> 1.Credit Bureau Credit Score
-                                    </Text>
-                                    <Text style={styles.light}>2.Custom Credit Scores</Text>
+                                    <Text style={styles.itemText}>1. Credit Bureau Credit Score</Text>
+                                    <Text style={styles.itemText}>2. Custom Credit Scores</Text>
                                     <Text style={styles.bold}>What will the module cover:</Text>
                                     <View >
                                         {data.map((item) => (
@@ -118,33 +117,52 @@ export default function ModuleThreeDashboardScreen({ navigation }) {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: 'white',
         flex: 1,
-        flexDirection: 'column', // Arrange children horizontally
+        backgroundColor: 'white',
+        flexDirection: 'column',
+        fontFamily: 'poppins-regular' // Arrange children horizontally
+    },
+    bold: {
+        fontSize: 20,
+        //fontWeight: '700',
+        lineHeight: 27,
+        color: '#000C14',
+        marginTop: 20,
+        marginBottom: 5,
+        fontFamily: 'poppins-bold'
+    },
+    scrollView: {
+        height: '100%',
+        width: '100%',
+        //margin: 20,
+        alignSelf: 'center',
+        // padding: 20,
+        // borderWidth: 5,
+        // borderRadius: 5,
+        // borderColor: 'black',
+        // backgroundColor: 'lightblue'
+    },
+    contentContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        // backgroundColor: 'lightgrey',
+        //paddingBottom: 50
+    },
+    light: {
+        fontSize: 15,
+        //fontWeight: '400',
+        lineHeight: 27,
+        color: '#000C14',
+        marginTop: 4,
+        marginBottom: 4,
+        fontFamily: 'poppins-regular'
     },
     content: {
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: '18%',
+        marginTop: '10%',
         marginBottom: '1%'
-
     },
-
-    light: {
-        fontSize: 16,
-        fontWeight: '400',
-        lineHeight: 27,
-        color: '#000C14',
-        marginBottom: 15
-    },
-    bold: {
-        fontSize: 20,
-        fontWeight: '700',
-        lineHeight: 27,
-        color: '#000C14',
-        marginBottom: 5
-    },
-
     list: {
         flex: 1,
         justifyContent: 'center',
@@ -154,38 +172,40 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         // padding: 2,
-
     },
     itemText: {
-        fontSize: 16,
-        fontWeight: '400',
+        fontSize: 15,
+        //fontWeight: '400',
         lineHeight: 32,
         marginRight: 10,
+        fontFamily: 'poppins-regular'
     },
     cardContent: {
         flex: 1,
         width: '100%',
         flexDirection: 'column',
-        ///margin:10,
+        padding: 10,
         justifyContent: 'flex-start',
         borderRadius: 0,
-        padding: 8,
+        padding: 0,
         backgroundColor: 'rgba(0, 0, 0, 0.3)', // Overlay background color
     },
     imageBackground: {
         flex: 1, // Take half of the screen width
         resizeMode: 'contain',
-        backgroundColor: 'white',
-        //marginTop: "",
-        backgroundColor: 'rgba(0, 0, 0, 0.3)',
-        height: 30
+        //backgroundColor: 'white',
+        //marginTop: "-15%",
+        borderRadius: 0,
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        //height:30
     },
     whiteBackground: {
+        flex: 2, // Take the other half of the screen width
         backgroundColor: 'white',
         borderTopWidth: 30,
         borderTopColor: 'white',
         borderRadius: 25,
-        marginTop: -35
+        marginTop: -65
 
     },
     image: {
@@ -198,13 +218,15 @@ const styles = StyleSheet.create({
         fontWeight: '700'
     },
     sectionA: {
-        marginTop: '5%',
+        marginTop: '4%',
         flexDirection: 'row',
         alignItems: 'center',
-        // borderColor: 'gray',
         borderRadius: 5,
         paddingHorizontal: 25,
-        padding:10
+        //backgroundColor:'pink',
+        padding: 10,
+        //width:'100%',
+
         // marginLeft: 28,
         // marginRight: 28,
         // borderBottomWidth: 1.5,
@@ -218,6 +240,8 @@ const styles = StyleSheet.create({
     },
     section: {
 
+        // marginTop: '6%',
+
         alignItems: 'flex-start',
         borderColor: 'gray',
         borderRadius: 5,
@@ -225,6 +249,8 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: 400,
         lineHeight: 27
+
+
     },
     icon: {
         width: 22,
@@ -253,7 +279,7 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: 0.20,
         shadowRadius: 1.41,
-        elevation: 2,
+        //elevation: 2,
         justifyContent: 'center'
     },
     buttonText: {
@@ -262,7 +288,8 @@ const styles = StyleSheet.create({
         fontSize: 18,
         // fontFamily:'Poppins',
         lineHeight: 27,
-        fontWeight: '600',
+        //fontWeight: 'bold',
+        fontFamily: 'poppins-semiBold'
     },
     termText: {
         fontWeight: '400',

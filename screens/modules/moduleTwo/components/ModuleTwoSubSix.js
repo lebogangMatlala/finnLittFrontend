@@ -36,7 +36,7 @@ const ModuleTwoSubSix = () => (
         <Text style={styles.main}>Just take a breath, do not panic.</Text>
         <Text style={styles.mainText}>Login and the messages will either appear on the home screen or do the following:</Text>
         <BulletText>
-            Click on <Text style={{fontWeight:'bold'}}>“SARS Correspondence”</Text>
+            Click on <Text style={{fontFamily:'poppins-bold'}}>“SARS Correspondence”</Text>
         </BulletText>
         <BulletText>
             Follow the instructions.
@@ -54,23 +54,25 @@ const styles = StyleSheet.create({
         // flexDirection: 'column', // Arrange children horizontally
     },
     componentContainer: {
-        marginTop: 20,
+        marginTop: 8,
         // borderWidth: 1,
         // borderColor: 'gray',
-        padding: 15,
+        padding: 20,
 
     },
     main:{
-        fontWeight: '700',
-        fontSize: 20,
+        //fontWeight: '700',
+        fontSize: 18,
         lineHeight: 27,
-        marginBottom:15
+        marginBottom:15,
+        fontFamily:'poppins-bold'
     },
     mainText: {
         fontWeight: '400',
-        fontSize: 16,
+        fontSize: 15,
         lineHeight: 27,
-        paddingBottom: 20
+        paddingBottom: 20,
+        fontFamily:'poppins-regular'
     },
     numText: {
         fontWeight: '400',
@@ -87,9 +89,10 @@ const styles = StyleSheet.create({
     bulletText: {
         marginLeft: 8,
         padding: 10,
-        fontSize: 16,
-        fontWeight: '400',
-        lineHeight: 28
+        fontSize: 15,
+        //fontWeight: '400',
+        lineHeight: 28,
+        fontFamily:'poppins-regular'
     },
 
 })

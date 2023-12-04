@@ -44,24 +44,66 @@ const styles = StyleSheet.create({
         // flexDirection: 'column', // Arrange children horizontally
     },
     componentContainer: {
-        marginTop: 20,
+        //marginTop: 20,
         // borderWidth: 1,
         // borderColor: 'gray',
-        padding: 15,
+        padding: 20,
 
+    },
+    normalText: {
+        fontSize: 15,
+        lineHeight: 27,
+        marginBottom: 15,
+        //paddingHorizontal: 15,
+        fontFamily: 'poppins-regular'
     },
     mainText: {
-        fontWeight: '400',
-        fontSize: 16,
+        fontSize: 15,
         lineHeight: 27,
-        paddingBottom: 10
-    },
-    numText: {
-        fontWeight: '400',
-        fontSize: 16,
-        lineHeight: 27,
-        paddingBottom: 10,
-        paddingHorizontal: 15
-    }
+        marginBottom: 18,
+        //paddingHorizontal: 15,
+        fontFamily: 'poppins-regular'
 
+    },
+     numText: {
+        fontSize: 16,
+        lineHeight: 27,
+        //marginBottom: 15,
+        //paddingHorizontal: 15,
+        fontFamily: 'poppins-regular'
+
+    },
+    boldText: {
+        fontWeight: 'bold',
+        fontSize: 16,
+        lineHeight: 27,
+        fontFamily: 'poppins-regular'
+    },
+
+    listItem: {
+        flexDirection: 'row',
+        alignItems: 'flex-start',
+        marginBottom: 8,
+        //paddingHorizontal: 20,
+        fontFamily: 'poppins-regular'
+    },
+    bullet: {
+        fontSize: 16,
+    },
+    itemText: {
+        flex: 1,
+    },
+    // bullet: {
+    //     flexDirection: 'row',
+    //     alignItems: 'flex-start',
+    //     marginBottom: 10,
+    //     paddingHorizontal: 20,
+    //     fontFamily: 'poppins-regular'
+    // },
+    bulletText: {
+        //marginLeft: 10,
+        //padding: 20,
+        fontSize: 14,
+        fontFamily: 'poppins-regular'
+    },
 })

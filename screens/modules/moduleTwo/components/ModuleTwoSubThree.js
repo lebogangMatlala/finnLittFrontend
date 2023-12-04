@@ -47,21 +47,18 @@ export default ModuleTwoSubThree;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        //backgroundColor: 'white',
-        // flexDirection: 'column', // Arrange children horizontally
     },
     componentContainer: {
-        marginTop: 20,
-        // borderWidth: 1,
-        // borderColor: 'gray',
-        padding: 15,
+        marginTop: 8,
+        padding: 20,
 
     },
     mainText: {
         fontWeight: '400',
-        fontSize: 16,
+        fontSize: 15,
         lineHeight: 27,
-        paddingBottom: 30
+        paddingBottom: 30,
+        fontFamily:'poppins-regular'
     }
 
 })

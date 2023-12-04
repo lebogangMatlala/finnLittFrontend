@@ -1,7 +1,7 @@
 {
   "name": "finnlitt",
   "slug": "finnlitt",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "orientation": "portrait",
   "icon": "./assets/icon.jpg",
   "userInterfaceStyle": "light",
@@ -29,9 +29,15 @@
   "extra": {
     "eas": {
       "projectId": "476317dd-4763-4bd0-be4d-19f7325c1dd7"
-    }
+    },
+    "expo-fonts": [
+      {
+        "name": "poppins-regular",
+        "asset": "./assets/fonts/Poppins-Regular.ttf"
+      }
+    ]
   },
-   
+
   "updates": {
     "url": "https://u.expo.dev/476317dd-4763-4bd0-be4d-19f7325c1dd7"
   },

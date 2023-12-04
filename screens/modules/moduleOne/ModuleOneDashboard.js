@@ -84,18 +84,18 @@ export default function ModuleOneDashboardScreen({ navigation }) {
                                 <Ionicons name="chevron-back" size={32} color="white"></Ionicons>
                             </TouchableOpacity>
                             <View style={styles.sectionB} >
-                                <Text style={{ color: 'white', fontSize: 28, fontWeight: '800', lineHeight: 30 }}>Module 1: Payslips</Text>
+                                <Text style={{ color: 'white', fontSize: 24, lineHeight: 30, fontFamily: 'poppins-extraBold' }}>Module 1: Payslips</Text>
                                 {/* <Text style={{ color: 'white', fontSize: 28, fontWeight: '800', lineHeight: 30 }}>Module 1: Payslips</Text> */}
-                                <Text style={{ color: 'white', fontSize: 18, fontWeight: '500', lineHeight: 27 }}>Understanding your pay slip</Text>
+                                <Text style={{ color: 'white', fontSize: 16, lineHeight: 27, fontFamily: 'poppins-medium' }}>Understanding your pay slip</Text>
                             </View>
                         </View>
                     </ImageBackground>
                     {/* Half screen with white background */}
                     <View style={[styles.whiteBackground, { paddingBottom: 50 }]}>
-                        <View style={{ marginTop: '5%' }}>
+                        <View style={{ marginTop: '-10%' }}>
                             <View style={styles.section}>
                                 <Text style={styles.bold}>Overview:</Text>
-                                <Text style={styles.light}>It is important for all employers in South Africa to provide their employees with accurate and up-to-date payslips. The payslip serves as a record of the employees earnings and deductions and is an important document for employees to keep for tax purposes</Text>
+                                <Text style={styles.light}>It is important for all employers in South Africa to provide their employees with accurate and up-to-date payslips. The payslip serves as a record of the employees earnings and deductions and is an important document for employees to keep for tax purposes.</Text>
                                 <Text style={styles.bold}>What will the module cover:</Text>
                                 <View >
                                     {data.map((item) => (
@@ -135,14 +135,17 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: 'white',
-        flexDirection: 'column', // Arrange children horizontally
+        flexDirection: 'column',
+        fontFamily: 'poppins-regular' // Arrange children horizontally
     },
     bold: {
         fontSize: 20,
-        fontWeight: '700',
+        //fontWeight: '700',
         lineHeight: 27,
         color: '#000C14',
-        marginBottom: 5
+        marginTop:20,
+        marginBottom: 5,
+        fontFamily: 'poppins-bold'
     },
     scrollView: {
         height: '100%',
@@ -162,16 +165,18 @@ const styles = StyleSheet.create({
         //paddingBottom: 50
     },
     light: {
-        fontSize: 16,
-        fontWeight: '400',
+        fontSize: 15,
+        //fontWeight: '400',
         lineHeight: 27,
         color: '#000C14',
-        marginBottom: 15
+        marginTop:4,
+        marginBottom: 4,
+        fontFamily: 'poppins-regular'
     },
     content: {
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: '18%',
+        marginTop: '10%',
         marginBottom: '1%'
     },
     list: {
@@ -189,6 +194,7 @@ const styles = StyleSheet.create({
         fontWeight: '400',
         lineHeight: 32,
         marginRight: 10,
+        fontFamily:'poppins-regular'
     },
     cardContent: {
         flex: 1,
@@ -206,7 +212,7 @@ const styles = StyleSheet.create({
         //backgroundColor: 'white',
         //marginTop: "-15%",
         borderRadius: 0,
-        backgroundColor: 'rgba(0, 0, 0, 0.3)',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
         //height:30
     },
     whiteBackground: {
@@ -215,7 +221,7 @@ const styles = StyleSheet.create({
         borderTopWidth: 30,
         borderTopColor: 'white',
         borderRadius: 25,
-        marginTop: -35
+        marginTop: -65
 
     },
     image: {
@@ -289,7 +295,7 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: 0.20,
         shadowRadius: 1.41,
-        elevation: 2,
+        //elevation: 2,
         justifyContent: 'center'
     },
     buttonText: {
@@ -298,7 +304,8 @@ const styles = StyleSheet.create({
         fontSize: 18,
         // fontFamily:'Poppins',
         lineHeight: 27,
-        fontWeight: '600',
+        //fontWeight: 'bold',
+        fontFamily:'poppins-semiBold'
     },
     termText: {
         fontWeight: '400',

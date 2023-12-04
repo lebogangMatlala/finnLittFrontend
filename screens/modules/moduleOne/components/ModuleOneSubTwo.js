@@ -25,9 +25,13 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import SelectDropdown from 'react-native-select-dropdown';
 
 const BulletText = ({ children }) => (
-    <Text style={styles.bullet}>
-        {'\u2022'} <Text style={styles.bulletText}>{children}</Text>
-    </Text>
+    <View style={styles.listItem}>
+        <Text style={styles.bullet}>{'\u2022'}  </Text>
+        <Text style={styles.itemText}>{children}</Text>
+    </View>
+    // <Text style={styles.bullet}>
+    //     {'\u2022'} <Text style={styles.bulletText}>{children}</Text>
+    // </Text>
 );
 
 const BoldFirstOneWords = ({ children }) => {
@@ -36,7 +40,7 @@ const BoldFirstOneWords = ({ children }) => {
     const restOfText = words.slice(1).join(' ');
 
     return (
-        <Text>
+        <Text style={styles.normalText}>
             <Text style={styles.boldText}>{firstTwoWords}</Text> {restOfText}
         </Text>
     );
@@ -48,7 +52,7 @@ const BoldFirstTwoWords = ({ children }) => {
     const restOfText = words.slice(2).join(' ');
 
     return (
-        <Text>
+        <Text style={styles.normalText}>
             <Text style={styles.boldText}>{firstTwoWords}</Text> {restOfText}
         </Text>
     );
@@ -60,7 +64,7 @@ const BoldFirstThreeWords = ({ children }) => {
     const restOfText = words.slice(3).join(' ');
 
     return (
-        <Text>
+        <Text style={styles.normalText}>
             <Text style={styles.boldText}>{firstTwoWords}</Text> {restOfText}
         </Text>
     );
@@ -104,7 +108,7 @@ const ModuleOneSubTwo = () => (
             </BoldFirstTwoWords>
         </BulletText>
         <BulletText>
-            <Text style={{fontSize: 14,lineHeight: 27}}>Payslips may also show other employee information such as the amount of leave owed or used.</Text>
+            <Text style={styles.normalText}>Payslips may also show other employee information such as the amount of leave owed or used.</Text>
         </BulletText>
 
     </View>
@@ -130,27 +134,54 @@ const styles = StyleSheet.create({
         // borderColor: 'gray',
         // padding: 5,
     },
+    normalText: {
+        fontSize: 15,
+        lineHeight: 27,
+        marginBottom: 15,
+        paddingHorizontal: 15,
+        fontFamily: 'poppins-regular'
+    },
     mainText: {
         fontSize: 16,
         lineHeight: 27,
         marginBottom: 15,
-        paddingHorizontal: 15
+        paddingHorizontal: 15,
+        fontFamily: 'poppins-regular'
 
     },
     boldText: {
-        fontWeight: 'bold',
-        fontSize: 16,
-        lineHeight: 27
+        fontSize: 15,
+        lineHeight: 27,
+        fontFamily: 'poppins-bold'
     },
-    bullet: {
+
+    listItem: {
         flexDirection: 'row',
         alignItems: 'flex-start',
-        marginBottom: 10,
-        paddingHorizontal: 25
+        marginBottom: 15,
+        paddingHorizontal: 20,
+        fontFamily: 'poppins-regular'
     },
+    bullet: {
+        fontSize: 16,
+    },
+    itemText: {
+        flex: 1,
+    },
+    // bullet: {
+    //     flexDirection: 'row',
+    //     alignItems: 'flex-start',
+    //     marginBottom: 10,
+    //     paddingHorizontal: 20,
+    //     fontFamily: 'poppins-regular'
+    // },
     bulletText: {
-        marginLeft: 10,
-        padding: 20
+        //marginLeft: 10,
+        //padding: 20,
+        fontSize: 14,
+        fontFamily: 'poppins-regular'
     },
+
+
 
 })

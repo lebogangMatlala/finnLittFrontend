@@ -25,9 +25,10 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import SelectDropdown from 'react-native-select-dropdown';
 
 const BulletText = ({ children }) => (
-    <Text style={styles.bullet}>
-        {'\u2022'} <Text style={styles.bulletText}>{children}</Text>
-    </Text>
+    <View style={styles.listItem}>
+        <Text style={styles.bullet}>{'\u2022'}  </Text>
+        <Text style={styles.itemText}>{children}</Text>
+    </View>
 );  
 
 const ModuleThreeSubFive = () => (
@@ -55,10 +56,10 @@ const styles = StyleSheet.create({
         // flexDirection: 'column', // Arrange children horizontally
     },
     componentContainer: {
-        marginTop: 20,
+        //marginTop: 20,
         // borderWidth: 1,
         // borderColor: 'gray',
-        padding: 15,
+        //padding: 15,
 
     },
     mainText: {
@@ -86,6 +87,22 @@ const styles = StyleSheet.create({
         fontSize: 16,
         lineHeight: 27
     },
-
+ listItem: {
+        flexDirection: 'row',
+        alignItems: 'flex-start',
+        marginBottom: 8,
+        paddingHorizontal: 25,
+        fontFamily: 'poppins-regular'
+    },
+    bullet: {
+        fontSize: 16,
+        fontFamily: 'poppins-regular'
+    },
+    itemText: {
+        flex: 1,
+        fontSize: 15,
+        lineHeight: 27,
+        fontFamily: 'poppins-regular'
+    },
 
 })

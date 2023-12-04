@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         color: '#000C14',
         fontSize: 16,
-        // fontFamily:'Poppins',
+        fontFamily:'poppins-regular',
         lineHeight: 24,
         fontWeight: 'normal',
 
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: 0.20,
         shadowRadius: 1.41,
-        elevation: 2,
+        //elevation: 2,
     },
     buttonLogin: {
     backgroundColor: '#FBFBFB',
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.20,
     shadowRadius: 1.41,
-    elevation: 2,
+    //elevation: 1,
 },
     buttonText: {
         textAlign: 'center',
@@ -89,7 +89,8 @@ const styles = StyleSheet.create({
         fontSize: 18,
         // fontFamily:'Poppins',
         lineHeight: 27,
-        fontWeight: '600',
+        fontWeight: 'bold',
+        fontFamily:'poppins-regular'
     }
     ,
     buttonTextLogin: {
@@ -98,7 +99,8 @@ const styles = StyleSheet.create({
         fontSize: 18,
         // fontFamily:'Poppins',
         lineHeight: 27,
-        fontWeight: '600',
+        fontWeight: 'bold',
+        fontFamily:'poppins-regular'
     },
     image: {
         //flexShrink: 0,

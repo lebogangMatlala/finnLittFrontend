@@ -33,16 +33,39 @@ import ModuleThreeSubTwo from './screens/modules/moduleThree/components/ModuleTh
 import ModuleThreeSubThree from './screens/modules/moduleThree/components/ModuleThreeSubThree';
 import ModuleThreeSubFour from './screens/modules/moduleThree/components/ModuleThreeSubFour';
 import ModuleThreeSubFive from './screens/modules/moduleThree/components/ModuleThreeSubFive';
-import { useRef } from 'react';
+import React, { useRef } from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import ExampleOne from './screens/ExampleOne';
+import forgotPasswordScreen from './screens/forgotPassword/ForgotPassword';
+import { Linking } from 'react-native';
+import * as Font from 'expo-font';
+import { AppLoading } from 'expo';
+// import CustomProgressBar from './screens/components/CustomProgressBar';
+
+import homeIconActive from './assets/iconsTab/HomeActive.png';
+import homeIconInactive from './assets/iconsTab/HomeInactive.png';
+
+import profileIconActive from './assets/iconsTab/ActiveProfile.png';
+import profileIconInactive from './assets/iconsTab/InactiveProfile.png';
+
+import faqIconActive from './assets/iconsTab/FAQActive.png';
+import faqIconInactive from './assets/iconsTab/FAQInactive.png';
+import DeepLinking from 'react-native-deep-linking';
+import feedbackIconActive from './assets/iconsTab/FeedbackActive.png';
+import feedbackIconInactive from './assets/iconsTab/FeedbackInactive.png';
+//import { linking } from './LinkingConfiguration'; 
 
 const Stack = createNativeStackNavigator();
 const HomeStack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 //OnBoardingScreen
+
+//font
+const getFonts = () => Font.loadAsync({
+  'Poppins Regular': require('./assets/fonts/Poppins Regular.ttf'),
+});
 
 const theme = {
   ...DefaultTheme,
@@ -57,10 +80,18 @@ const theme = {
 
 const CustomHeader = ({ navigation }) => {
   return (
-    <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+    // <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+    //   <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+    //     <Image source={require('./assets/headerlogo.png')} style={{ width: 150, height: 30 }} />
+    //   </TouchableOpacity>
+    // </View>
+    <View style={{ height: 95, justifyContent: 'center' }}>
       <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-        <Image source={require('./assets/headerlogo.png')} style={{ width: 150, height: 30 }} />
+        <Image source={require('./assets/headerlogo.png')} style={{ width: 200, height: 40 }} />
       </TouchableOpacity>
+      {/* <Text style={{ fontSize: 24, color: 'white', textAlign: 'center' }}>
+        Custom Header
+      </Text> */}
     </View>
   );
 };
@@ -73,23 +104,27 @@ const DashboardTabs = () => {
         let iconStyle = focused ? styles.iconFocused : styles.iconNormal;
 
         if (route.name === 'Dash') {
-          iconName = focused ? 'home' : 'home-outline';
+          iconName = focused ? homeIconActive : homeIconInactive;
         } else if (route.name === 'Profile') {
-          iconName = focused ? 'person' : 'person-outline';
+          iconName = focused ? profileIconActive : profileIconInactive;
         } else if (route.name === 'FAQ') {
-          iconName = focused ? 'help-circle' : 'help-circle-outline';
+          iconName = focused ? faqIconActive : faqIconInactive;
         } else if (route.name === 'Feedback') {
-          iconName = focused ? 'chatbubble-ellipses' : 'chatbubble-ellipses-outline';
+          iconName = focused ? feedbackIconActive : feedbackIconInactive;
         }
 
-        return (<Ionicons name={iconName} size={size} color={color} style={iconStyle} >
 
-        </Ionicons>);
+        return (<View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+          <Image source={iconName} style={{ width: size, height: size }} />
+        </View>);
       },
       "tabBarShowLabel": false,
       "tabBarStyle": [
         {
-          "display": "flex"
+          //"display": "flex",
+          style: styles.tabBar,
+          labelStyle: styles.labelStyle,
+          tabStyle: styles.tabStyle,
         },
         null
       ]
@@ -106,9 +141,14 @@ const DashboardTabs = () => {
     </Tab.Navigator>
   );
 };
+
+//export const navigationRef = React.createRef();
+
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [fontsLoaded, setFontsLoaded] = useState(false);
   const navigationRef = useRef(null);
+  //const navigation = useNavigation();
 
   useEffect(() => {
 
@@ -128,18 +168,37 @@ export default function App() {
 
   }, [isLoggedIn]);
 
+  useEffect(() => {
+    async function loadFont() {
+      await Font.loadAsync({
+        'poppins-regular': require('./assets/fonts/Poppins-Regular.ttf'),
+        'poppins-medium': require('./assets/fonts/Poppins-Medium.ttf'),
+        'poppins-extraBold': require('./assets/fonts/Poppins-ExtraBold.ttf'),
+        'poppins-light': require('./assets/fonts/Poppins-Light.ttf'),
+        'poppins-bold': require('./assets/fonts/Poppins-Bold.ttf'),
+        'poppins-semiBold': require('./assets/fonts/Poppins-SemiBold.ttf'),
+      });
+      setFontsLoaded(true);
+    }
+
+    loadFont();
+  }, []);
+
+  if (!fontsLoaded) {
+    return <Text>Loading...</Text>;
+  }
+
   return (
     <PaperProvider theme={theme}>
       <NavigationContainer ref={navigationRef}>
         <Stack.Navigator initialRouteName="Home" screenOptions={{
           headerTitleAlign: 'center',
           headerLeft: () => null,
-          headerTitle: () => <CustomHeader />
+          headerTitle: () => <CustomHeader />,
+
 
         }}>
-
           <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false, }}></Stack.Screen>
-
           <Stack.Screen name="Welcome" component={OnBoardingScreen} options={{ headerShown: false, }}></Stack.Screen>
           <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false, }}></Stack.Screen>
           <Stack.Screen name="Registration" component={RegisterScreen} options={{ headerShown: false, }}></Stack.Screen>
@@ -220,17 +279,15 @@ export default function App() {
             component={ModuleThreeSubFive}
             options={{ headerShown: false }}
           />
-
-
-
-
+          <Stack.Screen
+            name="PasswordReset"
+            component={forgotPasswordScreen}
+            options={{ headerShown: false }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </PaperProvider>
-    // <View style={styles.container}>
-    //   <Text>Open up App.js to start working on your app!</Text>
-    //   <StatusBar style="auto" />
-    // </View>
+
   );
 }
 
@@ -260,5 +317,24 @@ const styles = StyleSheet.create({
     backgroundColor: 'gray',
     position: 'absolute',
     right: 0,
+  },
+  tabBar: {
+    borderTopWidth: 1, // Add a 1-pixel border at the top of the tab bar
+    borderTopColor: 'gray', // Border color
+    backgroundColor: 'white', // Background color of the tab bar
+    flexDirection: 'row',
+  },
+  tab: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRightWidth: 1, // Add a 1-pixel border on the right to separate tabs
+    borderRightColor: 'gray', // Border color
+  },
+  labelStyle: {
+    display: 'none', // Hide tab labels if not needed
+  },
+  tabStyle: {
+    paddingVertical: 10, // Adjust the tab height as needed
   },
 });

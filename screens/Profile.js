@@ -216,119 +216,119 @@ export default function ProfileScreen({ navigation, route }) {
         //     <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         //         style={styles.container}>
         <View style={styles.container}>
-        <ScrollView contentContainerStyle={styles.scrollViewContent}
-            showsVerticalScrollIndicator={false}>
-            <View style={styles.container}>
-                <View style={{ marginTop: '5%', alignContent: 'center' }}>
-                    <View style={styles.imageCont}>
-                        <Image source={require('../assets/icons/Vector.png')} style={styles.image} />
-                        <Text style={{ alignItems: 'center', fontWeight: '700', fontSize: 24, lineHeight: 36, color: '#123F5C', paddingHorizontal: 15 }}>Profile</Text>
-                    </View>
-                    <View style={styles.section}>
-                        <Image source={require('../assets/icons/username.png')} style={styles.icon} />
-                        <TextInput
-                            style={styles.input}
-                            placeholder="John Doe"
-                            value={name}
-                            onChangeText={(newUsername) => setName(newUsername)}
-                            editable={editable}
-                            onBlur={handleEditToggle}
-                            autoFocus
-                            selectTextOnFocus
-                        />
-                        <TouchableOpacity onPress={handleEditToggle} >
-                            <Image source={require('../assets/icons/pen.png')} style={styles.icon} />
-                        </TouchableOpacity>
+            <ScrollView contentContainerStyle={styles.scrollViewContent}
+                showsVerticalScrollIndicator={false}>
+                <View style={styles.container}>
+                    <View style={{ marginTop: '5%', alignContent: 'center' }}>
+                        <View style={styles.imageCont}>
+                            <Image source={require('../assets/iconsTab/ActiveProfile.png')} style={styles.image} />
+                            <Text style={{ alignItems: 'center', fontSize: 24, lineHeight: 36, color: '#123F5C', paddingHorizontal: 15, fontFamily: 'poppins-bold' }}>Profile</Text>
+                        </View>
+                        <View style={styles.section}>
+                            <Image source={require('../assets/icons/username.png')} style={styles.icon} />
+                            <TextInput
+                                style={styles.input}
+                                placeholder="John Doe"
+                                value={name}
+                                onChangeText={(newUsername) => setName(newUsername)}
+                                editable={editable}
+                                onBlur={handleEditToggle}
+                                autoFocus
+                                selectTextOnFocus
+                            />
+                            <TouchableOpacity onPress={handleEditToggle} >
+                                <Image source={require('../assets/icons/pen.png')} style={styles.icon} />
+                            </TouchableOpacity>
 
-                    </View>
-                    <View style={styles.section}>
-                        <Image source={require('../assets/icons/emailAdr.png')} style={styles.icon} />
-                        <TextInput
-                            style={styles.input}
-                            placeholder="email@gmail.com"
-                            value={email}
-                            onChangeText={(newEmail) => setEmail(newEmail)}
-                            editable={editableEmail}
-                            onBlur={handleEditToggleEmail}
-                            autoFocus
-                            selectTextOnFocus
-                        />
-                        <TouchableOpacity onPress={handleEditToggleEmail} >
-                            <Image source={require('../assets/icons/pen.png')} style={styles.icon} />
-                        </TouchableOpacity>
-                    </View>
-                    <View style={styles.section}>
-                        <Image source={require('../assets/icons/password.png')} style={styles.icon} />
-                        <TextInput
-                            style={styles.input}
-                            placeholder=".........."
-                            value={password}
-                            onChangeText={(newPassword) => setPassword(newPassword)}
-                            editable={editablePassword}
-                            onBlur={handleEditTogglePassword}
-                            autoFocus
-                            selectTextOnFocus
-                        />
-                        <TouchableOpacity onPress={handleEditTogglePassword}>
-                            <Image source={require('../assets/icons/pen.png')} style={styles.icon} />
-                        </TouchableOpacity>
-                    </View>
-                </View>
-                <View>
-
-
-                </View>
-
-
-                <View style={styles.content}>
-                    <TouchableOpacity style={styles.button} onPress={updateUser}>
-                        <Text style={styles.buttonText}>Save</Text>
-                    </TouchableOpacity>
-
-                </View>
-                <View style={styles.contentTwo}>
-                    <TouchableOpacity style={styles.button} onPress={handleLogout}>
-                        <Text style={styles.buttonText}>Logout</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={openModal}>
-                        <Text style={{ textDecorationLine: 'underline', color: '#CC6D3D', fontWeight: 700, marginTop: 10, marginBottom: -4, fontSize: 12 }}>
-                            Delete my account
-                        </Text>
-                    </TouchableOpacity>
-                </View>
-
-
-                <StatusBar
-                    barStyle="auto" animated={false}
-                    backgroundColor="#072a40"
-                />
-
-                {/* Modal */}
-                <Modal
-                    animationType="slide" // Change animation type as needed
-                    transparent={true}
-                    visible={modalVisible}
-                    onRequestClose={closeModal}
-                >
-                    <View style={styles.modalContainer}>
-                        <View style={styles.modalContent}>
-                            <Text style={styles.subOneText}>Delete
-                                <Text style={styles.subTwoText}>Account</Text>
-                            </Text>
-                            <Text>You are about to delete your account Permantly,Click "Yes" to detele and "NO" to cancel the oparation</Text>
-                            <View style={styles.buttonContainer}>
-                                <TouchableOpacity onPress={handleYesPress} style={[styles.buttonModalTwo, { width: '45%' }]}>
-                                    <Text style={styles.buttonTextTwo}>Yes</Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity onPress={handleNoPress} style={[styles.buttonModal, { width: '45%' }]}>
-                                    <Text style={styles.buttonText}>No</Text>
-                                </TouchableOpacity>
-                            </View>
+                        </View>
+                        <View style={styles.section}>
+                            <Image source={require('../assets/icons/emailAdr.png')} style={styles.icon} />
+                            <TextInput
+                                style={styles.input}
+                                placeholder="email@gmail.com"
+                                value={email}
+                                onChangeText={(newEmail) => setEmail(newEmail)}
+                                editable={editableEmail}
+                                onBlur={handleEditToggleEmail}
+                                autoFocus
+                                selectTextOnFocus
+                            />
+                            <TouchableOpacity onPress={handleEditToggleEmail} >
+                                <Image source={require('../assets/icons/pen.png')} style={styles.icon} />
+                            </TouchableOpacity>
+                        </View>
+                        <View style={styles.section}>
+                            <Image source={require('../assets/icons/password.png')} style={styles.icon} />
+                            <TextInput
+                                style={styles.input}
+                                placeholder=".........."
+                                value={password}
+                                onChangeText={(newPassword) => setPassword(newPassword)}
+                                editable={editablePassword}
+                                onBlur={handleEditTogglePassword}
+                                autoFocus
+                                selectTextOnFocus
+                            />
+                            <TouchableOpacity onPress={handleEditTogglePassword}>
+                                <Image source={require('../assets/icons/pen.png')} style={styles.icon} />
+                            </TouchableOpacity>
                         </View>
                     </View>
-                </Modal>
-            </View>
-        </ScrollView>
+                    <View>
+
+
+                    </View>
+
+
+                    <View style={styles.content}>
+                        <TouchableOpacity style={styles.buttonLogin} onPress={updateUser}>
+                            <Text style={styles.buttonTextLogin}>Save</Text>
+                        </TouchableOpacity>
+
+                    </View>
+                    <View style={styles.contentTwo}>
+                        <TouchableOpacity style={styles.button} onPress={handleLogout}>
+                            <Text style={styles.buttonText}>Logout</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={openModal}>
+                            <Text style={{ textDecorationLine: 'underline', color: '#CC6D3D', marginTop: 15, marginBottom: 10, fontSize: 12, fontFamily: 'poppins-medium' }}>
+                                Delete my account
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+
+
+                    <StatusBar
+                        barStyle="auto" animated={false}
+                        backgroundColor="#072a40"
+                    />
+
+                    {/* Modal */}
+                    <Modal
+                        animationType="slide" // Change animation type as needed
+                        transparent={true}
+                        visible={modalVisible}
+                        onRequestClose={closeModal}
+                    >
+                        <View style={styles.modalContainer}>
+                            <View style={styles.modalContent}>
+                                <Text style={styles.subOneText}>Delete
+                                    <Text style={styles.subTwoText}>Account</Text>
+                                </Text>
+                                <Text>You are about to delete your account Permantly,Click "Yes" to detele and "NO" to cancel the oparation</Text>
+                                <View style={styles.buttonContainer}>
+                                    <TouchableOpacity onPress={handleYesPress} style={[styles.buttonModalTwo, { width: '45%' }]}>
+                                        <Text style={styles.buttonTextTwo}>Yes</Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity onPress={handleNoPress} style={[styles.buttonModal, { width: '45%' }]}>
+                                        <Text style={styles.buttonText}>No</Text>
+                                    </TouchableOpacity>
+                                </View>
+                            </View>
+                        </View>
+                    </Modal>
+                </View>
+            </ScrollView>
         </View>
         //     </KeyboardAvoidingView>
         // </SafeAreaView>
@@ -339,6 +339,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
+        fontFamily: 'poppins-regular'
 
     },
     scrollViewContent: {
@@ -347,7 +348,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center', // Center content vertically
     },
     imageCont: {
-        marginBottom: "7%",
+        marginTop: "6%",
+        marginBottom: "6%",
         flexDirection: 'row', // Horizontal layout
         alignItems: 'center',
         justifyContent: 'center', // Center vertically
@@ -398,6 +400,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: 'blue',
         justifyContent: 'center',
+        fontFamily: 'poppins-semiBold'
     },
     buttonModal: {
         color: 'white',
@@ -428,7 +431,7 @@ const styles = StyleSheet.create({
     contentTwo: {
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: '40%',
+        marginTop: '45%',
 
     },
     image: {
@@ -440,7 +443,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10
     },
     section: {
-        marginTop: '6%',
+        marginTop: '8%',
         flexDirection: 'row',
         alignItems: 'center',
         borderColor: 'gray',
@@ -459,9 +462,38 @@ const styles = StyleSheet.create({
     input: {
         flex: 1,
         height: 40,
-        fontSize: 16,
+        fontSize: 14,
+        fontFamily: 'poppins-regular'
 
         // You can change the border color here
+    },
+    buttonLogin: {
+        backgroundColor: '#FBFBFB',
+        padding: 10,
+        borderRadius: 42,
+        borderWidth: 2,
+        borderColor: '#226188',
+        marginTop: 25,
+        width: 277,
+        height: 50,
+        alignItems: 'center',
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 1,
+        },
+        shadowOpacity: 0.20,
+        shadowRadius: 1.41,
+        //elevation: 1,
+    },
+    buttonTextLogin: {
+        textAlign: 'center',
+        color: '#226188',
+        fontSize: 18,
+        // fontFamily:'Poppins',
+        lineHeight: 27,
+        //fontWeight: 'bold',
+        fontFamily: 'poppins-semiBold'
     },
     button: {
         backgroundColor: '#226188',

@@ -38,6 +38,20 @@ export default function FeedbackScreen({ navigation }) {
     const [feedback, setFeedback] = useState('');
     const [loading, setLoading] = useState(false);
 
+    const items = [
+        {
+            id: 0,
+            title: 'What we can do to improve our app',
+        },
+        {
+            id: 1,
+            title: 'What financial information you would like to see in up coming updates',
+        },
+        {
+            id: 2,
+            title: 'If our information helped you to understand your financials better',
+        },
+    ];
     const handleRegister = () => {
         navigation.navigate("Registration");
     }
@@ -51,7 +65,7 @@ export default function FeedbackScreen({ navigation }) {
             .then(function (response) {
                 console.log(response.data);
                 Alert.alert('Message', "Great! Successfully send in your mail");
-               // setFeedback('');
+                // setFeedback('');
                 setFeedback('');
                 setLoading(false);
             })
@@ -75,26 +89,29 @@ export default function FeedbackScreen({ navigation }) {
 
 
     return (
-       
-            <ScrollView
-                contentContainerStyle={styles.scrollViewContent}
-                showsVerticalScrollIndicator={false}
-            >
+
+        <ScrollView
+            contentContainerStyle={styles.scrollViewContent}
+            showsVerticalScrollIndicator={false}
+        >
             <View style={styles.container}>
                 <View style={{ marginTop: '5%', alignContent: 'center' }}>
                     <View style={styles.imageCont}>
-                        <Image source={require('../assets/icons/chat.png')} style={styles.image} />
-                        <Text style={{ alignItems: 'center', fontWeight: '700', fontSize: 24, lineHeight: 36, color: '#123F5C', paddingHorizontal: 15 }}>Feedback</Text>
+                        <Image source={require('../assets/iconsTab/FeedbackActive.png')} style={styles.image} />
+                        <Text style={{ alignItems: 'center', fontSize: 24, lineHeight: 36, color: '#123F5C', paddingHorizontal: 15, fontFamily: 'poppins-bold' }}>Feedback</Text>
                     </View>
                     <View>
-                        <Text style={[styles.feedText, isIpad && styles.feedTextIpad ]}>Your feedback is incredible valuable to us. Please let us know what you think about our app such as:</Text>
-                        <Text style={[styles.bulletPoint, isIpad && styles.bulletPointIpad]}>• What we can do to improve our app</Text>
-                        <Text style={[styles.bulletPoint, isIpad && styles.bulletPointIpad]}>• What financial information you would like to see in up coming updates</Text>
-                        <Text style={[styles.bulletPoint, isIpad && styles.bulletPointIpad]}>•  If our information helped you to understand your financials better</Text>
-                        <Text style={{ fontSize: 18, fontWeight: '600', lineHeight: 27, paddingHorizontal: 30, marginTop: '8%', marginBottom: -18 }}>We’d love to hear from you:</Text>
+                        <Text style={[styles.feedText, isIpad && styles.feedTextIpad]}>Your feedback is incredible valuable to us. Please let us know what you think about our app such as:</Text>
+                        {items.map((item, index) => (
+                            <View key={item.id} style={[styles.bulletPoint, isIpad && styles.bulletPointIpad]}>
+                                <Text style={styles.bullet}>• </Text>
+                                <Text style={styles.itemText}>{item.title}</Text>
+                            </View>
+                        ))}
+                        <Text style={{ fontSize: 16, lineHeight: 27, paddingHorizontal: 30, marginTop: '8%', marginBottom: -18, fontFamily: 'poppins-semiBold' }}>We’d love to hear from you:</Text>
                         <TextInput
                             style={styles.input}
-                            placeholder="Type your comment..."
+                            placeholder="Tap to type message"
                             multiline
                             value={feedback}
                             onChangeText={setFeedback}
@@ -120,7 +137,7 @@ export default function FeedbackScreen({ navigation }) {
                 />
             </View>
         </ScrollView>
-    
+
     )
 }
 
@@ -130,30 +147,33 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         justifyContent: 'center',
         alignItems: 'center',
+        fontFamily: 'poppins-regular'
 
     }
     ,
     loadingContainer: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: 'rgba(0, 0, 0, 0.3)',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius:30
-},
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        backgroundColor: 'rgba(0, 0, 0, 0.3)',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 30
+    },
     scrollViewContent: {
         // flexGrow: 1,
         // //alignItems: 'center', // Center content horizontally
         // justifyContent: 'center', // Center content vertically
     },
     imageCont: {
-        marginBottom: "7%",
+        marginTop: "6%",
+        marginBottom: "6%",
         flexDirection: 'row', // Horizontal layout
         alignItems: 'center',
-        justifyContent: 'center', // Center vertically
+        justifyContent: 'center',
+        fontFamily: 'poppins-regular' // Center vertically
     },
     scrollViewContent: {
         flexGrow: 1,
@@ -165,33 +185,44 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginTop: '12%',
         marginBottom: '12%',
+        fontFamily: 'poppins-regular'
 
     },
     input: {
-        height: 180,
+        height: 200,
         borderWidth: 1,
         backgroundColor: '#EAEAEA',
         borderColor: '#ccc',
         borderRadius: 5,
         marginLeft: 20,
         marginRight: 25,
-        padding: 25,
+        padding: 10,
         marginTop: 25,
         marginBottom: 10,
+        fontFamily: 'poppins-regular'
 
     },
     bulletPoint: {
+        flexDirection: 'row',
+        alignItems: 'flex-start',
+        marginBottom: 8,
         fontSize: 12,
         lineHeight: 24,
-        paddingHorizontal: 50
+        paddingHorizontal: 35,
+        //marginLeft: 10,
+        fontFamily: 'poppins-regular'
     }
     ,
     bulletPointIpad: {
-    fontSize: 14,
-    lineHeight: 24,
-    paddingHorizontal: 50,
-    marginTop:'1%'
-},
+        flexDirection: 'row',
+        alignItems: 'flex-start',
+        marginBottom: 8,
+        fontSize: 14,
+        lineHeight: 24,
+        paddingHorizontal: 50,
+        marginTop: '1%',
+        fontFamily: 'poppins-regular'
+    },
     image: {
         //flex: 1,
         width: 26,
@@ -210,6 +241,7 @@ const styles = StyleSheet.create({
         marginLeft: 28,
         marginRight: 28,
         borderBottomWidth: 1.5,
+        fontFamily: 'poppins-regular'
     },
     icon: {
         width: 22,
@@ -233,7 +265,7 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: 0.20,
         shadowRadius: 1.41,
-        elevation: 2,
+        //elevation: 2,
         justifyContent: 'center'
     },
     buttonText: {
@@ -242,7 +274,8 @@ const styles = StyleSheet.create({
         fontSize: 18,
         // fontFamily:'Poppins',
         lineHeight: 27,
-        fontWeight: '600',
+        fontWeight: 'bold',
+        fontFamily: 'poppins-regular'
     },
     feedText: {
         fontWeight: '400',
@@ -250,7 +283,8 @@ const styles = StyleSheet.create({
         lineHeight: 22,
         color: '#000C14',
         marginBottom: 15,
-        paddingHorizontal: 30
+        paddingHorizontal: 30,
+        fontFamily: 'poppins-regular'
     },
     feedTextIpad: {
         fontWeight: '400',
@@ -258,6 +292,21 @@ const styles = StyleSheet.create({
         lineHeight: 22,
         color: '#000C14',
         marginBottom: 25,
-        paddingHorizontal: 30
-    }
+        paddingHorizontal: 30,
+        fontFamily: 'poppins-regular'
+    },
+    listItem: {
+        flexDirection: 'row',
+        alignItems: 'flex-start',
+        marginBottom: 8,
+    },
+    bullet: {
+        fontSize: 12,
+        fontFamily: 'poppins-regular'
+    },
+    itemText: {
+        flex: 1,
+        fontSize:12,
+        fontFamily: 'poppins-regular'
+    },
 });

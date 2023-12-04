@@ -43,32 +43,74 @@ const ModuleTwoSubFive = () => (
 
     <View style={styles.componentContainer} >
         <Text style={styles.mainText}>Upon a successful login to the system, you will land on the home page, from where you can access the Income Tax Return by clicking the relevant hyperlink for the tax year, e.g., 2023:</Text>
-        <Text style={styles.numText}>Follow the below steps:</Text>
-        <Text style={styles.numText}>1.Click on <Text style={{ fontWeight:'bold' }}>“Returns”</Text></Text>
-        <Text style={styles.numText}>2.Click on <Text style={{ fontWeight: 'bold' }}>“Returns Issued”</Text></Text>
-        <Text style={styles.numText}>3.Click on <Text style={{ fontWeight: 'bold' }}>“Personal Income Tax (ITR12)”</Text></Text>
-        <Text style={styles.numText}>4.Select the relevant year and click on <Text style={{ fontWeight: 'bold' }}>“Request Return”</Text> if it is not automatically issued.</Text>
-        <Text style={styles.numText}>5.Click on <Text style={{ fontWeight: 'bold' }}>“Returns Issued”</Text></Text>
-        <Text style={styles.numText}>6.Click on <Text style={{ fontWeight: 'bold' }}>“Personal Income Tax (ITR12)”</Text></Text>
-        <Text style={styles.numText}>7.Click on <Text style={{ fontWeight: 'bold' }}>“My Tax Return”</Text></Text>
-        <Text style={styles.numText}>8.Complete all the information.</Text>
-        <Text style={styles.numText}>9.You can always click on <Text style={{ fontWeight: 'bold' }}>“Save Return”</Text> and come back at a later stage.</Text>
-        <Text style={styles.numText}>10.Before submitting you can click on <Text style={{ fontWeight: 'bold' }}>“Calculate”</Text>to see an estimate of tax due by you or to you</Text>
-        <Text style={styles.numText}>11.Once fully completed Click on <Text style={{ fontWeight: 'bold' }}>“Submit Return”</Text></Text>
-        <Text style={styles.mainText}><Text style={{ fontWeight: 'bold' }}>Useful things to note:</Text></Text>
-        <BulletText>
-            To check what information has been uploaded on your behalf go to “Third Party Data Certificate Search” on the left tab (IRP5, medical aid etc)
-        </BulletText>
-        <Text style={styles.mainText}> <Text style={{ fontWeight: 'bold' }}>Updating Bank Account Details:</Text></Text>
-        <BulletText>
-            SARS will notify you if are required to submit supporting documents to verify your banking details.
-        </BulletText>
-        <BulletText>
-            REMEMBER: without the correct banking details SARS cannot pay you a refund, where it is due.
-        </BulletText>
-        <BulletText>
-            If you’re unsure visit <Text style={{ fontWeight: 'bold' }} onPress={handleLinkPress}>www.sarsefiling.co.za</Text> or contact SARS on 0800 00 7277.
-        </BulletText>
+        <Text style={styles.numText}><Text style={{ fontFamily:'poppins-bold' }}>Follow the below steps:</Text></Text>
+        <View style={styles.listItemB}>
+            <Text style={styles.bulletB}>1.</Text>
+            <Text style={styles.itemTextB}> Click on <Text style={{ fontFamily: 'poppins-bold' }}>“Returns”</Text></Text>
+        </View>
+        <View style={styles.listItemB}>
+            <Text style={styles.bulletB}>2.</Text>
+            <Text style={styles.itemTextB}> Click on <Text style={{ fontFamily: 'poppins-bold' }}>“Returns Issued”</Text></Text>
+        </View>
+        <View style={styles.listItemB}>
+            <Text style={styles.bulletB}>3.</Text>
+            <Text style={styles.itemTextB}> Click on <Text style={{ fontFamily: 'poppins-bold' }}>“Personal Income Tax (ITR12)”</Text></Text>
+        </View>
+        <View style={styles.listItemB}>
+            <Text style={styles.bulletB}>4.</Text>
+            <Text style={styles.itemTextB}> Select the relevant year and click on <Text style={{ fontFamily: 'poppins-bold' }}>“Request Return”</Text> if it is not automatically issued.</Text>
+        </View>
+        <View style={styles.listItemB}>
+            <Text style={styles.bulletB}>5.</Text>
+            <Text style={styles.itemTextB}> Click on <Text style={{ fontFamily: 'poppins-bold' }}>“Returns Issued”</Text></Text>
+        </View>
+        <View style={styles.listItemB}>
+            <Text style={styles.bulletB}>6.</Text>
+            <Text style={styles.itemTextB}> Click on <Text style={{ fontFamily: 'poppins-bold' }}>“Personal Income Tax (ITR12)”</Text></Text>
+        </View>
+        <View style={styles.listItemB}>
+            <Text style={styles.bulletB}>7.</Text>
+            <Text style={styles.itemTextB}> Click on <Text style={{ fontFamily: 'poppins-bold' }}>“My Tax Return”</Text></Text>
+        </View>
+        <View style={styles.listItemB}>
+            <Text style={styles.bulletB}>8.</Text>
+            <Text style={styles.itemTextB}> Complete all the information.</Text>
+        </View>
+        <View style={styles.listItemB}>
+            <Text style={styles.bulletB}>9.</Text>
+            <Text style={styles.itemTextB}> You can always click on <Text style={{ fontFamily: 'poppins-bold' }}>“Save Return”</Text> and come back at a later stage.</Text>
+        </View>
+        <View style={styles.listItemA}>
+            <Text style={styles.bulletB}>10.</Text>
+            <Text style={styles.itemTextB}> Before submitting you can click on <Text style={{ fontFamily: 'poppins-bold' }}>“Calculate”</Text>to see an estimate of tax due by you or to you</Text>
+        </View>
+        <View style={styles.listItemA}>
+            <Text style={styles.bulletB}>11.</Text>
+            <Text style={styles.itemTextB}> Once fully completed Click on <Text style={{ fontFamily: 'poppins-bold' }}>“Submit Return”</Text></Text>
+        </View>
+        <View style={{ marginTop: '5%' }}>
+            <Text style={styles.mainText}><Text style={{ fontFamily: 'poppins-bold' }}>Useful things to note:</Text></Text>
+        </View>
+        <View style={styles.listItemB}>
+            <Text style={styles.bulletB}>{'\u2022'}</Text>
+            <Text style={styles.itemTextB}>To check what information has been uploaded on your behalf go to “Third Party Data Certificate Search” on the left tab (IRP5, medical aid etc)</Text>
+        </View>
+        
+        <View style={{ marginTop: '5%' }}>
+            <Text style={styles.mainText}> <Text style={{ fontFamily: 'poppins-bold' }}>Updating Bank Account Details:</Text></Text>
+        </View>
+        <View style={styles.listItemB}>
+            <Text style={styles.bulletB}>{'\u2022'}</Text>
+            <Text style={styles.itemTextB}> SARS will notify you if are required to submit supporting documents to verify your banking details.</Text>
+        </View>
+        <View style={styles.listItemB}>
+            <Text style={styles.bulletB}>{'\u2022'}</Text>
+            <Text style={styles.itemTextB}>REMEMBER: without the correct banking details SARS cannot pay you a refund, where it is due.</Text>
+        </View>
+        <View style={styles.listItemB}>
+            <Text style={styles.bulletB}>{'\u2022'}</Text>
+            <Text style={styles.itemTextB}>If you’re unsure visit <Text style={{ fontFamily:'poppins-bold' }} onPress={handleLinkPress}>www.sarsefiling.co.za</Text> or contact SARS on 0800 00 7277.</Text>
+        </View>
     </View >
 
 );
@@ -78,40 +120,69 @@ export default ModuleTwoSubFive;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        //backgroundColor: 'white',
-        // flexDirection: 'column', // Arrange children horizontally
+       
     },
     componentContainer: {
-        marginTop: 20,
-        // borderWidth: 1,
-        // borderColor: 'gray',
-        padding: 15,
+        marginTop: 8,
+        padding: 20,
 
     },
     mainText: {
         fontWeight: '400',
         fontSize: 16,
         lineHeight: 27,
-        paddingBottom: 30
+        paddingBottom: 10,
+        fontFamily: 'poppins-regular'
     },
     numText: {
-        fontWeight: '400',
+        //fontWeight: '400',
         fontSize: 16,
         lineHeight: 27,
-        paddingBottom: 10
+        paddingBottom: 10,
+        fontFamily: 'poppins-regular'
     },
     bullet: {
         flexDirection: 'row',
         alignItems: 'flex-start',
         marginBottom: 10,
-        paddingHorizontal: 15
+        paddingHorizontal: 15,
+        fontFamily: 'poppins-regular'
+
     },
     bulletText: {
         marginLeft: 8,
         padding: 10,
-        fontSize:16,
-        fontWeight:'400',
-        lineHeight:28
+        fontSize: 16,
+        fontWeight: '400',
+        lineHeight: 28,
+        fontFamily: 'poppins-regular'
+    },
+    listItemB: {
+        flexDirection: 'row',
+        alignItems: 'flex-start',
+        lineHeight: 27,
+        marginBottom: 8,
+        paddingHorizontal: 12,
+        fontFamily: 'poppins-regular'
+    },
+    listItemA: {
+        flexDirection: 'row',
+        alignItems: 'flex-start',
+        marginBottom: 8,
+        paddingHorizontal: 2,
+        lineHeight: 27,
+        fontFamily: 'poppins-regular'
+    },
+    bulletB: {
+        fontSize: 15,
+        lineHeight: 27,
+        fontFamily:'poppins-regular'
+    },
+    itemTextB: {
+        flex: 1,
+        fontSize: 15,
+        lineHeight: 27,
+        fontFamily: 'poppins-regular'
     },
 
 })

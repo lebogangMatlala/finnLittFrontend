@@ -76,25 +76,30 @@ export default function RegisterScreen({ navigation }) {
         // Validate name
         if (!name.trim()) {
             validationErrors.name = 'Name is required';
+            setLoading(false);
         }
 
         if (!phoneNum.trim()) {
             validationErrors.phoneNum = 'Phone number is required';
+            setLoading(false);
         }
 
         // Validate email
         if (!validateEmail(email)) {
             validationErrors.email = 'Invalid email format';
+            setLoading(false);
         }
 
         // Validate password
         if (password.length < 8) {
             validationErrors.password = 'Password must be at least 8 characters';
+            setLoading(false);
         }
 
         // Validate password confirmation
         if (password !== confirmPassword) {
             validationErrors.confirmPassword = 'Passwords do not match';
+            setLoading(false);
         }
 
         // Set the errors state
@@ -137,19 +142,23 @@ export default function RegisterScreen({ navigation }) {
                             // that falls out of the range of 2xx
                             const message = error.response.data.message || 'An error occurred';
                             Alert.alert('Error', message);
+                            setLoading(false);
                         } else if (error.request) {
                             // The request was made but no response was received
                             // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
                             // http.ClientRequest in node.js
                             Alert.alert('Error', 'Network error occurred');
+                            setLoading(false);
                         } else {
                             // Something happened in setting up the request that triggered an Error
                             Alert.alert('Error', error.message);
+                            setLoading(false);
                         }
                     });
 
             } else {
                 console.log('check is false');
+                setLoading(false);
                 Alert.alert('Error', "Please select the checkbox to accept terms and conditions");
             }
 
@@ -159,6 +168,11 @@ export default function RegisterScreen({ navigation }) {
 
 
     }
+    const handleEmailChange = (text) => {
+        // Remove any extra spaces from the email input
+        const formattedEmail = text.trim();
+        setEmail(formattedEmail);
+    };
 
     const backToLogin = () => {
         navigation.navigate("Login");
@@ -216,7 +230,9 @@ export default function RegisterScreen({ navigation }) {
                                     style={styles.input}
                                     placeholder="Email"
                                     value={email}
-                                    onChangeText={setEmail}
+                                    onChangeText={handleEmailChange}
+                                    autoCapitalize="none"
+                                    keyboardType="email-address"
                                 />
                             </View>
                             {errors.email && <Text style={{ color: 'red', paddingHorizontal: 30 }}>{errors.email}</Text>}
@@ -288,7 +304,8 @@ export default function RegisterScreen({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        flexDirection: 'column', // Arrange children horizontally
+        flexDirection: 'column',
+        fontFamily: 'poppins-regular' // Arrange children horizontally
     },
     content: {
         //justifyContent: 'center',
@@ -316,7 +333,8 @@ const styles = StyleSheet.create({
         marginTop: 6,
         marginBottom: -4,
         fontSize: 12,
-        lineHeight: 18
+        lineHeight: 18,
+        
     },
     termsOfUseIpad: {
         color: '#226188',
@@ -348,6 +366,7 @@ const styles = StyleSheet.create({
         height: 124,
         resizeMode: 'contain',
         alignSelf: 'center',
+        marginTop:'30%'
     },
     section: {
         marginTop: '6%',
@@ -385,11 +404,11 @@ const styles = StyleSheet.create({
             width: 0,
             height: 1,
         },
-        shadowOpacity: 0.20,
-        shadowRadius: 1.41,
-        elevation: 2,
+        //shadowOpacity: 0.20,
+        //shadowRadius: 1.41,
+        //elevation: 2,
         justifyContent: 'center',
-        marginBottom: '1%'
+        marginBottom: '3%'
     },
     buttonText: {
         textAlign: 'center',
@@ -403,6 +422,10 @@ const styles = StyleSheet.create({
         fontWeight: '400',
         fontSize: 12,
         lineHeight: 18,
-        color: '#94999D'
+        color: '#94999D',
+        marginTop:'1%',
+        marginBottom:'2%',
+        marginLeft: -15,
+        fontFamily: 'poppins-regular'
     }
 });

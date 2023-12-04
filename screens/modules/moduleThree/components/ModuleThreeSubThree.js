@@ -26,9 +26,13 @@ import SelectDropdown from 'react-native-select-dropdown';
 import { Linking } from 'react-native';
 
 const BulletText = ({ children }) => (
-    <Text style={styles.bullet}>
-        {'\u2022'} <Text style={styles.bulletText}>{children}</Text>
-    </Text>
+    <View style={styles.listItem}>
+        <Text style={styles.bullet}>{'\u2022'}  </Text>
+        <Text style={styles.itemText}>{children}</Text>
+    </View>
+    // <Text style={styles.bullet}>
+    //     {'\u2022'} <Text style={styles.bulletText}>{children}</Text>
+    // </Text>
 );
 
 const handleTrans = () => {
@@ -107,57 +111,57 @@ const ModuleThreeSubThree = () => (
 
     <View style={styles.componentContainer} >
         <Text style={styles.mainText}>As a responsible consumer check your credit score regularly and report any discrepancies to the relevant credit bureaus immediately.</Text>
-        <Text style={styles.mainText}><Text style={{ fontWeight: 'bold' }}>What will I see:</Text></Text>
+        <Text style={styles.mainText}><Text style={{ fontFamily: 'poppins-bold', marginBottom: '-2%' }}>What will I see:</Text></Text>
         <BulletText>
-           
-                <Text style={{ fontWeight: 'bold' }}>Your personal credit score: </Text>See exactly what lenders see when they look into your profile.
-            
+
+            <Text style={{ fontFamily: 'poppins-bold' }}>Your personal credit score: </Text>See exactly what lenders see when they look into your profile.
+
         </BulletText>
         <BulletText>
-            
-            <Text style={{ fontWeight: 'bold' }}>See your debt:</Text> You will get to see in detail how much debt you have and how it influences your score.
-        
+
+            <Text style={{ fontFamily: 'poppins-bold' }}>See your debt:</Text> You will get to see in detail how much debt you have and how it influences your score.
+
         </BulletText>
         <BulletText>
-            
-            <Text style={{ fontWeight: 'bold' }}>Where to improve:</Text> you will get to see the problem areas that caused your score to drop.
-            
+
+            <Text style={{ fontFamily: 'poppins-bold' }}>Where to improve:</Text> you will get to see the problem areas that caused your score to drop.
+
         </BulletText>
         <BulletText>
-            
-                <Text style={{ fontWeight: 'bold' }}>Activities on your credit profile:</Text> Know each and every company that looked into your score. Where to improve: you will get to see the problem areas that caused your score to drop.
-           
+
+            <Text style={{ fontFamily: 'poppins-bold' }}>Activities on your credit profile:</Text> Know each and every company that looked into your score. Where to improve: you will get to see the problem areas that caused your score to drop.
+
         </BulletText>
         <BulletText>
-           
-                <Text style={{ fontWeight: 'bold' }}>If you have judgements or listings: </Text>This is the biggest reason for people getting declined by lenders
-           
+
+            <Text style={{ fontFamily: 'poppins-bold' }}>If you have judgements or listings: </Text>This is the biggest reason for people getting declined by lenders
+
         </BulletText>
         <BulletText>
-            
-                <Text style={{ fontWeight: 'bold' }}>If you qualify for loans: </Text>Your risk class will show you if you are good, average, or high risk to lenders.
-            
+
+            <Text style={{ fontFamily: 'poppins-bold' }}>If you qualify for loans: </Text>Your risk class will show you if you are good, average, or high risk to lenders.
+
         </BulletText>
-        <Text style={styles.mainText}><Text style={{ fontWeight: 'bold' }}>Where can I check my credit score?</Text></Text>
-        <Text style={styles.mainText}><Text style={{ fontWeight: 'bold' }}>TransUnion: </Text></Text>
-        <BulletText>Call centre <Text style={{ fontWeight: 'bold' }}>0861 886 466 </Text></BulletText>
-        <BulletText>Visit <Text style={{ fontWeight: 'bold' }} onPress={handleTrans}>www.transunion.co.za</Text> </BulletText>
-        <Text style={styles.mainText}><Text style={{ fontWeight: 'bold' }}>Experian:  </Text></Text>
-        <BulletText>Call centre <Text style={{ fontWeight: 'bold' }}>0861 105 665</Text> </BulletText>
-        <BulletText>Visit <Text style={{ fontWeight: 'bold' }} onPress={handleExpe}>www.experian.com</Text> </BulletText>
-        <BulletText>Send an email to <Text style={{ fontWeight: 'bold' }}>consumer@experian.co</Text> </BulletText>
-        <Text style={styles.mainText}><Text style={{ fontWeight: 'bold' }}>Compuscan: </Text> </Text>
-            <BulletText>Call centre  <Text style={{ fontWeight: 'bold' }}>0861 514 131, </Text></BulletText>
-            <BulletText>Visit <Text style={{ fontWeight: 'bold' }} onPress={handleComp}>www.compuscan.co.za  </Text></BulletText>
-            <BulletText>Send an email to <Text style={{ fontWeight: 'bold' }}>consumercare@compuscan.co.za </Text></BulletText>
-            <Text style={styles.mainText}><Text style={{ fontWeight: 'bold' }}>Xpert Decision Systems (XDS):  </Text> </Text>
-                <BulletText>Call centre <Text style={{ fontWeight: 'bold' }}>0860 937 000,</Text> </BulletText>
-                <BulletText>Visit <Text style={{ fontWeight: 'bold' }} onPress={handlexds}>www.xds.co.za</Text></BulletText>
-                <BulletText>Send an email <Text style={{ fontWeight: 'bold' }}>disput@xds.co.za </Text></BulletText>
-                <Text style={styles.mainText}><Text style={{ fontWeight: 'bold' }}>VeriCred: </Text></Text>
-                    <BulletText>Call centre on <Text style={{ fontWeight: 'bold' }}>087 150 3601 </Text> </BulletText>
-                    <BulletText>Visit <Text style={{ fontWeight: 'bold' }}>www.vcbb.co.za</Text></BulletText>
-        
+        <Text style={styles.mainText}><Text style={{ fontFamily: 'poppins-bold', marginBottom: -10 }}>Where can I check my credit score?</Text></Text>
+        <Text style={styles.mainText}><Text style={{ fontFamily: 'poppins-bold' }}>TransUnion: </Text></Text>
+        <BulletText>Call centre <Text style={{ fontFamily: 'poppins-bold' }}>0861 886 466 </Text></BulletText>
+        <BulletText>Visit <Text style={{ fontFamily: 'poppins-bold' }} onPress={handleTrans}>www.transunion.co.za</Text> </BulletText>
+        <Text style={styles.mainText}><Text style={{ fontFamily: 'poppins-bold' }}>Experian:  </Text></Text>
+        <BulletText>Call centre <Text style={{ fontFamily: 'poppins-bold' }}>0861 105 665</Text> </BulletText>
+        <BulletText>Visit <Text style={{ fontFamily: 'poppins-bold' }} onPress={handleExpe}>www.experian.com</Text> </BulletText>
+        <BulletText>Send an email to<Text style={{ fontFamily: 'poppins-bold' }}> consumer@experian.co</Text> </BulletText>
+        <Text style={styles.mainText}><Text style={{ fontFamily: 'poppins-bold' }}>Compuscan: </Text> </Text>
+        <BulletText>Call centre  <Text style={{ fontFamily: 'poppins-bold' }}>0861 514 131, </Text></BulletText>
+        <BulletText>Visit <Text style={{ fontFamily: 'poppins-bold' }} onPress={handleComp}>www.compuscan.co.za  </Text></BulletText>
+        <BulletText>Send an email to <Text style={{ fontFamily: 'poppins-bold' }}>consumercare@compuscan.co.za </Text></BulletText>
+        <Text style={styles.mainText}><Text style={{ fontFamily: 'poppins-bold' }}>Xpert Decision Systems (XDS):  </Text> </Text>
+        <BulletText>Call centre <Text style={{ fontFamily: 'poppins-bold' }}>0860 937 000,</Text> </BulletText>
+        <BulletText>Visit <Text style={{ fontFamily: 'poppins-bold' }} onPress={handlexds}>www.xds.co.za</Text></BulletText>
+        <BulletText>Send an email <Text style={{ fontFamily: 'poppins-bold' }}>disput@xds.co.za </Text></BulletText>
+        <Text style={styles.mainText}><Text style={{ fontFamily: 'poppins-bold' }}>VeriCred: </Text></Text>
+        <BulletText>Call centre on <Text style={{ fontFamily: 'poppins-bold' }}>087 150 3601 </Text> </BulletText>
+        <BulletText>Visit <Text style={{ fontFamily: 'poppins-bold' }}>www.vcbb.co.za</Text></BulletText>
+
     </View >
 
 );
@@ -171,42 +175,74 @@ const styles = StyleSheet.create({
         // flexDirection: 'column', // Arrange children horizontally
     },
     componentContainer: {
-        marginTop: 20,
+        //marginTop: 20,
         // borderWidth: 1,
         // borderColor: 'gray',
-        padding: 15,
+        padding: 20,
 
     },
-    mainText: {
-        fontWeight: '400',
-        fontSize: 16,
+    normalText: {
+        fontSize: 15,
         lineHeight: 27,
-        paddingBottom: 30
+        marginBottom: 15,
+        //paddingHorizontal: 15,
+        fontFamily: 'poppins-regular'
+    },
+    mainText: {
+        fontSize: 15,
+        lineHeight: 27,
+        marginBottom: 18,
+        //paddingHorizontal: 15,
+        fontFamily: 'poppins-regular'
+
     },
     numText: {
         fontWeight: '400',
         fontSize: 16,
         lineHeight: 27,
         paddingBottom: 10,
-        paddingHorizontal: 15
+        paddingHorizontal: 15,
+        fontFamily: 'poppins-regular'
     }
     ,
     boldText: {
         fontWeight: 'bold',
         fontSize: 16,
-        lineHeight: 27
+        lineHeight: 27,
+        fontFamily: 'poppins-regular'
     },
     bullet: {
         flexDirection: 'row',
         alignItems: 'flex-start',
         marginBottom: 10,
-        paddingHorizontal: 15
+        paddingHorizontal: 15,
+        fontFamily: 'poppins-regular'
     },
     bulletText: {
         marginLeft: 10,
         padding: 20,
+        fontSize: 13,
+        lineHeight: 27,
+        fontFamily: 'poppins-regular'
+    },
+    listItem: {
+        flexDirection: 'row',
+        alignItems: 'flex-start',
+        marginTop:-10,
+        marginBottom: 15,
+        paddingHorizontal: 25,
+        fontFamily: 'poppins-regular'
+    },
+    bullet: {
+        
         fontSize: 16,
-        lineHeight: 27
+        fontFamily: 'poppins-regular'
+    },
+    itemText: {
+        flex: 1,
+        fontSize: 13,
+        lineHeight: 27,
+        fontFamily: 'poppins-regular'
     },
 
 })

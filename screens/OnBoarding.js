@@ -23,7 +23,9 @@ import Svg, { Path } from 'react-native-svg';
 
 import WavePattern from '../components/wavePattern';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import ProgressBar from 'react-native-progress/Bar'
+import ProgressBar from 'react-native-progress/Bar';
+// import CustomProgressBar from './components/CustomProgressBar';
+
 export default function OnBoardingScreen({ navigation }) {
     const [currentIndex, setCurrentIndex] = useState(0);
     const screenWidth = Dimensions.get('window').width;
@@ -33,9 +35,9 @@ export default function OnBoardingScreen({ navigation }) {
     const isIpad = width > 768 && height > 1024;
 
     const images = [
-        { id: 1, source: require('../assets/onboarding/Illustration1.png'), text: 'Welcome to our finance learning app! We are excited to help you on this journey to improve your financial literacy.Let us get started!', headingText: 'Welcome To', subOne: 'Finn', subTwo: 'LITT' },
-        { id: 2, source: require('../assets/onboarding/Illustration2.png'), text: 'On this app, we will help you understand the adult things you will need to manage such as tax compliance or why a credit score is important.Our content is designed for the youth of South Africa.We have simplified it for those who are new to finance.', headingText: 'What', subOne: 'We', subTwo: 'Do' },
-        { id: 3, source: require('../assets/onboarding/Illustration3.png'), text: 'Our team is made up of finance experts who are passionate about helping and growing the youth in financial literacy.We are committed to supporting you on your journey through life as an adult.', headingText: 'Who', subOne: 'We', subTwo: 'Are' },
+        { id: 1, source: require('../assets/onboarding/Illustration1.png'), text: "Welcome to our finance learning app! We're excited to help you on this journey to improve your financial literacy. Let's get started!", headingText: 'Welcome To', subOne: 'Finn', subTwo: 'LITT' },
+        { id: 2, source: require('../assets/onboarding/Illustration2.png'), text: "On this app, we will help you understand the adult things you will need to manage such as tax compliance or why a credit score is important. Our content is designed for the youth of South Africa. We've simplified it for those who are new to finance.", headingText: 'What', subOne: 'We', subTwo: 'Do' },
+        { id: 3, source: require('../assets/onboarding/Illustration3.png'), text: "Our team is made up of finance experts who are passionate about helping and growing the youth in financial literacy. We're committed to supporting you on your journey through life as an adult.", headingText: 'Who', subOne: 'We', subTwo: 'Are' },
     ];
 
     const handleNextButton = () => {
@@ -43,7 +45,7 @@ export default function OnBoardingScreen({ navigation }) {
         const isLastIndex = currentIndex === lastIndex;
         if (isLastIndex) {
             // setTimeout(() => {
-                navigation.navigate('Registration'); // Replace 'OtherScreen' with the actual screen name
+            navigation.navigate('Registration'); // Replace 'OtherScreen' with the actual screen name
             // }, 8000);
 
         } else {
@@ -59,7 +61,7 @@ export default function OnBoardingScreen({ navigation }) {
     }, [currentIndex])
 
     const progressBarValue = (currentIndex + 1) / images.length;
-
+    //const progressBarValue = 0.6; 
     const handleRegister = () => {
         navigation.navigate("Registration");
     }
@@ -74,27 +76,20 @@ export default function OnBoardingScreen({ navigation }) {
                 <View style={styles.container}>
                     <View style={styles.progressBarContainer}>
 
-                        {/* {Platform.OS === 'android' && (
-                                <ProgressBarAndroid
-                                    styleAttr="Horizontal"
-                                    indeterminate={false}
-                                    progress={progressBarValue}
-                                    color="#2196F3"
-                                style={{ width: 290,marginTop:20 }} 
-                                />
-                            )} */}
                         {Platform.OS === 'android' && (
                             <ProgressBar
                                 progress={progressBarValue}
                                 width={290}
-                                color="#2196F3"
-                                borderColor="#ccc"
-                                unfilledColor="#e0e0e0"
+                                color="#226188"
+                                borderColor="#e9e9ea"
+                                unfilledColor="#f2f2f2"
                                 style={{ marginTop: 25, marginBottom: 15 }}
                             />
+                            
+                            
                         )}
-
                     </View>
+
                     <FlatList
                         data={[images[currentIndex]]}
                         renderItem={({ item }) => (
@@ -110,7 +105,7 @@ export default function OnBoardingScreen({ navigation }) {
                                         <Text>{item.subTwo}</Text>
                                     </TouchableOpacity>
                                 </Text> */}
-                                <Image source={item.source} style={[styles.image,isIpad && styles.imageIpad]} />
+                                <Image source={item.source} style={[styles.image, isIpad && styles.imageIpad]} />
                                 <Text style={[styles.imageText, { width: textWidth }]}>{item.text}</Text>
                             </View>
                         )}
@@ -140,12 +135,13 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
+        fontFamily: 'poppins-regular',
     },
     cont: {
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 5,
-        marginBottom: 5,
+        // marginTop: 2,
+        // marginBottom: 2,
 
     },
     progressBarContainer: {
@@ -166,30 +162,32 @@ const styles = StyleSheet.create({
     imageContainer: {
         width: '100%',
         alignItems: 'center',
-       
+
     },
-    imageContainerIpad:{
+    imageContainerIpad: {
         marginTop: '15%'
     },
     subOneText: {
         color: '#CC6D3D',
-        fontWeight: '800',
-        fontSize: 40,
+        //fontWeight: 'bold',
+        fontSize: 44,
         lineHeight: 60,
+        fontFamily: 'poppins-extraBold'
     },
     subTwoText: {
         color: '#072A40',
-        fontWeight: '300',
-        fontSize: 40,
+        //fontWeight: '250',
+        fontSize: 44,
         lineHeight: 60,
-        marginTop: -40,
-
+        marginTop: -45,
+        fontFamily: 'poppins-light'
     },
     image: {
         width: 370,
         height: 280,
         resizeMode: 'contain',
-        marginBottom: 10,
+        marginBottom: 20,
+        marginTop:30
     },
     imageIpad: {
         width: 570,
@@ -198,13 +196,14 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
     imageText: {
-        fontSize: 16,
-        paddingHorizontal: 10,
-        paddingVertical: 10,
+        fontSize: 14,
+        paddingHorizontal: 1,
+        //paddingVertical: 1,
         textAlign: 'center',
-        fontWeight: '400',
-        lineHeight: 22,
-        color: '#4D555B'
+        //fontWeight: '400',
+        //lineHeight: 22,
+        color: '#4D555B',
+        fontFamily: 'poppins-regular',
     },
     headingText: {
         fontSize: 20,
@@ -212,14 +211,15 @@ const styles = StyleSheet.create({
         fontWeight: '300',
         lineHeight: 30,
         color: '#000C14',
+        fontFamily: 'poppins-regular'
         // marginTop:'-15%'
-        
+
     },
     button: {
         backgroundColor: '#226188',
         padding: 10,
         borderRadius: 42,
-        marginTop: 10,
+        marginTop: '-30%',
         width: 277,
         height: 48,
         alignItems: 'center',
@@ -239,7 +239,8 @@ const styles = StyleSheet.create({
         fontSize: 18,
         // fontFamily:'Poppins',
         lineHeight: 27,
-        fontWeight: '600',
+        fontWeight: 'bold',
+        fontFamily: 'poppins-regular',
     },
     disText: {
         color: '#a5a5a6',
@@ -247,8 +248,9 @@ const styles = StyleSheet.create({
         fontSize: 11,
         lineHeight: 22,
         textAlign: 'center',
-        marginTop: 8,
-        marginBottom: 8
+        marginTop: 25,
+        marginBottom: 15,
+        fontFamily: 'poppins-regular',
     }
 });
 

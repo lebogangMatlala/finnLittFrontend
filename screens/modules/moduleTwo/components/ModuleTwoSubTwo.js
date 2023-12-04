@@ -42,17 +42,18 @@ const styles = StyleSheet.create({
         // flexDirection: 'column', // Arrange children horizontally
     },
     componentContainer: {
-        marginTop: 20,
+        marginTop: 8,
         // borderWidth: 1,
         // borderColor: 'gray',
-        padding: 15,
+        padding: 20,
 
     },
     mainText: {
         fontWeight: '400',
-        fontSize: 16,
+        fontSize: 15,
         lineHeight: 27,
-        paddingBottom: 30
+        paddingBottom: 30,
+        fontFamily: 'poppins-regular'
     }
 
 })

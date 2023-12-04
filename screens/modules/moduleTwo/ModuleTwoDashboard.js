@@ -38,7 +38,7 @@ export default function ModuleTwoDashboardScreen({ navigation }) {
     }
 
     const data = [
-        { id: '2.1', text: 'Do I have to pay taxes?' },
+        { id: '2.1', text: ' Do I have to pay taxes?' },
         { id: '2.2', text: ' Where do I start?' },
         { id: '2.3', text: ' How do I register?' },
         { id: '2.4', text: ' What you will need to complete a tax return' },
@@ -67,8 +67,8 @@ export default function ModuleTwoDashboardScreen({ navigation }) {
                                 <Ionicons name="chevron-back" size={32} color="white"></Ionicons>
                             </TouchableOpacity>
                             <View style={styles.sectionB} >
-                                <Text style={{ color: 'white', fontSize: 28, fontWeight: '800', lineHeight: 30 }}>Module 2: Taxes</Text>
-                                <Text style={{ color: 'white', fontSize: 18, fontWeight: '500', lineHeight: 27 }}>Filing your taxes</Text>
+                                <Text style={{ color: 'white', fontSize: 24, lineHeight: 30, fontFamily: 'poppins-extraBold' }}>Module 2: Taxes</Text>
+                                <Text style={{ color: 'white', fontSize: 16, lineHeight: 27, fontFamily: 'poppins-medium' }}>Filing your taxes</Text>
                             </View>
                         </View>
                     </ImageBackground>
@@ -76,15 +76,21 @@ export default function ModuleTwoDashboardScreen({ navigation }) {
 
                     <View style={styles.container}>
                         <View style={[styles.whiteBackground, { paddingBottom: 50 }]}>
-                            <View style={{ marginTop: '5%' }}>
+                            <View style={{ marginTop: '-10%' }}>
                                 <View style={styles.section}>
                                     <Text style={styles.bold}>Overview:</Text>
                                     <Text style={styles.light}>When it comes to your taxes, you do not need to run in fear, just breathe. We have decoded it for you and put it into simple English so it is easier to understand.</Text>
                                     <Text style={styles.bold}>What will the module cover:</Text>
                                     <View >
                                         {data.map((item) => (
+                                            // <View key={item.id} style={styles.listItem}>
+                                            //     <Text style={styles.itemText}>{`${item.id}. ${item.text}`}</Text>
+                                            // </View>
                                             <View key={item.id} style={styles.listItem}>
-                                                <Text style={styles.itemText}>{`${item.id}. ${item.text}`}</Text>
+                                                <Text style={styles.bullet}>{`${item.id}.`}
+                                                    <Text style={styles.itemText}>{`${item.text}`}</Text>
+                                                </Text>
+
                                             </View>
                                         ))}
                                     </View>
@@ -113,74 +119,95 @@ export default function ModuleTwoDashboardScreen({ navigation }) {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: 'white',
         flex: 1,
-        flexDirection: 'column', // Arrange children horizontally
+        backgroundColor: 'white',
+        flexDirection: 'column',
+        fontFamily: 'poppins-regular' // Arrange children horizontally
+    },
+    bold: {
+        fontSize: 20,
+        //fontWeight: '700',
+        lineHeight: 27,
+        color: '#000C14',
+        marginTop: 20,
+        marginBottom: 5,
+        fontFamily: 'poppins-bold'
+    },
+    scrollView: {
+        height: '100%',
+        width: '100%',
+        //margin: 20,
+        alignSelf: 'center',
+        // padding: 20,
+        // borderWidth: 5,
+        // borderRadius: 5,
+        // borderColor: 'black',
+        // backgroundColor: 'lightblue'
+    },
+    contentContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        // backgroundColor: 'lightgrey',
+        //paddingBottom: 50
+    },
+    light: {
+        fontSize: 15,
+        //fontWeight: '400',
+        lineHeight: 27,
+        color: '#000C14',
+        marginTop: 4,
+        marginBottom: 4,
+        fontFamily: 'poppins-regular'
     },
     content: {
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: '18%',
+        marginTop: '10%',
         marginBottom: '1%'
-
     },
-
-    light: {
-        fontSize: 16,
-        fontWeight: '400',
-        lineHeight: 27,
-        color: '#000C14',
-        marginBottom: 15
-    },
-    bold: {
-        fontSize: 20,
-        fontWeight: '700',
-        lineHeight: 27,
-        color: '#000C14',
-        marginBottom: 5
-    },
-
     list: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
     },
-    listItem: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        // padding: 2,
-
-    },
+    // listItem: {
+    //     flexDirection: 'row',
+    //     alignItems: 'center',
+    //     // padding: 2,
+    // },
     itemText: {
         fontSize: 16,
         fontWeight: '400',
         lineHeight: 32,
         marginRight: 10,
+        fontFamily: 'poppins-regular'
     },
     cardContent: {
         flex: 1,
         width: '100%',
         flexDirection: 'column',
-        ///margin:10,
+        padding: 10,
         justifyContent: 'flex-start',
         borderRadius: 0,
-        padding: 8,
+        padding: 0,
         backgroundColor: 'rgba(0, 0, 0, 0.3)', // Overlay background color
     },
     imageBackground: {
         flex: 1, // Take half of the screen width
         resizeMode: 'contain',
-        backgroundColor: 'white',
-        //marginTop: "",
-        backgroundColor: 'rgba(0, 0, 0, 0.3)',
-        height: 30
+        //backgroundColor: 'white',
+        //marginTop: "-15%",
+        borderRadius: 0,
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        //height:30
     },
     whiteBackground: {
+        flex: 2, // Take the other half of the screen width
         backgroundColor: 'white',
         borderTopWidth: 30,
         borderTopColor: 'white',
         borderRadius: 25,
-        marginTop: -35
+        marginTop: -65
 
     },
     image: {
@@ -193,12 +220,15 @@ const styles = StyleSheet.create({
         fontWeight: '700'
     },
     sectionA: {
-        marginTop: '5%',
+        marginTop: '4%',
         flexDirection: 'row',
         alignItems: 'center',
-        // borderColor: 'gray',
         borderRadius: 5,
-        paddingHorizontal: 10,
+        paddingHorizontal: 25,
+        //backgroundColor:'pink',
+        padding: 10,
+        //width:'100%',
+
         // marginLeft: 28,
         // marginRight: 28,
         // borderBottomWidth: 1.5,
@@ -212,6 +242,8 @@ const styles = StyleSheet.create({
     },
     section: {
 
+        // marginTop: '6%',
+
         alignItems: 'flex-start',
         borderColor: 'gray',
         borderRadius: 5,
@@ -219,6 +251,8 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: 400,
         lineHeight: 27
+
+
     },
     icon: {
         width: 22,
@@ -247,7 +281,7 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: 0.20,
         shadowRadius: 1.41,
-        elevation: 2,
+        //elevation: 2,
         justifyContent: 'center'
     },
     buttonText: {
@@ -256,12 +290,27 @@ const styles = StyleSheet.create({
         fontSize: 18,
         // fontFamily:'Poppins',
         lineHeight: 27,
-        fontWeight: '600',
+        ///fontWeight: 'bold',
+        fontFamily: 'poppins-semiBold'
     },
     termText: {
         fontWeight: '400',
         fontSize: 12,
         lineHeight: 18,
         color: '#94999D'
-    }
+    },
+    listItem: {
+        flexDirection: 'row',
+        alignItems: 'flex-start',
+        marginBottom: 8,
+        paddingHorizontal: 10,
+        fontFamily: 'poppins-regular'
+    },
+    bullet: {
+        fontSize: 16,
+        lineHeight: 27
+    },
+    itemText: {
+        flex: 1,
+    },
 });

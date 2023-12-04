@@ -117,7 +117,7 @@ export default function ModuleOneContentScreen({ navigation }) {
 
     const handleNoPress = () => {
         // Handle 'No' button click here
-        navigation.navigate('ModuleTwoContentScreen');
+        navigation.navigate('ModuleTwoDashboardScreen');
         console.log('No button clicked');
         closeModal();
     };
@@ -143,7 +143,7 @@ export default function ModuleOneContentScreen({ navigation }) {
     }, []);
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: 'white', }}>
-            <ScrollView style={[styles.scrollViewContent, isIpad && styles.scrollViewContentIpad] } contentContainerStyle={{
+            <ScrollView style={[styles.scrollViewContent, isIpad && styles.scrollViewContentIpad]} contentContainerStyle={{
                 flexDirection: 'row',
                 flexWrap: 'wrap',
             }}>
@@ -175,7 +175,7 @@ export default function ModuleOneContentScreen({ navigation }) {
                             </View>
 
                             <View style={styles.sectionB} >
-                                <Text style={{ color: 'white', fontSize: 22, fontWeight: '800', lineHeight: 33 }}>{mainTitles[selectedOption]}</Text>
+                                <Text style={{ color: 'white', fontSize: 20, lineHeight: 33, fontFamily: 'poppins-extraBold' }}>{mainTitles[selectedOption]}</Text>
 
                             </View>
 
@@ -205,8 +205,8 @@ export default function ModuleOneContentScreen({ navigation }) {
                                 <Text style={styles.subOneText}>Module
                                     <Text style={styles.subTwoText}>Complete</Text>
                                 </Text>
-                                <Text style={styles.modalText}><Text style={{ fontWeight: '800' }}>Congratulations</Text> on completing Module 1. You should now have a better understanding of your payslip!</Text>
-                                <Text style={styles.modalText}>Module 2 centers around taxes and filing your taxes. You can continue to the next module or you can return to the homepage.</Text>
+                                <Text style={styles.modalText}><Text style={{ fontFamily: 'poppins-bold' }}>Congratulations</Text> on completing Module 1. You should now have a better understanding of your payslip!</Text>
+                                <Text style={styles.modalText}><Text style={{ fontFamily: 'poppins-bold' }}>Module 2 </Text>centers around taxes and filing your taxes. You can continue to the next module or you can return to the homepage.</Text>
                                 <View style={styles.buttonContainer}>
                                     <TouchableOpacity onPress={handleYesPress} style={[styles.buttonModalTwo, { width: '45%' }]}>
                                         <Text style={styles.buttonTextTwo}>Home</Text>
@@ -238,32 +238,37 @@ const styles = StyleSheet.create({
     scrollViewContent: {
         flex: 1, backgroundColor: 'white', marginTop: '-8%'
     },
-    scrollViewContentIpad:{
+    scrollViewContentIpad: {
         flex: 1, backgroundColor: 'white', marginTop: '-2.5%'
     },
     modalText: {
         textAlign: 'center',
         padding: 5,
-        fontSize: 12,
-        fontWeight: '400'
+        fontSize: 11.5,
+        fontWeight: '600',
+        fontFamily: 'poppins-regular'
     },
     header: {
         flexDirection: 'row',
         alignItems: 'center',
+        marginTop: 20,
         marginBottom: 10,
+        fontFamily: 'poppins-regular'
     },
     subOneText: {
         color: '#CC6D3D',
-        fontWeight: '800',
+        //fontWeight: '800',
         fontSize: 30,
         lineHeight: 60,
+        fontFamily: 'poppins-extraBold'
     },
     subTwoText: {
         color: '#072A40',
-        fontWeight: '300',
+        //fontWeight: '300',
         fontSize: 30,
         lineHeight: 60,
         marginTop: -40,
+        fontFamily: 'poppins-light'
     },
     modalContainer: {
         flex: 1,
@@ -273,7 +278,7 @@ const styles = StyleSheet.create({
     },
     modalContent: {
         backgroundColor: 'white',
-        padding: 30,
+        padding: 10,
         borderRadius: 10,
         alignItems: 'center',
         width: '96%'
@@ -290,13 +295,15 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: 'bold',
         color: '#226188',
-        justifyContent: 'center',
+        justifyContent: 'center', fontFamily: 'poppins-regular'
+
     },
     buttonText: {
         fontSize: 18,
         fontWeight: 'bold',
         color: 'blue',
         justifyContent: 'center',
+        fontFamily: 'poppins-regular'
     },
     buttonModal: {
         color: 'white',
@@ -322,6 +329,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
         marginBottom: 10,
+        fontFamily: 'poppins-regular'
     },
     componentContainer: {
         marginTop: 20,
@@ -334,7 +342,8 @@ const styles = StyleSheet.create({
         fontWeight: '700',
         lineHeight: 27,
         color: '#000C14',
-        marginBottom: 5
+        marginBottom: 5,
+        fontFamily: 'poppins-regular'
     },
     scrollView: {
         height: '100%',
@@ -382,6 +391,7 @@ const styles = StyleSheet.create({
         fontWeight: '400',
         lineHeight: 32,
         marginRight: 10,
+        fontFamily: 'poppins-regular'
     },
     cardContent: {
         flex: 1,
@@ -408,7 +418,7 @@ const styles = StyleSheet.create({
         borderTopWidth: 30,
         borderTopColor: 'white',
         borderRadius: 25,
-        marginTop: -35
+        marginTop: -65
 
     },
     image: {
@@ -432,7 +442,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'flex-end',
         alignItems: 'flex-start',
-        marginBottom: 90,
+        marginBottom: 80,
         paddingHorizontal: 25,
     },
     section: {
@@ -485,24 +495,26 @@ const styles = StyleSheet.create({
         fontSize: 18,
         // fontFamily:'Poppins',
         lineHeight: 27,
-        fontWeight: '600',
+        fontWeight: 'bold',
+        fontFamily: 'poppins-regular'
     },
     termText: {
         fontWeight: '400',
         fontSize: 12,
         lineHeight: 18,
-        color: '#94999D'
+        color: '#94999D',
+        fontFamily: 'poppins-regular'
     },
     dropdown1BtnStyle: {
-        width: '60%',
-        height: 44,
+        width: '50%',
+        height: 40,
         backgroundColor: '#FFF',
         borderRadius: 8,
         borderWidth: 1,
         borderColor: '#444',
     },
-    dropdown1BtnTxtStyle: { color: '#444', textAlign: 'left' },
+    dropdown1BtnTxtStyle: { color: '#444', textAlign: 'left', fontFamily: 'poppins-regular' },
     dropdown1DropdownStyle: { backgroundColor: '#EFEFEF' },
     dropdown1RowStyle: { backgroundColor: '#EFEFEF', borderBottomColor: '#C5C5C5' },
-    dropdown1RowTxtStyle: { color: '#444', textAlign: 'left' },
+    dropdown1RowTxtStyle: { color: '#444', textAlign: 'left', fontFamily: 'poppins-regular' },
 });

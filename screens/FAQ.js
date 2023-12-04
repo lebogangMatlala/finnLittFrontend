@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 //import { StatusBar } from 'expo-status-bar';
 import {
     StyleSheet,
@@ -20,67 +20,76 @@ import {
 import { AccordionList } from 'react-native-accordion-list-view';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { FaCaretUp, FaCaretDown } from 'react-icons/fa';
 
 export default function FAQScreen({ navigation }) {
 
     const data = [
         {
             id: 0,
-            title: '1.What is FINNLITT',
+            title: 'What is FINNLITT',
             body: "It is a proactive finance learning app, to help you improve your financial literacy.",
         },
         {
             id: 1,
-            title: '2.What modules are covered in Phase 1?',
-            body: "2.1 Payslip Module \n2.2.Tax Module - Basics \n2.3.Understanding Credit Score",
+            title: 'What modules are covered in Phase 1?',
+            body: "1. Payslip Module \n2. Tax Module - Basics \n3. Understanding Credit Score",
         }
         ,
         {
             id: 2,
-            title: '3.Can anyone gain access to FINNLITT?',
+            title: 'Can anyone gain access to FINNLITT?',
             body: "Yes, anyone of all ages and gender can gain access to FINNLITT.",
         },
         {
             id: 3,
-            title: '4.Is there a cost to use FINNLITT? ',
+            title: 'Is there a cost to use FINNLITT? ',
             body: "There is no cost, FINNLITT Basic is a free offering. ",
         }
         ,
         {
             id: 4,
-            title: '5.Can I download the App on more than one device? ',
+            title: 'Can I download the App on more than \none device? ',
             body: "You can have only one Mobile App on a Device at a time, but you can download the Mobile App onto as many Devices as you require. ",
         },
         {
             id: 5,
-            title: '6.Will I be required to re-register for each device download? ',
+            title: 'Will I be required to re-register for each device download? ',
             body: "You do not need to re-register for each Device, but you must login as normal with your Digital Identity.",
         }
         ,
         {
             id: 6,
-            title: '7.Will FINNLITT offer more phases ',
+            title: 'Will FINNLITT offer more phases ',
             body: "Yes, the intention is to expand the offering to include more content per module and additional advanced modules. ",
         },
         {
             id: 7,
-            title: '8.Can I contact FINNLITT',
+            title: 'Can I contact FINNLITT',
             body: "Yes, we would love to get feedback on our App and address any other questions you have",
         }
         ,
         {
             id: 8,
-            title: '9.How can I get in touch with FINNLITT',
+            title: 'How can I get in touch with FINNLITT',
             body: "Please refer to our website www.finnlitt.co.za for all contact details. ",
         }
         ,
         {
             id: 9,
-            title: '10.Is FINNLITT an FSP (Financial Services Provider) ? ',
+            title: 'Is FINNLITT an FSP (Financial Services \nProvider) ? ',
             body: "No, FINNLITT is a learning app and not an FSP",
         },
     ];
+    const [openItems, setOpenItems] = useState([]);
 
+    const toggleItem = (item) => {
+        if (openItems.includes(item)) {
+            setOpenItems(openItems.filter((i) => i !== item));
+        } else {
+            setOpenItems([...openItems, item]);
+        }
+    };
     useEffect(() => {
         if (Platform.OS === 'android') {
             if (UIManager.setLayoutAnimationEnabledExperimental) {
@@ -97,29 +106,27 @@ export default function FAQScreen({ navigation }) {
     }
 
     return (
-      
+
         <View style={styles.container}>
             {/* <ScrollView contentContainerStyle={styles.scrollViewContent}
                 showsVerticalScrollIndicator={false}> */}
             <View style={styles.container}>
                 <View style={{ marginTop: '5%', alignContent: 'center' }}>
                     <View style={styles.imageCont}>
-                        <Image source={require('../assets/icons/Subtract.png')} style={styles.image} />
-                        <Text style={{ alignItems: 'center', fontWeight: '700', fontSize: 24, lineHeight: 36, color: '#123F5C', paddingHorizontal: 15 }}>FAQ</Text>
+                        <Image source={require('../assets/iconsTab/FAQActive.png')} style={styles.image} />
+                        <Text style={{ alignItems: 'center', fontSize: 24, lineHeight: 36, color: '#123F5C', paddingHorizontal: 15, fontFamily: 'poppins-bold' }}>FAQ</Text>
                     </View>
                     <View style={styles.contList}>
                         <AccordionList
                             data={data}
-                            customTitle={(item) => {
-                                return (
-                                    <View>
-                                        <View style={{ flex: 1, alignItems: "flex-start", }}>
-                                            <Text style={{ fontSize: 14, }}>{item.title}</Text>
+                            customTitle={(item) => (
+                                <View>
+                                    <View style={{ flex: 1, alignItems: "flex-start" }}>
+                                        <Text style={{ fontSize: 14, fontFamily: 'poppins-semiBold' }}>{item.title}</Text>
 
-                                        </View>
                                     </View>
-                                );
-                            }}
+                                </View>
+                            )}
                             customBody={(item) => {
                                 return (
                                     <View
@@ -132,41 +139,41 @@ export default function FAQScreen({ navigation }) {
                                             },
                                             shadowOpacity: 0.2,
                                             shadowRadius: 2.84,
-                                            elevation: 2,
+                                            // elevation: 2,
                                             backgroundColor: "#fff",
                                             borderRadius: 10,
-                                            marginTop: 2,
+                                            marginTop: -12,
+                                            //marginBottom: 1,
                                             zIndex: -1,
-                                            paddingVertical: 20,
+                                            paddingVertical: 10,
                                             // borderTopWidth:1,
                                             // borderTopColor:'black'
                                         }}
                                     >
                                         <View style={{ flex: 1, alignItems: "flex-start", }}>
-                                            <Text style={{ fontSize: 14, padding: 2 }}>{item.body}</Text>
+                                            <Text style={{ fontSize: 12, padding: 2, fontFamily: 'poppins-regular' }}>{item.body}</Text>
 
                                         </View>
-
-
                                     </View>
                                 );
                             }}
                             animationDuration={400}
                             expandMultiple={true}
                             containerItemStyle={{ borderBottomWidth: 1, fontSize: 20, fontWeight: '600', lineHeight: 21, justifyContent: 'center' }}
-
+                            topDivider={true} // Add top divider
+                            expandFromBottom={true}
                         />
                     </View>
                 </View>
-               
+
                 <StatusBar
                     barStyle="auto" animated={false}
                     backgroundColor="#072a40"
                 />
             </View>
-        {/* </ScrollView> */}
+            {/* </ScrollView> */}
         </View>
-        
+
     );
 }
 
@@ -174,18 +181,34 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
+        fontFamily: 'poppins-regular'
 
     },
+    listItem: {
+        flexDirection: 'row',
+        alignItems: 'flex-start',
+        marginBottom: 8,
+        paddingHorizontal: 20,
+        fontFamily: 'poppins-regular'
+    },
+    bullet: {
+        fontSize: 16,
+    },
+    itemText: {
+        flex: 1,
+    },
     contList: {
-        paddingVertical: '2%',
+        //paddingVertical: '-20%',
         paddingHorizontal: '3%',
         //height: 'auto',
         //backgroundColor: 'pink',
         borderBottomColor: 'black',
+        marginBottom: '50%'
 
     },
     imageCont: {
-        marginBottom: "7%",
+        marginTop: "6%",
+        marginBottom: "6%",
         flexDirection: 'row', // Horizontal layout
         alignItems: 'center',
         justifyContent: 'center', // Center vertically
